@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Application Test</string>
     <string name="title_activity_lab">LabActivity</string>
+    <string name="title_activity_test">TestActivity</string>
 </resources>

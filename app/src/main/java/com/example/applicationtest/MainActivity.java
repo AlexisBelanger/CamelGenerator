@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 
     private int camels;
     private int chailloux;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         camels = 0;
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        final Intent i = new Intent(this,LabActivity.class);
+        final Intent i = new Intent(this,TestActivity.class);
         Button b2 = findViewById(R.id.button2);
         b2.setOnClickListener( new View.OnClickListener(){
             @Override
@@ -61,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
 
                 startActivity(i);
                 Log.i("Test", "click");
-                chailloux ++;
-                emmanuels.setText("Number of Chailloux : "+chailloux);
             }
         });
 
