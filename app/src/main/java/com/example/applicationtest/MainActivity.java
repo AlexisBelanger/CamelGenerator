@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        final Intent i = new Intent(this,TestActivity.class);
+        final Intent i = new Intent(this,AcceuilActivity.class);
         Button b2 = findViewById(R.id.button2);
         b2.setOnClickListener( new View.OnClickListener(){
             @Override
