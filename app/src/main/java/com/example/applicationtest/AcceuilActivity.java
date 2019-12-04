@@ -134,8 +134,8 @@ public class AcceuilActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
+    protected void onStop() {
+        super.onStop();
 
         try {
             File testFile = new File(this.getFilesDir(), "TestFile.txt");
@@ -153,9 +153,10 @@ public class AcceuilActivity extends AppCompatActivity {
 
     }
 
+
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onStart() {
+        super.onStart();
         String textFromFile = "";
         File testFile = new File(this.getFilesDir(), "TestFile.txt");
         if (testFile != null) {
