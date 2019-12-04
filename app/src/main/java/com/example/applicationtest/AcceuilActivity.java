@@ -3,12 +3,14 @@ package com.example.applicationtest;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.example.applicationtest.ui.home.HomeFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import android.util.Log;
 import android.view.View;
 
+import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -31,10 +33,6 @@ public class AcceuilActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
-    private TextView TwLoc;
-    private TextView TWcodeur;
-    private TextView TwLocps;
-    private TextView Twcodeurps;
 
     private double codeurs = 0;
     private double loc = 0;
@@ -62,10 +60,6 @@ public class AcceuilActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-        this.TWcodeur = findViewById(R.id.CompteursC);
-        this.TwLoc = findViewById(R.id.CompteursLOC);
-        this.Twcodeurps = findViewById(R.id.CompteursCps);
-        this.TwLocps = findViewById(R.id.CompteursLOCps);
 
         if (savedInstanceState != null) {
 
@@ -81,13 +75,18 @@ public class AcceuilActivity extends AppCompatActivity {
             @Override
             public void run() {
                 loc += codeurs * 1;
-                if (TWcodeur != null && TwLoc != null && Twcodeurps != null && TwLocps != null) {
-
-                    refreshTW();
-                }
+                refreshTW();
             }
         }, 0, 1000);
 
+    }
+
+    public void refreshTW() {
+        Fragment home = getSupportFragmentManager().findFragmentById(R.layout.fragment_home);
+        if (home != null) {
+
+            ((HomeFragment) home).refreshTW(codeurs, loc, locps, codeursps);
+        }
     }
 
     @Override
@@ -131,20 +130,12 @@ public class AcceuilActivity extends AppCompatActivity {
 
     }
 
-    public void refreshTW() {
-        TWcodeur.setText((int) codeurs + "\nCodeurs");
-        TwLoc.setText((int) loc + "\nLignes de code");
-        TwLocps.setText(locps + "\nLOC / s");
-        Twcodeurps.setText(codeursps + "\nCodeurs / s");
 
-    }
 
     public void cliquer(View view) {
         codeurs++;
-        if (TWcodeur != null && TwLoc != null && Twcodeurps != null && TwLocps != null) {
 
             refreshTW();
-        }
     }
 
     public void moveCave(View view) {

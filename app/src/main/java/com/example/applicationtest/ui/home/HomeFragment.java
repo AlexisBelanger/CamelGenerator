@@ -18,14 +18,38 @@ public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
 
+
+    private TextView TwLoc;
+    private TextView TWcodeur;
+    private TextView TwLocps;
+    private TextView Twcodeurps;
+
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
+
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
+
+        this.TWcodeur = root.findViewById(R.id.CompteursC);
+        this.TwLoc = root.findViewById(R.id.CompteursLOC);
+        this.Twcodeurps = root.findViewById(R.id.CompteursCps);
+        this.TwLocps = root.findViewById(R.id.CompteursLOCps);
         return root;
     }
+
     public void onCreate(){
+
+    }
+
+    public void refreshTW(double codeurs, double loc, double locps, double codeursps) {
+
+
+        TWcodeur.setText((int) codeurs + "\nCodeurs");
+        TwLoc.setText((int) loc + "\nLignes de code");
+        TwLocps.setText(locps + "\nLOC / s");
+        Twcodeurps.setText(codeursps + "\nCodeurs / s");
 
     }
 
