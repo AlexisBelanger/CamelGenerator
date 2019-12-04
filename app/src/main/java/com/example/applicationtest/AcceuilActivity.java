@@ -33,11 +33,11 @@ public class AcceuilActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
-
-    private double codeurs = 0;
-    private double loc = 0;
-    private double locps = 0;
-    private double codeursps = 0;
+    //test TODO a rendre propre
+    public double codeurs = 0;
+    public double loc = 0;
+    public double locps = 0;
+    public double codeursps = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,19 +75,14 @@ public class AcceuilActivity extends AppCompatActivity {
             @Override
             public void run() {
                 loc += codeurs * 1;
-                refreshTW();
+                Log.i("var loc", loc + "");
+                Log.i("var cod", codeurs + "");
+
             }
         }, 0, 1000);
 
     }
 
-    public void refreshTW() {
-        Fragment home = getSupportFragmentManager().findFragmentById(R.layout.fragment_home);
-        if (home != null) {
-
-            ((HomeFragment) home).refreshTW(codeurs, loc, locps, codeursps);
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -132,12 +127,6 @@ public class AcceuilActivity extends AppCompatActivity {
 
 
 
-    public void cliquer(View view) {
-        codeurs++;
-
-            refreshTW();
-    }
-
     public void moveCave(View view) {
 
         //cave a creer
@@ -146,19 +135,6 @@ public class AcceuilActivity extends AppCompatActivity {
 
     }
 
-    public void moveTest(View view) {
-
-        Intent i = new Intent(this, TestActivity.class);
-        startActivity(i);
-
-    }
-
-    public void moveLab(View view) {
-
-        Intent i = new Intent(this, LabActivity.class);
-        startActivity(i);
-
-    }
 
 
 }

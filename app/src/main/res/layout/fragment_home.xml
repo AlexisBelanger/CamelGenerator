@@ -52,13 +52,12 @@
             />
 
         <Button
-
+            android:id="@+id/Clickbutton"
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="true"
             android:text="Clique pour créer des Codeurs"
-            android:onClick="cliquer"
             >
 
         </Button>

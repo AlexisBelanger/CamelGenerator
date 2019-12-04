@@ -1,9 +1,11 @@
 package com.example.applicationtest.ui.home;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -12,9 +14,13 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.example.applicationtest.AcceuilActivity;
 import com.example.applicationtest.R;
 
-public class HomeFragment extends Fragment {
+import java.util.Timer;
+import java.util.TimerTask;
+
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private HomeViewModel homeViewModel;
 
@@ -23,6 +29,12 @@ public class HomeFragment extends Fragment {
     private TextView TWcodeur;
     private TextView TwLocps;
     private TextView Twcodeurps;
+
+    private double codeurs = 0;
+    private double loc = 0;
+    private double locps = 0;
+    private double codeursps = 0;
+
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -36,6 +48,27 @@ public class HomeFragment extends Fragment {
         this.TwLoc = root.findViewById(R.id.CompteursLOC);
         this.Twcodeurps = root.findViewById(R.id.CompteursCps);
         this.TwLocps = root.findViewById(R.id.CompteursLOCps);
+
+        Button click = root.findViewById(R.id.Clickbutton);
+        Log.i("Test", "button :" + click);
+
+        click.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("Test", "click home");
+                ((AcceuilActivity) getActivity()).codeurs++;
+                refreshTW();
+            }
+        });
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                refreshTW();
+            }
+        }, 0, 1000);
+
         return root;
     }
 
@@ -43,14 +76,30 @@ public class HomeFragment extends Fragment {
 
     }
 
-    public void refreshTW(double codeurs, double loc, double locps, double codeursps) {
+    public void onClick(View v) {
+        //do what you want to do when button is clicked
+        Log.i("event", "onClick called ");
+        switch (v.getId()) {
+            case R.id.Clickbutton:
+                ((AcceuilActivity) getActivity()).codeurs++;
+                refreshTW();
+        }
+    }
 
+    public void refreshTW() {
 
-        TWcodeur.setText((int) codeurs + "\nCodeurs");
-        TwLoc.setText((int) loc + "\nLignes de code");
-        TwLocps.setText(locps + "\nLOC / s");
-        Twcodeurps.setText(codeursps + "\nCodeurs / s");
+        if (getActivity() != null && getActivity() instanceof AcceuilActivity) {
 
+            this.locps = ((AcceuilActivity) getActivity()).locps;
+            this.loc = ((AcceuilActivity) getActivity()).loc;
+            this.codeurs = ((AcceuilActivity) getActivity()).codeurs;
+            this.codeursps = ((AcceuilActivity) getActivity()).codeursps;
+
+            TWcodeur.setText((int) codeurs + "\nCodeurs");
+            TwLoc.setText((int) loc + "\nLignes de code");
+            TwLocps.setText(locps + "\nLOC / s");
+            Twcodeurps.setText(codeursps + "\nCodeurs / s");
+        }
     }
 
 
