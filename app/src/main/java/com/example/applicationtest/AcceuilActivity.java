@@ -1,10 +1,12 @@
 package com.example.applicationtest;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import android.util.Log;
 import android.view.View;
 
 import androidx.navigation.NavController;
@@ -34,10 +36,10 @@ public class AcceuilActivity extends AppCompatActivity {
     private TextView TwLocps;
     private TextView Twcodeurps;
 
-    private double codeurs=0;
-    private double loc=0;
-    private double locps=0;
-    private double codeursps=0;
+    private double codeurs = 0;
+    private double loc = 0;
+    private double locps = 0;
+    private double codeursps = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,24 +47,18 @@ public class AcceuilActivity extends AppCompatActivity {
         setContentView(R.layout.activity_acceuil);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow,
-                R.id.nav_tools, R.id.nav_share, R.id.nav_send)
+                R.id.nav_home, R.id.nav_cave, R.id.nav_lab,
+                R.id.nav_test, R.id.nav_share, R.id.nav_send)
                 .setDrawerLayout(drawer)
                 .build();
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
+        NavController navController = Navigation.findNavController(this, R.id.home_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
@@ -84,10 +80,13 @@ public class AcceuilActivity extends AppCompatActivity {
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                loc += codeurs*1;
-                refreshTW();
+                loc += codeurs * 1;
+                if (TWcodeur != null && TwLoc != null && Twcodeurps != null && TwLocps != null) {
+
+                    refreshTW();
+                }
             }
-        },0,1000);
+        }, 0, 1000);
 
     }
 
@@ -100,7 +99,7 @@ public class AcceuilActivity extends AppCompatActivity {
 
     @Override
     public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+        NavController navController = Navigation.findNavController(this, R.id.home_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
@@ -132,16 +131,42 @@ public class AcceuilActivity extends AppCompatActivity {
 
     }
 
-    public void refreshTW(){
-        TWcodeur.setText((int)codeurs+"\nCodeurs");
-        TwLoc.setText((int)loc+"\nLignes de code");
-        TwLocps.setText(locps+"\nLOC / s");
-        Twcodeurps.setText(codeursps+"\nCodeurs / s");
+    public void refreshTW() {
+        TWcodeur.setText((int) codeurs + "\nCodeurs");
+        TwLoc.setText((int) loc + "\nLignes de code");
+        TwLocps.setText(locps + "\nLOC / s");
+        Twcodeurps.setText(codeursps + "\nCodeurs / s");
+
     }
 
-    public void cliquer(View view){
+    public void cliquer(View view) {
         codeurs++;
-        refreshTW();
+        if (TWcodeur != null && TwLoc != null && Twcodeurps != null && TwLocps != null) {
+
+            refreshTW();
+        }
+    }
+
+    public void moveCave(View view) {
+
+        //cave a creer
+        Intent i = new Intent(this, AcceuilActivity.class);
+        startActivity(i);
+
+    }
+
+    public void moveTest(View view) {
+
+        Intent i = new Intent(this, TestActivity.class);
+        startActivity(i);
+
+    }
+
+    public void moveLab(View view) {
+
+        Intent i = new Intent(this, LabActivity.class);
+        startActivity(i);
+
     }
 
 
