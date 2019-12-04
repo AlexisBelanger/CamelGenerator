@@ -71,6 +71,15 @@ public class AcceuilActivity extends AppCompatActivity {
         this.Twcodeurps = findViewById(R.id.CompteursCps);
         this.TwLocps = findViewById(R.id.CompteursLOCps);
 
+        if (savedInstanceState != null) {
+
+            this.codeurs = savedInstanceState.getDouble("codeurs");
+            this.loc = savedInstanceState.getDouble("loc");
+            this.codeursps = savedInstanceState.getDouble("codeursps");
+            this.locps = savedInstanceState.getDouble("locps");
+
+        }
+
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
@@ -94,6 +103,33 @@ public class AcceuilActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        super.onSaveInstanceState(savedInstanceState);
+        // Save UI state changes to the savedInstanceState.
+        // This bundle will be passed to onCreate if the process is
+        // killed and restarted.
+
+        savedInstanceState.putDouble("codeurs", codeurs);
+        savedInstanceState.putDouble("loc", loc);
+        savedInstanceState.putDouble("codeursps", codeursps);
+        savedInstanceState.putDouble("locps", locps);
+
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Restore UI state from the savedInstanceState.
+        // This bundle has also been passed to onCreate.
+
+        this.codeurs = savedInstanceState.getDouble("codeurs");
+        this.loc = savedInstanceState.getDouble("loc");
+        this.codeursps = savedInstanceState.getDouble("codeursps");
+        this.locps = savedInstanceState.getDouble("locps");
+
     }
 
     public void refreshTW(){
