@@ -26,6 +26,14 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.widget.TextView;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -125,13 +133,69 @@ public class AcceuilActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
 
+        try {
+            File testFile = new File(this.getFilesDir(), "TestFile.txt");
+            if (!testFile.exists())
+                testFile.createNewFile();
 
-    public void moveCave(View view) {
+            // Adds a line to the file
+            BufferedWriter writer = new BufferedWriter(new FileWriter(testFile, false/*append*/));
+            writer.write(loc + "\n" + codeurs + "\n" + locps + "\n" + codeursps + "\n");
+            writer.close();
+        } catch (IOException e) {
+            Log.e("ReadWriteFile", "Unable to write to the TestFile.txt file.");
+        }
+        Log.i("texte ecrit ", loc + "\n" + codeurs + "\n" + locps + "\n" + codeursps + "\n");
 
-        //cave a creer
-        Intent i = new Intent(this, AcceuilActivity.class);
-        startActivity(i);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        String textFromFile = "";
+        File testFile = new File(this.getFilesDir(), "TestFile.txt");
+        if (testFile != null) {
+            StringBuilder stringBuilder = new StringBuilder();
+            // Reads the data from the file
+            BufferedReader reader = null;
+            try {
+                reader = new BufferedReader(new FileReader(testFile));
+                String line;
+
+                int i = 0;
+                while ((line = reader.readLine()) != null) {
+                    textFromFile += line;
+                    textFromFile += "\n";
+                    switch (i) {
+                        case 0:
+                            loc = Double.parseDouble(line);
+                            break;
+                        case 1:
+                            codeurs = Double.parseDouble(line);
+                            break;
+                        case 2:
+                            locps = Double.parseDouble(line);
+                            break;
+                        case 3:
+                            codeursps = Double.parseDouble(line);
+                            break;
+
+                        default:
+                            break;
+                    }
+                    i++;
+
+                }
+                reader.close();
+            } catch (Exception e) {
+                Log.e("ReadWriteFile", "Unable to read the TestFile.txt file.");
+            }
+        }
+        Log.i("texte lu ", textFromFile);
 
     }
 
