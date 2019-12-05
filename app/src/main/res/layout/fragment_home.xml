@@ -56,11 +56,26 @@
             android:layout_width="match_parent"
             android:layout_height="300dp"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
             android:text="Clique pour créer des Codeurs"
+            android:layout_above="@id/Resetbutton"
             >
 
         </Button>
+
+
+
+        <Button
+            android:id="@+id/Resetbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+
+            android:text="Repartir de zéro"
+            >
+
+        </Button>
+
 
 
     </RelativeLayout>

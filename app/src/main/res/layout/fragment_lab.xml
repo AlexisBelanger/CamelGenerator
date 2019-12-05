@@ -14,120 +14,139 @@
         android:layout_weight="1"
         android:orientation="vertical">
 
-        <View
-            android:id="@+id/view"
+
+        <ScrollView
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_centerHorizontal="true">
-
-        </View>
-
-        <Button
-            android:id="@+id/button12"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/view"
-            android:layout_alignParentLeft="true"
-            android:text="Emmanuel Chailloux" />
-
-        <TextView
-            android:id="@+id/text4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:layout_below="@id/button12"
-            android:layout_alignParentLeft="true"
-            android:layout_alignLeft="@id/view2"
-            android:layout_toLeftOf="@id/view2"
-
-            android:text="Hire Emmanuel Chailloux and force him to code to produce Camels.\n\nYou hired 0 Chailloux.\n\nEach Chailloux improves your production by 10 camels.\n\n\nCost : 100" />
-
-        <View
-            android:id="@+id/view2"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_centerHorizontal="true">
-
-        </View>
-
-        <Button
-            android:id="@+id/button22"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:layout_alignLeft="@id/view"
+            android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-
-            android:text="Fortnite World Cup" />
-
-        <TextView
-            android:id="@+id/text3"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:layout_alignRight="@id/view2"
-            android:layout_toRightOf="@id/view2"
-            android:layout_alignParentRight="true"
-
-            android:layout_below="@id/button22"
-            android:textSize="18sp"
-            android:text="Participate in the Fortnite World Cup and win the prize pool.\n\nYou won 0 World Cups.\n\nEach World you win gives you 700 camels.\n\n\n\nCost : 5 000" />
-
-
-        <View
-            android:id="@+id/view3"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_centerHorizontal="true"></View>
-
-        <Button
-            android:id="@+id/button42"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/view3"
-            android:layout_below="@id/text4"
             android:layout_alignParentLeft="true"
-            android:text="Patrick Balkany" />
+            android:layout_above="@id/button5"
+            >
 
-        <Button
-            android:id="@+id/button32"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/view3"
-            android:layout_below="@id/text4"
-            android:layout_alignParentRight="true"
-            android:text="NordVPN" />
+            <RelativeLayout
+                android:id="@+id/layout_scroll"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <View
+                    android:id="@+id/view"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerHorizontal="true">
+
+                </View>
+
+                <Button
+                    android:id="@+id/button12"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/view"
+                    android:layout_alignParentLeft="true"
+                    android:text="Emmanuel Chailloux" />
+
+                <TextView
+                    android:id="@+id/text4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:layout_below="@id/button12"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignLeft="@id/view2"
+                    android:layout_toLeftOf="@id/view2">
+
+                </TextView>
 
 
-        <View
-            android:id="@+id/view4"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_centerHorizontal="true"></View>
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerHorizontal="true">
 
-        <TextView
-            android:id="@+id/text1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@id/view4"
-            android:layout_below="@id/button42"
-            android:text="Patrick Balkany will steal Levallois Perret people's camels to give it to you.\n\n\nYou have 0 Patrick Balkany.\n\nEach Patrick Balkany will steal 10 000 camels.\n\n\nCost : 750 000" />
-        p
+                </View>
 
-        <TextView
-            android:id="@+id/text2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textSize="18sp"
-            android:layout_alignParentRight="true"
-            android:layout_toRightOf="@id/view4"
-            android:layout_below="@id/button42"
-            android:text="Post a video sponsored by NordVPN on your Youtube channel, they will reward you with camels.\n\nYou posted 0 sponsored videos.\n\nEach video will give you \n2 500 camels.\n\n\nCost : 75 000" />
+                <Button
+                    android:id="@+id/button22"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/view"
+                    android:layout_alignParentRight="true"
 
+                    android:text="Fortnite World Cup" />
+
+                <TextView
+                    android:id="@+id/text3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_alignRight="@id/view2"
+                    android:layout_toRightOf="@id/view2"
+                    android:layout_alignParentRight="true"
+
+                    android:layout_below="@id/button22"
+                    android:textSize="18sp"
+                    android:text="Participate in the Fortnite World Cup and win the prize pool.\n\nYou won 0 World Cups.\n\nEach World you win gives you 700 camels.\n\n\n\nCost : 5 000" />
+
+
+                <View
+                    android:id="@+id/view3"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerHorizontal="true"></View>
+
+                <Button
+                    android:id="@+id/button42"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toLeftOf="@id/view3"
+                    android:layout_below="@id/text4"
+                    android:layout_alignParentLeft="true"
+                    android:text="Patrick Balkany" />
+
+                <Button
+                    android:id="@+id/button32"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@id/view3"
+                    android:layout_below="@id/text4"
+                    android:layout_alignParentRight="true"
+                    android:text="NordVPN" />
+
+
+                <View
+                    android:id="@+id/view4"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_centerHorizontal="true"></View>
+
+                <TextView
+                    android:id="@+id/text1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:layout_alignParentLeft="true"
+                    android:layout_toLeftOf="@id/view4"
+                    android:layout_below="@id/button42"
+                    android:text="Patrick Balkany will steal Levallois Perret people's camels to give it to you.\n\n\nYou have 0 Patrick Balkany.\n\nEach Patrick Balkany will steal 10 000 camels.\n\n\nCost : 750 000" />
+                p
+
+                <TextView
+                    android:id="@+id/text2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textSize="18sp"
+                    android:layout_alignParentRight="true"
+                    android:layout_toRightOf="@id/view4"
+                    android:layout_below="@id/button42"
+                    android:text="Post a video sponsored by NordVPN on your Youtube channel, they will reward you with camels.\n\nYou posted 0 sponsored videos.\n\nEach video will give you \n2 500 camels.\n\n\nCost : 75 000" />
+            </RelativeLayout>
+        </ScrollView>
         <Button
             android:id="@+id/button5"
             android:layout_width="match_parent"

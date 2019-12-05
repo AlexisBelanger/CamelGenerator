@@ -87,6 +87,7 @@ public class ClickActicity extends AppCompatActivity {
     }
 
     public void cliquer(View view) {
+        System.out.println("LOL");
         codeurs++;
         refreshTW();
     }

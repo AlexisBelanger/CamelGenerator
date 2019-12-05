@@ -37,7 +37,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18sp"
+            android:textSize="16dp"
             android:layout_below="@id/button12"
             android:layout_alignParentLeft="true"
             android:layout_alignLeft="@id/view2"
@@ -72,7 +72,7 @@
             android:layout_alignParentRight="true"
 
             android:layout_below="@id/button22"
-            android:textSize="18sp"
+            android:textSize="16dp"
             android:text="Participate in the Fortnite World Cup and win the prize pool.\n\nYou won 0 World Cups.\n\nEach World you win gives you 700 camels.\n\n\n\nCost : 5 000" />
 
 
@@ -116,7 +116,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18sp"
+            android:textSize="16dp"
             android:layout_alignParentLeft="true"
             android:layout_toLeftOf="@id/view4"
             android:layout_below="@id/button42"
@@ -128,7 +128,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:textSize="18sp"
+            android:textSize="16dp"
             android:layout_alignParentRight="true"
             android:layout_toRightOf="@id/view4"
             android:layout_below="@id/button42"
@@ -138,7 +138,7 @@
             android:id="@+id/button5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@id/text2"
             android:text="Accept"
             android:textAlignment="center"
             android:gravity="center"

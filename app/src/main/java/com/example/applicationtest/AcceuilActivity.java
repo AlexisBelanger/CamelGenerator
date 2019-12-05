@@ -102,8 +102,8 @@ public class AcceuilActivity extends AppCompatActivity {
     @Override
     protected void onStop() {
         super.onStop();
-
         utils.writeTofile(gameState.toJSON(), "save.json", this);
+
 
     }
 

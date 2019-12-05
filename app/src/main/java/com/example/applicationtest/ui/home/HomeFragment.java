@@ -1,5 +1,7 @@
 package com.example.applicationtest.ui.home;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,6 +51,31 @@ public class HomeFragment extends Fragment {
                 refreshTW();
             }
         });
+
+
+
+        Button reset = root.findViewById(R.id.Resetbutton);
+        reset.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                System.out.println("ET MERDE");
+                AlertDialog.Builder builder=new AlertDialog.Builder(getContext());
+                builder.setTitle("Confirmation");
+                builder.setMessage("Etes vous sûr de vouloir repartir de zéro ?");
+                System.out.println("JE SUIS ITALIEN");
+                builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        ((AcceuilActivity) getActivity()).getGameState().resetArmy();
+
+                    }
+                });
+
+                builder.setNeutralButton(android.R.string.cancel, null);
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
+        }
+        );
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
