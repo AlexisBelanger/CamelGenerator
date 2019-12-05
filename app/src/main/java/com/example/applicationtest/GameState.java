@@ -1,7 +1,11 @@
 package com.example.applicationtest;
 
 
+import android.util.Log;
+
 import org.json.*;
+
+import java.sql.Time;
 
 public class GameState {
 
@@ -14,6 +18,7 @@ public class GameState {
     public double codeursEfficiency;
     public double clickEfficiency;
 
+    public Long idleSeconds;
 
     public GameState() {
 
@@ -24,6 +29,8 @@ public class GameState {
 
         codeursEfficiency = 1;
         clickEfficiency = 1;
+
+        idleSeconds = 0L;
     }
 
     public GameState(String state) {
@@ -37,6 +44,15 @@ public class GameState {
             locps = jsonObject.getDouble("locps");
             codeursEfficiency = jsonObject.getDouble("codeursEff");
             clickEfficiency = jsonObject.getDouble("clickEff");
+
+            long saveTime = jsonObject.getLong("saveTime");
+            Log.i("create saveTime", saveTime + "");
+
+            idleSeconds = System.currentTimeMillis() / 1000 - saveTime;
+            Log.i("idesecs", idleSeconds + "");
+
+            loc += locps * idleSeconds;
+            codeurs += codeursps * idleSeconds;
 
         } catch (JSONException e) {
             // TODO Auto-generated catch block
@@ -60,6 +76,7 @@ public class GameState {
 
     public String toJSON() {
         JSONObject jsonObject = new JSONObject();
+        Long tsLong = System.currentTimeMillis() / 1000;
         try {
             jsonObject.put("loc", loc);
             jsonObject.put("codeurs", codeurs);
@@ -67,6 +84,8 @@ public class GameState {
             jsonObject.put("locps", locps);
             jsonObject.put("codeursEff", codeursEfficiency);
             jsonObject.put("clickEff", clickEfficiency);
+            jsonObject.put("saveTime", tsLong);
+            Log.i("save saveTime", tsLong + "");
 
             return jsonObject.toString();
         } catch (JSONException e) {

@@ -1,5 +1,8 @@
 package com.example.applicationtest;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.navigation.NavController;
@@ -14,6 +17,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.Menu;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -45,14 +49,13 @@ public class AcceuilActivity extends AppCompatActivity {
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
 
-
         if (savedInstanceState != null) {
 
             gameState = new GameState(savedInstanceState.getString("gameState"));
-
         } else {
             gameState = new GameState();
         }
+
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -110,7 +113,30 @@ public class AcceuilActivity extends AppCompatActivity {
         super.onStart();
 
         gameState = new GameState(utils.ReadFromfile("save.json", this));
+        final String PREFS_NAME = "MyPrefsFile";
 
+        SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
+
+
+        if (settings.getBoolean("my_first_time", true)) {
+            //the app is being launched for first time, do something
+            Log.d("Comments", "First time");
+
+            // record the fact that the app has been started at least once
+            settings.edit().putBoolean("my_first_time", false).commit();
+        } else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            Long idls = gameState.idleSeconds;
+            Log.i("idsl activity", idls + "");
+            builder.setMessage("Pendant votre Absence la corporation a géneré :\n" +
+                    idls * gameState.locps + " LOC\n" +
+                    idls * getGameState().codeursps + " Codeurs\n").setTitle("Bon Retour Parmis Nous");
+
+            AlertDialog dialog = builder.create();
+
+            dialog.show();
+        }
     }
 
     public GameState getGameState() {
