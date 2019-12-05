@@ -1,16 +1,7 @@
 package com.example.applicationtest;
 
-import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.applicationtest.ui.home.HomeFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.util.Log;
-import android.view.View;
-
-import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -24,16 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
-import android.widget.TextView;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -41,11 +22,7 @@ public class AcceuilActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
-    //test TODO a rendre propre
-    public double codeurs = 0;
-    public double loc = 0;
-    public double locps = 0;
-    public double codeursps = 0;
+    private GameState gameState;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,21 +48,17 @@ public class AcceuilActivity extends AppCompatActivity {
 
         if (savedInstanceState != null) {
 
-            this.codeurs = savedInstanceState.getDouble("codeurs");
-            this.loc = savedInstanceState.getDouble("loc");
-            this.codeursps = savedInstanceState.getDouble("codeursps");
-            this.locps = savedInstanceState.getDouble("locps");
+            gameState = new GameState(savedInstanceState.getString("gameState"));
 
+        } else {
+            gameState = new GameState();
         }
 
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-                loc += codeurs * 1;
-                Log.i("var loc", loc + "");
-                Log.i("var cod", codeurs + "");
-
+                gameState.secondTick();
             }
         }, 0, 1000);
 
@@ -109,27 +82,17 @@ public class AcceuilActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
         super.onSaveInstanceState(savedInstanceState);
-        // Save UI state changes to the savedInstanceState.
-        // This bundle will be passed to onCreate if the process is
-        // killed and restarted.
 
-        savedInstanceState.putDouble("codeurs", codeurs);
-        savedInstanceState.putDouble("loc", loc);
-        savedInstanceState.putDouble("codeursps", codeursps);
-        savedInstanceState.putDouble("locps", locps);
+        savedInstanceState.putString("gameState", gameState.toJSON());
 
     }
 
     @Override
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        // Restore UI state from the savedInstanceState.
-        // This bundle has also been passed to onCreate.
 
-        this.codeurs = savedInstanceState.getDouble("codeurs");
-        this.loc = savedInstanceState.getDouble("loc");
-        this.codeursps = savedInstanceState.getDouble("codeursps");
-        this.locps = savedInstanceState.getDouble("locps");
+        gameState = new GameState(savedInstanceState.getString("gameState"));
+
 
     }
 
@@ -137,19 +100,7 @@ public class AcceuilActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
 
-        try {
-            File testFile = new File(this.getFilesDir(), "TestFile.txt");
-            if (!testFile.exists())
-                testFile.createNewFile();
-
-            // Adds a line to the file
-            BufferedWriter writer = new BufferedWriter(new FileWriter(testFile, false/*append*/));
-            writer.write(loc + "\n" + codeurs + "\n" + locps + "\n" + codeursps + "\n");
-            writer.close();
-        } catch (IOException e) {
-            Log.e("ReadWriteFile", "Unable to write to the TestFile.txt file.");
-        }
-        Log.i("texte ecrit ", loc + "\n" + codeurs + "\n" + locps + "\n" + codeursps + "\n");
+        utils.writeTofile(gameState.toJSON(), "save.json", this);
 
     }
 
@@ -157,49 +108,12 @@ public class AcceuilActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        String textFromFile = "";
-        File testFile = new File(this.getFilesDir(), "TestFile.txt");
-        if (testFile != null) {
-            StringBuilder stringBuilder = new StringBuilder();
-            // Reads the data from the file
-            BufferedReader reader = null;
-            try {
-                reader = new BufferedReader(new FileReader(testFile));
-                String line;
 
-                int i = 0;
-                while ((line = reader.readLine()) != null) {
-                    textFromFile += line;
-                    textFromFile += "\n";
-                    switch (i) {
-                        case 0:
-                            loc = Double.parseDouble(line);
-                            break;
-                        case 1:
-                            codeurs = Double.parseDouble(line);
-                            break;
-                        case 2:
-                            locps = Double.parseDouble(line);
-                            break;
-                        case 3:
-                            codeursps = Double.parseDouble(line);
-                            break;
-
-                        default:
-                            break;
-                    }
-                    i++;
-
-                }
-                reader.close();
-            } catch (Exception e) {
-                Log.e("ReadWriteFile", "Unable to read the TestFile.txt file.");
-            }
-        }
-        Log.i("texte lu ", textFromFile);
+        gameState = new GameState(utils.ReadFromfile("save.json", this));
 
     }
 
-
-
+    public GameState getGameState() {
+        return gameState;
+    }
 }
