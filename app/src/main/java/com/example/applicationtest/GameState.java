@@ -3,10 +3,11 @@ package com.example.applicationtest;
 
 import android.util.Log;
 
+import com.example.applicationtest.Amelioration.Amelioration;
+
 import org.json.*;
 
-import java.sql.SQLOutput;
-import java.sql.Time;
+import java.util.HashMap;
 
 public class GameState {
 
@@ -16,18 +17,11 @@ public class GameState {
     public double locps;
     public double codeursps;
 
+    public HashMap<String, Amelioration> ameliorationMap;
 
-    public double coderMasters;
-    public double fortniteWorldCups;
-    public double nordVPN;
-    public double balkany;
 
     public double codeursEfficiency;
     public double clickEfficiency;
-    public double coderMastersEfficiency;
-    public double fwcEfficiency;
-    public double opeSpeEfficiency;
-    public double balkanyEfficiency;
 
     public Long idleSeconds;
 
@@ -38,16 +32,9 @@ public class GameState {
         locps = 0;
         codeursps = 0;
 
-        coderMasters = 0;
-        fortniteWorldCups = 0;
-        nordVPN = 0;
-        balkany = 0;
+        ameliorationMap = new HashMap<>();
 
         codeursEfficiency = 1;
-        coderMastersEfficiency = 10 ;
-        fwcEfficiency = 100;
-        opeSpeEfficiency = 500;
-        balkanyEfficiency = 1000;
         clickEfficiency = 1;
 
         idleSeconds = 0L;
@@ -64,10 +51,6 @@ public class GameState {
             locps = jsonObject.getDouble("locps");
             codeursEfficiency = jsonObject.getDouble("codeursEff");
             clickEfficiency = jsonObject.getDouble("clickEff");
-            coderMasters = jsonObject.getDouble("codermasters");
-            fortniteWorldCups = jsonObject.getDouble("fortniteWC");
-            nordVPN = jsonObject.getDouble("nordVPN");
-            balkany = jsonObject.getDouble("patrick");
 
             long saveTime = jsonObject.getLong("saveTime");
             Log.i("create saveTime", saveTime + "");
@@ -85,10 +68,8 @@ public class GameState {
     }
 
     public void updateValues() {
-        locps = codeurs * codeursEfficiency + coderMasters*coderMastersEfficiency +
-                nordVPN*opeSpeEfficiency +
-                fortniteWorldCups * fwcEfficiency +
-                balkany * balkanyEfficiency ;
+        //TODO revoir methode avec ameliorations
+        locps = codeurs * codeursEfficiency;
     }
 
     public void secondTick() {
@@ -101,40 +82,21 @@ public class GameState {
         updateValues();
     }
 
-    public void addCoderMaster(){
-        coderMasters++;
-        updateValues();
+    public void addAmelioration(Amelioration amm) {
+
+        if (ameliorationMap.containsKey(amm.getNom())) {
+            amm = ameliorationMap.get(amm.getNom());
+            amm.ChangeState(this);
+            loc -= amm.getCost();
+            amm.incrementCost();
+            ameliorationMap.put(amm.getNom(), amm);
+        } else {
+            amm.ChangeState(this);
+            loc -= amm.getCost();
+            amm.incrementCost();
+            ameliorationMap.put(amm.getNom(), amm);
+        }
     }
-
-
-    public void addFWC(){
-        fortniteWorldCups++;
-        updateValues();
-    }
-
-    public void addOpeSpe(){
-        nordVPN++;
-        updateValues();
-    }
-
-    public void addBALKANY(){
-        balkany++;
-        updateValues();
-    }
-
-
-    public void resetArmy(){
-        coderMasters = 0;
-        fortniteWorldCups = 0;
-        nordVPN = 0;
-        balkany = 0;
-        codeurs = 0;
-        loc = 0;
-        locps = 0;
-        codeursps = 0;
-        updateValues();
-    }
-
 
 
 
@@ -146,19 +108,15 @@ public class GameState {
             jsonObject.put("codeurs", codeurs);
             jsonObject.put("codeursps", codeursps);
             jsonObject.put("locps", locps);
+
             jsonObject.put("codeursEff", codeursEfficiency);
             jsonObject.put("clickEff", clickEfficiency);
 
-            jsonObject.put("codermasters", coderMasters);
-            jsonObject.put("fortniteWC", fortniteWorldCups);
-            jsonObject.put("nordVPN", nordVPN);
-            jsonObject.put("patrick", balkany);
-
             jsonObject.put("saveTime", tsLong);
-            Log.i("save saveTime", tsLong + "");
 
 
             return jsonObject.toString();
+
         } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -15,6 +15,10 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.example.applicationtest.AcceuilActivity;
+import com.example.applicationtest.Amelioration.Balkany;
+import com.example.applicationtest.Amelioration.CodeMaster;
+import com.example.applicationtest.Amelioration.Fortnite;
+import com.example.applicationtest.Amelioration.Nord;
 import com.example.applicationtest.GameState;
 import com.example.applicationtest.LabActivity;
 import com.example.applicationtest.MainActivity;
@@ -48,18 +52,16 @@ public class GalleryFragment extends Fragment {
 
 
         // Pour ne pas perdre l'affichage quand on change de fragment
-        refreshBALKANY();
         refreshCoderMasters();
-        refreshFWC();
-        refreshNVPN();
 
 
         Button b1 = root.findViewById(R.id.button12);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("Test", "click");
-                ((AcceuilActivity) getActivity()).getGameState().addCoderMaster();
+
+                GameState gs = ((AcceuilActivity) getActivity()).getGameState();
+                gs.addAmelioration(new CodeMaster());
                 refreshCoderMasters();
             }
         });
@@ -68,9 +70,9 @@ public class GalleryFragment extends Fragment {
         b2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("Test", "click");
-                ((AcceuilActivity) getActivity()).getGameState().addFWC();
-                refreshFWC();
+                GameState gs = ((AcceuilActivity) getActivity()).getGameState();
+                gs.addAmelioration(new Fortnite());
+                refreshCoderMasters();
             }
         });
 
@@ -78,9 +80,9 @@ public class GalleryFragment extends Fragment {
         b3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("Test", "click");
-                ((AcceuilActivity) getActivity()).getGameState().addOpeSpe();
-                refreshNVPN();
+                GameState gs = ((AcceuilActivity) getActivity()).getGameState();
+                gs.addAmelioration(new Nord());
+                refreshCoderMasters();
             }
         });
 
@@ -88,9 +90,9 @@ public class GalleryFragment extends Fragment {
         b4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("Test", "click");
-                ((AcceuilActivity) getActivity()).getGameState().addBALKANY();
-                refreshBALKANY();
+                GameState gs = ((AcceuilActivity) getActivity()).getGameState();
+                gs.addAmelioration(new Balkany());
+                refreshCoderMasters();
             }
         });
 
@@ -105,13 +107,6 @@ public class GalleryFragment extends Fragment {
         });
 
 
-        Timer timer = new Timer();
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                //refresh
-            }
-        }, 0, 1000);
 
         return root;
 
@@ -121,37 +116,22 @@ public class GalleryFragment extends Fragment {
 
     public void refreshCoderMasters(){
         if (getActivity() != null && getActivity() instanceof AcceuilActivity) {
-            double codermasters = ((AcceuilActivity) getActivity()).getGameState().coderMasters;
-            TextView TWcodermasters = root.findViewById(R.id.text4);
-            TWcodermasters.setText("Hire Emmanuel Chailloux and force him to code to produce Camels.\n\nYou hired " + codermasters + " Chailloux.\n\nEach Chailloux improves your production by 10 camels.\n\n\nCost : 100");
+
+            if (((AcceuilActivity) getActivity()).getGameState().ameliorationMap.containsKey(("CodeMaster"))) {
+
+                int codermasters = ((AcceuilActivity) getActivity()).getGameState().ameliorationMap.get("CodeMaster").getNb_taken();
+                TextView TWcodermasters = root.findViewById(R.id.text4);
+                TWcodermasters.setText("Hire Emmanuel Chailloux and force him to code to produce Camels.\n\nYou hired " + codermasters + " Chailloux.\n\nEach Chailloux improves your production by 10 camels.\n\n\nCost : 100");
+            } else {
+
+                int codermasters = 0;
+                TextView TWcodermasters = root.findViewById(R.id.text4);
+                TWcodermasters.setText("Hire Emmanuel Chailloux and force him to code to produce Camels.\n\nYou hired " + codermasters + " Chailloux.\n\nEach Chailloux improves your production by 10 camels.\n\n\nCost : 100");
+
+            }
         }
     }
 
-    public void refreshFWC(){
-        if (getActivity() != null && getActivity() instanceof AcceuilActivity) {
-            double FWC = ((AcceuilActivity) getActivity()).getGameState().fortniteWorldCups;
-            System.out.println(FWC);
-            TextView TWFWC = root.findViewById(R.id.text3);
-            TWFWC.setText("Participate in the Fortnite World Cup and win the prize pool.\n\nYou won " + FWC + " World Cups.\n\nEach World you win gives you 700 camels.\n\n\n\nCost : 5 000");
-        }
-    }
-
-    public void refreshNVPN(){
-        if (getActivity() != null && getActivity() instanceof AcceuilActivity) {
-            double NVPN = ((AcceuilActivity) getActivity()).getGameState().nordVPN;
-            TextView TWNVPN = root.findViewById(R.id.text2);
-            TWNVPN.setText("Post a video sponsored by NordVPN on your Youtube channel, they will reward you with camels.\n\nYou posted " + NVPN + " sponsored videos.\n\nEach video will give you \n2 500 camels.\n\n\nCost : 75 000");
-        }
-    }
-
-
-    public void refreshBALKANY(){
-        if (getActivity() != null && getActivity() instanceof AcceuilActivity) {
-            double balkany = ((AcceuilActivity) getActivity()).getGameState().balkany;
-            TextView TWBalkany = root.findViewById(R.id.text1);
-            TWBalkany.setText("Patrick Balkany will steal Levallois Perret people's camels to give it to you.\n\n\nYou have " + balkany + " Patrick Balkany.\n\nEach Patrick Balkany will steal 10 000 camels.\n\n\nCost : 750 000");
-        }
-    }
 
 
 

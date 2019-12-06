@@ -142,4 +142,8 @@ public class AcceuilActivity extends AppCompatActivity {
     public GameState getGameState() {
         return gameState;
     }
+
+    public void resetGameState() {
+        gameState = new GameState();
+    }
 }

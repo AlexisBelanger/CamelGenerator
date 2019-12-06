@@ -65,7 +65,7 @@ public class HomeFragment extends Fragment {
                 System.out.println("JE SUIS ITALIEN");
                 builder.setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        ((AcceuilActivity) getActivity()).getGameState().resetArmy();
+                        ((AcceuilActivity) getActivity()).resetGameState();
 
                     }
                 });
