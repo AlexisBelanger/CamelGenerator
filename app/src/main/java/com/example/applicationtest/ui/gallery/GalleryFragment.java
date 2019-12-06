@@ -1,7 +1,5 @@
 package com.example.applicationtest.ui.gallery;
 
-import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,13 +18,7 @@ import com.example.applicationtest.Amelioration.CodeMaster;
 import com.example.applicationtest.Amelioration.Fortnite;
 import com.example.applicationtest.Amelioration.Nord;
 import com.example.applicationtest.GameState;
-import com.example.applicationtest.LabActivity;
-import com.example.applicationtest.MainActivity;
 import com.example.applicationtest.R;
-import com.example.applicationtest.ui.home.HomeViewModel;
-
-import java.util.Timer;
-import java.util.TimerTask;
 
 public class GalleryFragment extends Fragment {
 
