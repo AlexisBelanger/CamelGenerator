@@ -51,61 +51,6 @@ public class GalleryFragment extends Fragment {
         this.root = inflater.inflate(R.layout.fragment_lab, container, false);
 
 
-        // Pour ne pas perdre l'affichage quand on change de fragment
-        refreshCoderMasters();
-
-
-        Button b1 = root.findViewById(R.id.button12);
-        b1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                GameState gs = ((AcceuilActivity) getActivity()).getGameState();
-                gs.addAmelioration(new CodeMaster());
-                refreshCoderMasters();
-            }
-        });
-
-        Button b2 = root.findViewById(R.id.button22);
-        b2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                GameState gs = ((AcceuilActivity) getActivity()).getGameState();
-                gs.addAmelioration(new Fortnite());
-                refreshCoderMasters();
-            }
-        });
-
-        Button b3 = root.findViewById(R.id.button32);
-        b3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                GameState gs = ((AcceuilActivity) getActivity()).getGameState();
-                gs.addAmelioration(new Nord());
-                refreshCoderMasters();
-            }
-        });
-
-        Button b4 = root.findViewById(R.id.button42);
-        b4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                GameState gs = ((AcceuilActivity) getActivity()).getGameState();
-                gs.addAmelioration(new Balkany());
-                refreshCoderMasters();
-            }
-        });
-
-
-        Button b5 = root.findViewById(R.id.button5);
-        b5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.i("Test", "click");
-               // startActivity(i);
-            }
-        });
-
 
 
         return root;
@@ -114,23 +59,6 @@ public class GalleryFragment extends Fragment {
     }
 
 
-    public void refreshCoderMasters(){
-        if (getActivity() != null && getActivity() instanceof AcceuilActivity) {
-
-            if (((AcceuilActivity) getActivity()).getGameState().ameliorationMap.containsKey(("CodeMaster"))) {
-
-                int codermasters = ((AcceuilActivity) getActivity()).getGameState().ameliorationMap.get("CodeMaster").getNb_taken();
-                TextView TWcodermasters = root.findViewById(R.id.text4);
-                TWcodermasters.setText("Hire Emmanuel Chailloux and force him to code to produce Camels.\n\nYou hired " + codermasters + " Chailloux.\n\nEach Chailloux improves your production by 10 camels.\n\n\nCost : 100");
-            } else {
-
-                int codermasters = 0;
-                TextView TWcodermasters = root.findViewById(R.id.text4);
-                TWcodermasters.setText("Hire Emmanuel Chailloux and force him to code to produce Camels.\n\nYou hired " + codermasters + " Chailloux.\n\nEach Chailloux improves your production by 10 camels.\n\n\nCost : 100");
-
-            }
-        }
-    }
 
 
 

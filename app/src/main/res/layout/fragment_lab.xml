@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/fragment_lab"
+<RelativeLayout android:id="@+id/fragment_lab"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".LabActivity">
-
-    <RelativeLayout
-        android:id="@+id/chailloux"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
+    android:layout_height="match_parent">
 
         <ScrollView
             android:layout_width="0dp"
@@ -27,127 +16,125 @@
             <RelativeLayout
                 android:id="@+id/layout_scroll"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:orientation="vertical">
 
-                <View
-                    android:id="@+id/view"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_centerHorizontal="true">
-
-                </View>
-
-                <Button
-                    android:id="@+id/button12"
-                    android:layout_width="50dp"
+                <TextView
+                    android:id="@+id/IDE"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/view"
-                    android:layout_alignParentLeft="true"
-                    android:text="Emmanuel Chailloux" />
+                    android:layout_centerHorizontal="true"
+                    android:text="IDE" />
+
+
+                <include
+                    android:id="@+id/amide1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/IDE"
+                    layout="@layout/amelioration_layout" />
+
+                <include
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/amide1"
+                    android:id="@+id/amide2"
+                    layout="@layout/amelioration_layout" />
+
+                <include
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/amide2"
+                    android:id="@+id/amide3"
+                    layout="@layout/amelioration_layout" />
+
+                <include
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/amide3"
+                    android:id="@+id/amide4"
+                    layout="@layout/amelioration_layout" />
 
                 <TextView
-                    android:id="@+id/text4"
-                    android:layout_width="0dp"
+                    android:id="@+id/CAFE"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="18sp"
-                    android:layout_below="@id/button12"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignLeft="@id/view2"
-                    android:layout_toLeftOf="@id/view2">
-
-                </TextView>
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/amide4"
+                    android:text="CAFE" />
 
 
-                <View
-                    android:id="@+id/view2"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_centerHorizontal="true">
-
-                </View>
-
-                <Button
-                    android:id="@+id/button22"
-                    android:layout_width="50dp"
+                <include
+                    android:id="@+id/amcaf1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/view"
-                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/CAFE"
+                    layout="@layout/amelioration_layout" />
 
-                    android:text="Fortnite World Cup" />
+                <include
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/amcaf1"
+                    android:id="@+id/amcaf2"
+                    layout="@layout/amelioration_layout" />
+
+                <include
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/amcaf2"
+                    android:id="@+id/amcaf3"
+                    layout="@layout/amelioration_layout" />
+
+                <include
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/amcaf3"
+                    android:id="@+id/amcaf4"
+                    layout="@layout/amelioration_layout" />
 
                 <TextView
-                    android:id="@+id/text3"
-                    android:layout_width="0dp"
+                    android:id="@+id/Training"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_alignRight="@id/view2"
-                    android:layout_toRightOf="@id/view2"
-                    android:layout_alignParentRight="true"
-
-                    android:layout_below="@id/button22"
-                    android:textSize="18sp"
-                    android:text="Participate in the Fortnite World Cup and win the prize pool.\n\nYou won 0 World Cups.\n\nEach World you win gives you 700 camels.\n\n\n\nCost : 5 000" />
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/amcaf4"
+                    android:text="Train" />
 
 
-                <View
-                    android:id="@+id/view3"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_centerHorizontal="true"></View>
-
-                <Button
-                    android:id="@+id/button42"
-                    android:layout_width="0dp"
+                <include
+                    android:id="@+id/amtrain1"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toLeftOf="@id/view3"
-                    android:layout_below="@id/text4"
-                    android:layout_alignParentLeft="true"
-                    android:text="Patrick Balkany" />
+                    android:layout_below="@id/Training"
+                    layout="@layout/amelioration_layout" />
 
-                <Button
-                    android:id="@+id/button32"
-                    android:layout_width="0dp"
+                <include
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_toRightOf="@id/view3"
-                    android:layout_below="@id/text4"
-                    android:layout_alignParentRight="true"
-                    android:text="NordVPN" />
+                    android:layout_below="@id/amtrain1"
+                    android:id="@+id/amtrain2"
+                    layout="@layout/amelioration_layout" />
 
-
-                <View
-                    android:id="@+id/view4"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_centerHorizontal="true"></View>
-
-                <TextView
-                    android:id="@+id/text1"
-                    android:layout_width="0dp"
+                <include
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="18sp"
-                    android:layout_alignParentLeft="true"
-                    android:layout_toLeftOf="@id/view4"
-                    android:layout_below="@id/button42"
-                    android:text="Patrick Balkany will steal Levallois Perret people's camels to give it to you.\n\n\nYou have 0 Patrick Balkany.\n\nEach Patrick Balkany will steal 10 000 camels.\n\n\nCost : 750 000" />
-                p
+                    android:layout_below="@id/amtrain2"
+                    android:id="@+id/amtrain3"
+                    layout="@layout/amelioration_layout" />
 
-                <TextView
-                    android:id="@+id/text2"
-                    android:layout_width="0dp"
+                <include
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textSize="18sp"
-                    android:layout_alignParentRight="true"
-                    android:layout_toRightOf="@id/view4"
-                    android:layout_below="@id/button42"
-                    android:text="Post a video sponsored by NordVPN on your Youtube channel, they will reward you with camels.\n\nYou posted 0 sponsored videos.\n\nEach video will give you \n2 500 camels.\n\n\nCost : 75 000" />
+                    android:layout_below="@id/amtrain3"
+                    android:id="@+id/amtrain4"
+                    layout="@layout/amelioration_layout" />
+
+
             </RelativeLayout>
+
         </ScrollView>
-        <Button
+
+    <Button
             android:id="@+id/button5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -156,5 +143,4 @@
             android:textAlignment="center"
             android:gravity="center" />
 
-    </RelativeLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>
