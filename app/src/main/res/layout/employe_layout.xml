@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/ammLayout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
 
     <View
-        android:id="@+id/ammRectangle"
+        android:id="@+id/emmRectangle"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_alignParentTop="true"
-        android:background="#FF8C00"
+        android:background="#87CEEB"
         android:visibility="visible" />
+
 
     <ImageView
         android:layout_marginStart="@dimen/activity_horizontal_margin"
@@ -22,7 +22,7 @@
 
 
     <TextView
-        android:id="@+id/AmeliorationNom"
+        android:id="@+id/uppNom"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_marginStart="60dp"
         android:layout_width="wrap_content"
@@ -30,21 +30,12 @@
         android:text="Nom" />
 
     <TextView
-        android:id="@+id/AmeliorationDescr"
-        android:layout_below="@id/ammRectangle"
+        android:id="@+id/uppCost"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginStart="350dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Description BLA BLAB BLA\nLOL CAML" />
-
-        <Button
-            android:id="@+id/ammButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cout en $"
-            android:layout_centerHorizontal="true"
-
-            android:layout_below="@id/AmeliorationDescr" />
+        android:text="Cout" />
 
 
 </RelativeLayout>
