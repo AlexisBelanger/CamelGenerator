@@ -35,8 +35,8 @@ public class GameState {
 
         employes = new ArrayList<>();
 
-        employes.add(new Stagiaire());
-        employes.add(new BTS());
+        employes.add(new Stagiaire(this, 0));
+        employes.add(new BTS(this, 0));
 
 
         ameliorationMap = new HashMap<>();
@@ -49,15 +49,16 @@ public class GameState {
 
     public GameState(String state) {
         this();
+
         try {
 
             JSONObject jsonObject = new JSONObject(state);
             loc = jsonObject.getDouble("loc");
-//            codeurs = jsonObject.getDouble("codeurs");
-//            codeursps = jsonObject.getDouble("codeursps");
             locps = jsonObject.getDouble("locps");
-//            codeursEfficiency = jsonObject.getDouble("codeursEff");
             clickEfficiency = jsonObject.getDouble("clickEff");
+            employes.get(0).setNb(jsonObject.getInt("stagiaire"));
+            employes.get(1).setNb(jsonObject.getInt("bts"));
+
 
             long saveTime = jsonObject.getLong("saveTime");
             Log.i("create saveTime", saveTime + "");
@@ -66,7 +67,6 @@ public class GameState {
             Log.i("idesecs", idleSeconds + "");
 
             loc += locps * idleSeconds;
-//            codeurs += codeursps * idleSeconds;
 
         } catch (JSONException e) {
             // TODO Auto-generated catch block
@@ -77,12 +77,22 @@ public class GameState {
     }
 
     public void updateValues() {
-        //TODO revoir methode avec ameliorations
+        Log.i("GameState", "updateValues: ");
+        Log.i("GameState", "loc: " + loc);
+        Log.i("GameState", "locps start : " + locps);
 
         locps = 0;
         for (Employe e : employes) {
+
+            Log.i("GameState", "locps: " + locps);
+            Log.i("GameState", "e.nb: " + e.getNb());
+            Log.i("GameState", "e.rate: " + e.getRate());
+
             locps += e.getNb() * e.getRate();
         }
+
+
+        Log.i("GameState", "locps end : " + locps);
 
     }
 
@@ -112,20 +122,16 @@ public class GameState {
     }
 
 
-
     public String toJSON() {
         JSONObject jsonObject = new JSONObject();
         Long tsLong = System.currentTimeMillis() / 1000;
         try {
             jsonObject.put("loc", loc);
-//            jsonObject.put("codeurs", codeurs);
-//            jsonObject.put("codeursps", codeursps);
             jsonObject.put("locps", locps);
-
-//            jsonObject.put("codeursEff", codeursEfficiency);
             jsonObject.put("clickEff", clickEfficiency);
-
             jsonObject.put("saveTime", tsLong);
+            jsonObject.put("stagiaire", employes.get(0).getNb());
+            jsonObject.put("bts", employes.get(1).getNb());
 
 
             return jsonObject.toString();

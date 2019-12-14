@@ -24,7 +24,7 @@ public class TavernFragment extends Fragment {
         tavernViewModel =
                 ViewModelProviders.of(this).get(TavernViewModel.class);
         View root = inflater.inflate(R.layout.fragment_taverne, container, false);
-        EmployeAdapter adapter = new EmployeAdapter(this.getContext(), ((AcceuilActivity) getActivity()).getGameState().employes, ((AcceuilActivity) getActivity()).getGameState());
+        EmployeAdapter adapter = new EmployeAdapter(this.getContext(), ((AcceuilActivity) getActivity()).getGameState().employes);
 
         // Attach the adapter to a ListView
 

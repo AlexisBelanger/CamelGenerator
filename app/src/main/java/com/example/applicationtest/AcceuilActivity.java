@@ -93,9 +93,6 @@ public class AcceuilActivity extends AppCompatActivity {
             @Override
             public void run() {
 
-                Log.i("gs act", gameState + "");
-
-
                 TextView loc = findViewById(R.id.accLOC);
                 TextView locps = findViewById(R.id.accLOCps);
 

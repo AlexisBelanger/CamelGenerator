@@ -11,33 +11,39 @@ public abstract class Employe {
 
     protected int nb;
 
+
+    protected double coutBase;
     protected double cout;
 
     protected double rate;
-    protected GameState gs = null;
+    protected GameState gs;
 
-    public Employe(String nom, String description, double coutBase, double apport) {
+    public Employe(String nom, String description, double coutBase, double apport, int nb, GameState gs) {
         this.nom = nom;
         this.description = description;
-        cout = coutBase;
+        this.coutBase = coutBase;
+        this.cout = (int) coutBase * Math.pow(1.15, nb);
         this.rate = apport;
-        nb = 0;
+        this.nb = nb;
+        this.gs = gs;
     }
 
-    public void addOne() {
-
-        Log.i("gs emp", gs + "");
-
-        Log.i("employe", "add one ici ");
-        Log.i("employe", "add one gs.loc : " + gs.loc);
-        Log.i("employe", "add one cout : " + cout);
-
+    public void addOne(GameState gs) {
 
         if (gs.loc > cout) {
             gs.loc -= cout;
-            nb++;
-            cout *= 1.5;
+            this.nb++;
+            cout = (int) coutBase * Math.pow(1.15, nb);
+            for (Employe e : gs.employes) {
+                if (e.nom.equals(this.nom)) {
+                    e.setNb(this.nb);
+                }
+            }
             gs.updateValues();
+
+            Log.i("Employe", "addOne: ");
+            Log.i("Employe", "nb : " + nb);
+            Log.i("Employe", "cout : " + cout);
         }
     }
 
@@ -61,11 +67,12 @@ public abstract class Employe {
         return nb;
     }
 
-    public void setGs(GameState gameState) {
-        Log.i("gs st emp", gameState + "");
-        this.gs = gameState;
-        Log.i("gs st emp", this.gs + "");
+    public void setNb(int nb) {
+        this.nb = nb;
+    }
 
+    public void setGs(GameState gs) {
+        this.gs = gs;
     }
 
     public void setRate(double rate) {
