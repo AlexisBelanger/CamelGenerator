@@ -5,11 +5,14 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
+import com.example.applicationtest.ui.taverne.TavernFragment;
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -19,6 +22,9 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.TextView;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -35,20 +41,6 @@ public class AcceuilActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_cave, R.id.nav_lab,
-                R.id.nav_test, R.id.nav_share, R.id.nav_send)
-                .setDrawerLayout(drawer)
-                .build();
-
-        NavController navController = Navigation.findNavController(this, R.id.home_fragment);
-        NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
-        NavigationUI.setupWithNavController(navigationView, navController);
-
         if (savedInstanceState != null) {
 
             gameState = new GameState(savedInstanceState.getString("gameState"));
@@ -57,14 +49,61 @@ public class AcceuilActivity extends AppCompatActivity {
         }
 
 
+        // Create new fragment and transaction
+        Fragment newFragment = new TavernFragment();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+// Replace whatever is in the fragment_container view with this fragment,
+// and add the transaction to the back stack if needed
+        transaction.replace(R.id.fragment_container, newFragment);
+        transaction.addToBackStack(null);
+
+// Commit the transaction
+        transaction.commit();
+
+
+        findViewById(R.id.accClickbutton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                gameState.click();
+                gameState.updateValues();
+                updateText();
+            }
+        });
+
+
+        updateText();
+
+
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 gameState.secondTick();
+                updateText();
             }
         }, 0, 1000);
 
+    }
+
+
+    public void updateText() {
+        runOnUiThread(new Runnable() {
+
+            @Override
+            public void run() {
+
+                Log.i("gs act", gameState + "");
+
+
+                TextView loc = findViewById(R.id.accLOC);
+                TextView locps = findViewById(R.id.accLOCps);
+
+                loc.setText((int) gameState.loc + "");
+                locps.setText(gameState.locps + "");
+
+            }
+        });
     }
 
 
@@ -75,12 +114,6 @@ public class AcceuilActivity extends AppCompatActivity {
         return true;
     }
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.home_fragment);
-        return NavigationUI.navigateUp(navController, mAppBarConfiguration)
-                || super.onSupportNavigateUp();
-    }
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {

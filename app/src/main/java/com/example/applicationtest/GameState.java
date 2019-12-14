@@ -35,10 +35,12 @@ public class GameState {
 
         employes = new ArrayList<>();
 
-        employes.add(new Stagiaire(this));
-        employes.add(new BTS(this));
+        employes.add(new Stagiaire());
+        employes.add(new BTS());
+
 
         ameliorationMap = new HashMap<>();
+
 
         clickEfficiency = 1;
 
@@ -70,6 +72,8 @@ public class GameState {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+
     }
 
     public void updateValues() {
@@ -77,10 +81,9 @@ public class GameState {
 
         locps = 0;
         for (Employe e : employes) {
-
-
             locps += e.getNb() * e.getRate();
         }
+
     }
 
     public void secondTick() {

@@ -34,6 +34,7 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+/*
 
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
@@ -84,17 +85,15 @@ public class HomeFragment extends Fragment {
                 refreshTW();
             }
         }, 0, 1000);
+*/
 
         return root;
-    }
-
-    public void onCreate(){
-
     }
 
 
     public void refreshTW() {
 
+/*
         if (getActivity() != null && getActivity() instanceof AcceuilActivity) {
 
             double locps = ((AcceuilActivity) getActivity()).getGameState().locps;
@@ -109,6 +108,7 @@ public class HomeFragment extends Fragment {
             TwLoc.setText((int) loc + "\nLignes de code");
             TwLocps.setText(locps + "\nLOC / s");
         }
+*/
     }
 
 

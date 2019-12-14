@@ -9,16 +9,21 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.applicationtest.GameState;
 import com.example.applicationtest.R;
 
 import java.util.ArrayList;
 
 public class EmployeAdapter extends ArrayAdapter<Employe> {
 
+    public static GameState gs;
 
-    public EmployeAdapter(Context context, ArrayList<Employe> employes) {
+    public EmployeAdapter(Context context, ArrayList<Employe> employes, GameState gs) {
 
         super(context, 0, employes);
+        Log.i("gs adapter", gs + "");
+        this.gs = gs;
+
 
     }
 
@@ -26,9 +31,15 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
+        Log.i("EMploye", "get wiew");
+
+
         // Get the data item for this position
 
         final Employe employe = getItem(position);
+
+        Log.i("gs adapter", gs + "");
+        employe.setGs(this.gs);
 
         // Check if an existing view is being reused, otherwise inflate the view
 
@@ -54,10 +65,14 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
         empNB.setText(employe.nb + "");
         empRate.setText(employe.rate + " LOC/s");
 
+
         empBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("Test", "click home");
+
+                Log.i("gs adapter", gs + "");
+                employe.setGs(gs);
+                Log.i("employe", "ADD ONE");
                 employe.addOne();
             }
         });

@@ -1,6 +1,7 @@
 package com.example.applicationtest.ui.taverne;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,13 +24,15 @@ public class TavernFragment extends Fragment {
         tavernViewModel =
                 ViewModelProviders.of(this).get(TavernViewModel.class);
         View root = inflater.inflate(R.layout.fragment_taverne, container, false);
-        EmployeAdapter adapter = new EmployeAdapter(this.getContext(), ((AcceuilActivity) getActivity()).getGameState().employes);
+        EmployeAdapter adapter = new EmployeAdapter(this.getContext(), ((AcceuilActivity) getActivity()).getGameState().employes, ((AcceuilActivity) getActivity()).getGameState());
 
         // Attach the adapter to a ListView
 
         ListView listView = root.findViewById(R.id.listTavern);
 
         listView.setAdapter(adapter);
+
+        Log.i("lab", "onCreateView: ");
 
         return root;
     }

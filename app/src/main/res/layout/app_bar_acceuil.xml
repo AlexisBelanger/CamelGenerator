@@ -15,8 +15,79 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/colorPrimary"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/barView"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_toLeftOf="@id/accLOC"
+                android:layout_centerInParent="true"
+                android:layout_alignParentStart="true"
+
+                />
+
+            <TextView
+                android:id="@+id/accLOC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="test lolo"
+                android:layout_centerInParent="true"
+                android:layout_toLeftOf="@id/barView1" />
+
+            <View
+                android:id="@+id/barView1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_toLeftOf="@id/imageLOC"
+                android:layout_centerInParent="true" />
+
+
+            <ImageView
+                android:id="@+id/imageLOC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_loc"
+                android:layout_centerInParent="true"
+                android:layout_toLeftOf="@id/barView2" />
+
+            <View
+                android:id="@+id/barView2"
+                android:layout_width="50dp"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/accLOCps"
+                android:layout_centerInParent="true" />
+
+            <TextView
+                android:id="@+id/accLOCps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="testps"
+                android:layout_toLeftOf="@id/barView3"
+                android:layout_centerInParent="true" />
+
+            <View
+                android:id="@+id/barView3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_toLeftOf="@id/imageLOCps"
+                android:layout_centerInParent="true" />
+
+            <ImageView
+                android:id="@+id/imageLOCps"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_locps"
+                android:layout_alignParentEnd="true"
+                android:layout_centerInParent="true" />
+
+
+        </RelativeLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 

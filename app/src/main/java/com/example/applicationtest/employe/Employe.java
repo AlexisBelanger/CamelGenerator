@@ -1,5 +1,7 @@
 package com.example.applicationtest.employe;
 
+import android.util.Log;
+
 import com.example.applicationtest.GameState;
 
 public abstract class Employe {
@@ -12,22 +14,30 @@ public abstract class Employe {
     protected double cout;
 
     protected double rate;
-    protected GameState gs;
+    protected GameState gs = null;
 
-    public Employe(String nom, String description, double coutBase, double apport, GameState gameState) {
+    public Employe(String nom, String description, double coutBase, double apport) {
         this.nom = nom;
         this.description = description;
         cout = coutBase;
         this.rate = apport;
-        gs = gameState;
         nb = 0;
     }
 
     public void addOne() {
-        if (gs.loc >= cout) {
+
+        Log.i("gs emp", gs + "");
+
+        Log.i("employe", "add one ici ");
+        Log.i("employe", "add one gs.loc : " + gs.loc);
+        Log.i("employe", "add one cout : " + cout);
+
+
+        if (gs.loc > cout) {
             gs.loc -= cout;
             nb++;
             cout *= 1.5;
+            gs.updateValues();
         }
     }
 
@@ -49,6 +59,13 @@ public abstract class Employe {
 
     public int getNb() {
         return nb;
+    }
+
+    public void setGs(GameState gameState) {
+        Log.i("gs st emp", gameState + "");
+        this.gs = gameState;
+        Log.i("gs st emp", this.gs + "");
+
     }
 
     public void setRate(double rate) {
