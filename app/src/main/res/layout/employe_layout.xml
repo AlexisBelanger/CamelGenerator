@@ -22,7 +22,7 @@
 
 
     <TextView
-        android:id="@+id/uppNom"
+        android:id="@+id/empNom"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_marginStart="60dp"
         android:layout_width="wrap_content"
@@ -30,12 +30,38 @@
         android:text="Nom" />
 
     <TextView
-        android:id="@+id/uppCost"
+        android:id="@+id/empCost"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         android:layout_marginStart="350dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cout" />
+
+    <TextView
+        android:id="@+id/empNB"
+        android:layout_marginTop="80dp"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="NB" />
+
+    <TextView
+        android:id="@+id/empRate"
+        android:layout_marginTop="80dp"
+        android:layout_marginStart="60dp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$/s" />
+
+    <Button
+        android:id="@+id/empBut"
+        android:layout_marginTop="75dp"
+        android:layout_marginStart="300dp"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="EMBAUCHER" />
 
 
 </RelativeLayout>
