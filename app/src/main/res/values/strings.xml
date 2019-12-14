@@ -11,6 +11,7 @@
     <string name="action_settings">Settings</string>
 
     <string name="menu_home">Home</string>
+    <string name="menu_tavern">La Taverne</string>
     <string name="menu_lab">Laboratoire</string>
     <string name="menu_cave">Camel Cave</string>
     <string name="menu_test">Test Ground</string>

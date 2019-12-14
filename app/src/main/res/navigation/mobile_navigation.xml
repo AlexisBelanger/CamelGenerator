@@ -11,6 +11,9 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
         <action
+            android:id="@+id/action_nav_home_to_nav_tavern"
+            app:destination="@id/nav_tavern" />
+        <action
             android:id="@+id/action_nav_home_to_nav_lab"
             app:destination="@id/nav_lab" />
         <action
@@ -37,6 +40,19 @@
             app:destination="@+id/nav_home"
             app:launchSingleTop="true"
             app:popUpTo="@+id/fragment_lab"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_tavern"
+        android:name="com.example.applicationtest.ui.taverne.TavernFragment"
+        android:label="@string/menu_tavern"
+        tools:layout="@layout/fragment_taverne">
+        <action
+            android:id="@+id/action_home_to_tavern"
+            app:destination="@+id/nav_home"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/fragment_tavern"
             app:popUpToInclusive="true" />
     </fragment>
 

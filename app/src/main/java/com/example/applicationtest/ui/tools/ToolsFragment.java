@@ -26,14 +26,6 @@ public class ToolsFragment extends Fragment {
         toolsViewModel =
                 ViewModelProviders.of(this).get(ToolsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_test, container, false);
-        EmployeAdapter adapter = new EmployeAdapter(this.getContext(), ((AcceuilActivity) getActivity()).getGameState().employes);
-
-        // Attach the adapter to a ListView
-
-        ListView listView = root.findViewById(R.id.listTest);
-
-        listView.setAdapter(adapter);
-
         return root;
     }
 }
