@@ -4,37 +4,42 @@ package com.example.applicationtest;
 import android.util.Log;
 
 import com.example.applicationtest.Amelioration.Amelioration;
+import com.example.applicationtest.employe.BTS;
+import com.example.applicationtest.employe.Employe;
+import com.example.applicationtest.employe.Stagiaire;
 
 import org.json.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GameState {
 
 
-    public double codeurs;
     public double loc;
     public double locps;
-    public double codeursps;
 
     public HashMap<String, Amelioration> ameliorationMap;
 
 
-    public double codeursEfficiency;
     public double clickEfficiency;
 
     public Long idleSeconds;
 
+    public ArrayList<Employe> employes;
+
     public GameState() {
 
-        codeurs = 0;
         loc = 0;
         locps = 0;
-        codeursps = 0;
+
+        employes = new ArrayList<>();
+
+        employes.add(new Stagiaire(this));
+        employes.add(new BTS(this));
 
         ameliorationMap = new HashMap<>();
 
-        codeursEfficiency = 1;
         clickEfficiency = 1;
 
         idleSeconds = 0L;
@@ -46,10 +51,10 @@ public class GameState {
 
             JSONObject jsonObject = new JSONObject(state);
             loc = jsonObject.getDouble("loc");
-            codeurs = jsonObject.getDouble("codeurs");
-            codeursps = jsonObject.getDouble("codeursps");
+//            codeurs = jsonObject.getDouble("codeurs");
+//            codeursps = jsonObject.getDouble("codeursps");
             locps = jsonObject.getDouble("locps");
-            codeursEfficiency = jsonObject.getDouble("codeursEff");
+//            codeursEfficiency = jsonObject.getDouble("codeursEff");
             clickEfficiency = jsonObject.getDouble("clickEff");
 
             long saveTime = jsonObject.getLong("saveTime");
@@ -59,7 +64,7 @@ public class GameState {
             Log.i("idesecs", idleSeconds + "");
 
             loc += locps * idleSeconds;
-            codeurs += codeursps * idleSeconds;
+//            codeurs += codeursps * idleSeconds;
 
         } catch (JSONException e) {
             // TODO Auto-generated catch block
@@ -69,16 +74,21 @@ public class GameState {
 
     public void updateValues() {
         //TODO revoir methode avec ameliorations
-        locps = codeurs * codeursEfficiency;
+
+        locps = 0;
+        for (Employe e : employes) {
+
+
+            locps += e.getNb() * e.getRate();
+        }
     }
 
     public void secondTick() {
         loc += locps;
-        codeurs += codeursps;
     }
 
     public void click() {
-        codeurs += clickEfficiency;
+        loc += clickEfficiency;
         updateValues();
     }
 
@@ -105,11 +115,11 @@ public class GameState {
         Long tsLong = System.currentTimeMillis() / 1000;
         try {
             jsonObject.put("loc", loc);
-            jsonObject.put("codeurs", codeurs);
-            jsonObject.put("codeursps", codeursps);
+//            jsonObject.put("codeurs", codeurs);
+//            jsonObject.put("codeursps", codeursps);
             jsonObject.put("locps", locps);
 
-            jsonObject.put("codeursEff", codeursEfficiency);
+//            jsonObject.put("codeursEff", codeursEfficiency);
             jsonObject.put("clickEff", clickEfficiency);
 
             jsonObject.put("saveTime", tsLong);

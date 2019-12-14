@@ -1,52 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/fragment_test"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".TestActivity">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="">
-
-
-        <EditText
-            android:id="@+id/champ"
-            android:layout_width="0dp"
-            android:layout_alignParentLeft="true"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/pading"
-            android:text="enter todo"
-            android:onClick="enterText"></EditText>
-
-        <View
-            android:id="@+id/pading"
-            android:layout_width="10dp"
-            android:layout_height="0dp"
-            android:layout_centerHorizontal="true"></View>
-
-        <Button
-            android:id="@+id/buttonTodo"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/pading"
-            android:text=" Add todo"
-            android:layout_alignParentRight="true"
-            android:onClick="addTodo">
-
-        </Button>
 
         <ListView
-            android:id="@+id/liste"
+            android:id="@+id/listTest"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/buttonTodo">
+            android:layout_height="match_parent">
 
         </ListView>
 
 
-    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

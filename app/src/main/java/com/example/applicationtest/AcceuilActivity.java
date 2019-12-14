@@ -130,8 +130,7 @@ public class AcceuilActivity extends AppCompatActivity {
             Long idls = gameState.idleSeconds;
             Log.i("idsl activity", idls + "");
             builder.setMessage("Pendant votre Absence la corporation a géneré :\n" +
-                    idls * gameState.locps + " LOC\n" +
-                    idls * getGameState().codeursps + " Codeurs\n").setTitle("Bon Retour Parmis Nous");
+                    idls * gameState.locps + " LOC\n").setTitle("Bon Retour Parmis Nous");
 
             AlertDialog dialog = builder.create();
 

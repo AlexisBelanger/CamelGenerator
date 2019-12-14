@@ -99,8 +99,6 @@ public class HomeFragment extends Fragment {
 
             double locps = ((AcceuilActivity) getActivity()).getGameState().locps;
             double loc = ((AcceuilActivity) getActivity()).getGameState().loc;
-            double codeurs = ((AcceuilActivity) getActivity()).getGameState().codeurs;
-            double codeursps = ((AcceuilActivity) getActivity()).getGameState().codeursps;
 
             TextView TWcodeur = root.findViewById(R.id.CompteursC);
             TextView TwLoc = root.findViewById(R.id.CompteursLOC);
@@ -108,10 +106,8 @@ public class HomeFragment extends Fragment {
             TextView TwLocps = root.findViewById(R.id.CompteursLOCps);
 
 
-            TWcodeur.setText((int) codeurs + "\nCodeurs");
             TwLoc.setText((int) loc + "\nLignes de code");
             TwLocps.setText(locps + "\nLOC / s");
-            Twcodeurps.setText(codeursps + "\nCodeurs / s");
         }
     }
 
