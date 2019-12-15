@@ -6,6 +6,9 @@ import android.util.Log;
 import com.example.applicationtest.Amelioration.Amelioration;
 import com.example.applicationtest.employe.BTS;
 import com.example.applicationtest.employe.Employe;
+import com.example.applicationtest.employe.Master;
+import com.example.applicationtest.employe.ProductOwner;
+import com.example.applicationtest.employe.ScrumMaster;
 import com.example.applicationtest.employe.Stagiaire;
 
 import org.json.*;
@@ -38,6 +41,9 @@ public class GameState {
         employes.add(new Stagiaire(this, 0));
         employes.add(new BTS(this, 0));
 
+        employes.add(new Master(this, 0));
+        employes.add(new ScrumMaster(this, 0));
+        employes.add(new ProductOwner(this, 0));
 
         ameliorationMap = new HashMap<>();
 
@@ -56,9 +62,11 @@ public class GameState {
             loc = jsonObject.getDouble("loc");
             locps = jsonObject.getDouble("locps");
             clickEfficiency = jsonObject.getDouble("clickEff");
-            employes.get(0).setNb(jsonObject.getInt("stagiaire"));
-            employes.get(1).setNb(jsonObject.getInt("bts"));
-
+            employes.set(0, new Stagiaire(this, jsonObject.getInt("stagiaire")));
+            employes.set(1, new BTS(this, jsonObject.getInt("bts")));
+            employes.set(2, new Master(this, jsonObject.getInt("master")));
+            employes.set(3, new ScrumMaster(this, jsonObject.getInt("scrum")));
+            employes.set(4, new ProductOwner(this, jsonObject.getInt("productOwner")));
 
             long saveTime = jsonObject.getLong("saveTime");
             Log.i("create saveTime", saveTime + "");
@@ -132,6 +140,10 @@ public class GameState {
             jsonObject.put("saveTime", tsLong);
             jsonObject.put("stagiaire", employes.get(0).getNb());
             jsonObject.put("bts", employes.get(1).getNb());
+            jsonObject.put("master", employes.get(2).getNb());
+            jsonObject.put("scrum", employes.get(3).getNb());
+            jsonObject.put("productOwner", employes.get(4).getNb());
+
 
 
             return jsonObject.toString();

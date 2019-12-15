@@ -1,4 +1,4 @@
-package com.example.applicationtest.ui.gallery;
+package com.example.applicationtest.ui.lab;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,10 +11,10 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.applicationtest.R;
 
-public class GalleryFragment extends Fragment {
+public class LabFragment extends Fragment {
 
 
-    private GalleryViewModel galleryViewModel;
+    private LabViewModel labViewModel;
 
     private View root;
 
@@ -25,10 +25,8 @@ public class GalleryFragment extends Fragment {
                              ViewGroup container, Bundle savedInstanceState) {
 
 
-
-
-        galleryViewModel =
-                ViewModelProviders.of(this).get(GalleryViewModel.class);
+        labViewModel =
+                ViewModelProviders.of(this).get(LabViewModel.class);
 
 
         this.root = inflater.inflate(R.layout.fragment_lab, container, false);

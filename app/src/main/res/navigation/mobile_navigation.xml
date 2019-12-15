@@ -32,7 +32,7 @@
 
     <fragment
         android:id="@+id/nav_lab"
-        android:name="com.example.applicationtest.ui.gallery.GalleryFragment"
+        android:name="com.example.applicationtest.ui.lab.LabFragment"
         android:label="@string/menu_lab"
         tools:layout="@layout/fragment_lab">
         <action
@@ -45,7 +45,7 @@
 
     <fragment
         android:id="@+id/nav_tavern"
-        android:name="com.example.applicationtest.ui.taverne.TavernFragment"
+        android:name="com.example.applicationtest.ui.tavern.TavernFragment"
         android:label="@string/menu_tavern"
         tools:layout="@layout/fragment_taverne">
         <action
@@ -74,7 +74,7 @@
 
     <fragment
         android:id="@+id/nav_test"
-        android:name="com.example.applicationtest.ui.tools.ToolsFragment"
+        android:name="com.example.applicationtest.ui.test.TestFragment"
         android:label="@string/menu_test"
         tools:layout="@layout/fragment_test">
         <action
@@ -97,7 +97,7 @@
 
     <fragment
         android:id="@+id/nav_send"
-        android:name="com.example.applicationtest.ui.send.SendFragment"
+        android:name="com.example.applicationtest.ui.send.CaveFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send">
         <action

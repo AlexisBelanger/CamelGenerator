@@ -1,21 +1,17 @@
 package com.example.applicationtest;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
 
-import com.example.applicationtest.ui.taverne.TavernFragment;
-import com.google.android.material.navigation.NavigationView;
-
-import androidx.drawerlayout.widget.DrawerLayout;
+import com.example.applicationtest.ui.lab.LabFragment;
+import com.example.applicationtest.ui.send.CaveFragment;
+import com.example.applicationtest.ui.tavern.TavernFragment;
+import com.example.applicationtest.ui.test.TestFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -48,19 +44,7 @@ public class AcceuilActivity extends AppCompatActivity {
             gameState = new GameState();
         }
 
-
-        // Create new fragment and transaction
-        Fragment newFragment = new TavernFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-// Replace whatever is in the fragment_container view with this fragment,
-// and add the transaction to the back stack if needed
-        transaction.replace(R.id.fragment_container, newFragment);
-        transaction.addToBackStack(null);
-
-// Commit the transaction
-        transaction.commit();
-
+        goTavern();
 
         findViewById(R.id.accClickbutton).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +55,31 @@ public class AcceuilActivity extends AppCompatActivity {
             }
         });
 
+        findViewById(R.id.goTavern).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goTavern();
+            }
+        });
+        findViewById(R.id.goCave).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goCave();
+            }
+        });
+        findViewById(R.id.goTest).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goTest();
+            }
+        });
 
+        findViewById(R.id.goLab).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goLab();
+            }
+        });
         updateText();
 
 
@@ -102,6 +110,91 @@ public class AcceuilActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void goTavern() {
+
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_tavern) == null) {
+
+            // Create new fragment and transaction
+            Fragment newFragment = new TavernFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+// Replace whatever is in the fragment_container view with this fragment,
+// and add the transaction to the back stack if needed
+            transaction.replace(R.id.fragment_container, newFragment);
+            transaction.addToBackStack(null);
+
+// Commit the transaction
+            transaction.commit();
+
+
+        }
+
+    }
+
+    public void goLab() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_lab) == null) {
+
+            // Create new fragment and transaction
+            Fragment newFragment = new LabFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+// Replace whatever is in the fragment_container view with this fragment,
+// and add the transaction to the back stack if needed
+            transaction.replace(R.id.fragment_container, newFragment);
+            transaction.addToBackStack(null);
+
+// Commit the transaction
+            transaction.commit();
+
+
+        }
+
+
+    }
+
+    public void goCave() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_cave) == null) {
+
+            // Create new fragment and transaction
+            Fragment newFragment = new CaveFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+// Replace whatever is in the fragment_container view with this fragment,
+// and add the transaction to the back stack if needed
+            transaction.replace(R.id.fragment_container, newFragment);
+            transaction.addToBackStack(null);
+
+// Commit the transaction
+            transaction.commit();
+
+
+        }
+
+
+    }
+
+    public void goTest() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_test) == null) {
+
+            // Create new fragment and transaction
+            Fragment newFragment = new TestFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+// Replace whatever is in the fragment_container view with this fragment,
+// and add the transaction to the back stack if needed
+            transaction.replace(R.id.fragment_container, newFragment);
+            transaction.addToBackStack(null);
+
+// Commit the transaction
+            transaction.commit();
+
+
+        }
+
+
+    }
+
 
 
     @Override

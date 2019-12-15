@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.applicationtest.AcceuilActivity;
-import com.example.applicationtest.GameState;
 import com.example.applicationtest.R;
 
 import java.util.ArrayList;
@@ -30,7 +29,9 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
 
         // Get the data item for this position
 
-        final Employe employe = getItem(position);
+        Employe employe = getItem(position);
+
+        Log.i("Loading", "nb: " + employe.getNb());
 
         // Check if an existing view is being reused, otherwise inflate the view
 
@@ -51,27 +52,39 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
 
         // Populate the data into the template view using the data object
 
+//Il faut remettre la valeur ,je sais pas pourquoi
+        //TODO trouver la raison, dupliquation d'instance possible
+        for (Employe e : ((AcceuilActivity) getContext()).getGameState().employes) {
+            if (e.getNom().equals(empName.getText())) {
+                employe.setNb(e.getNb());
+            }
+        }
+
+
+        Log.i("Loading", "nb: " + employe.getNb());
+
+        empBut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                for (Employe e : ((AcceuilActivity) getContext()).getGameState().employes) {
+                    if (e.getNom().equals(empName.getText())) {
+
+                        e.addOne(((AcceuilActivity) getContext()).getGameState());
+                        empCost.setText(((int) e.cout) + " LOC");
+                        empNB.setText(e.nb + "");
+                        empRate.setText(e.rate + " LOC/s");
+                        ((AcceuilActivity) getContext()).updateText();
+                    }
+                }
+
+            }
+        });
+
         empName.setText(employe.nom);
         empCost.setText(((int) employe.cout) + " LOC");
         empNB.setText(employe.nb + "");
         empRate.setText(employe.rate + " LOC/s");
 
-
-        empBut.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-                employe.addOne(((AcceuilActivity) getContext()).getGameState());
-                empCost.setText(((int) employe.cout) + " LOC");
-                empNB.setText(employe.nb + "");
-                empRate.setText(employe.rate + " LOC/s");
-
-
-            }
-        });
-
-        // Return the completed view to render on screen
 
         return convertView;
 

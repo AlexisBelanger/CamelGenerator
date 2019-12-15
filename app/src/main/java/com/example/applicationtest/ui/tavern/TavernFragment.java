@@ -1,4 +1,4 @@
-package com.example.applicationtest.ui.taverne;
+package com.example.applicationtest.ui.tavern;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -21,6 +21,7 @@ public class TavernFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
+
         tavernViewModel =
                 ViewModelProviders.of(this).get(TavernViewModel.class);
         View root = inflater.inflate(R.layout.fragment_taverne, container, false);

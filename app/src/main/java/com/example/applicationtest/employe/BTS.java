@@ -5,7 +5,7 @@ import com.example.applicationtest.GameState;
 public class BTS extends Employe {
 
     public BTS(GameState gs, int nb) {
-        super("BTS", "lol test", 150, 1, nb, gs);
+        super("BTS", "lol test", 100, 1, nb, gs);
     }
 
 }
