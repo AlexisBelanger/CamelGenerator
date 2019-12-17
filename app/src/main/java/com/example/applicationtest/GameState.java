@@ -119,12 +119,10 @@ public class GameState {
             amm = ameliorationMap.get(amm.getNom());
             amm.ChangeState(this);
             loc -= amm.getCost();
-            amm.incrementCost();
             ameliorationMap.put(amm.getNom(), amm);
         } else {
             amm.ChangeState(this);
             loc -= amm.getCost();
-            amm.incrementCost();
             ameliorationMap.put(amm.getNom(), amm);
         }
     }

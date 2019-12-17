@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import com.example.applicationtest.ui.home.HomeFragment;
 import com.example.applicationtest.ui.lab.LabFragment;
 import com.example.applicationtest.ui.send.CaveFragment;
 import com.example.applicationtest.ui.tavern.TavernFragment;
@@ -71,6 +72,14 @@ public class AcceuilActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 goTest();
+            }
+        });
+
+
+        findViewById(R.id.goHome).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goHome();
             }
         });
 
@@ -173,6 +182,29 @@ public class AcceuilActivity extends AppCompatActivity {
 
 
     }
+
+
+    public void goHome() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_home) == null) {
+
+            // Create new fragment and transaction
+            Fragment newFragment = new HomeFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+// Replace whatever is in the fragment_container view with this fragment,
+// and add the transaction to the back stack if needed
+            transaction.replace(R.id.fragment_container, newFragment);
+            transaction.addToBackStack(null);
+
+// Commit the transaction
+            transaction.commit();
+
+
+        }
+
+
+    }
+
 
     public void goTest() {
         if (getSupportFragmentManager().findFragmentById(R.id.fragment_test) == null) {

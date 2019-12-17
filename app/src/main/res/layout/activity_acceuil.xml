@@ -11,7 +11,7 @@
         layout="@layout/app_bar_acceuil"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/accView" />
+        android:layout_above="@id/goLab" />
 
     <View
         android:id="@+id/accView"
@@ -36,6 +36,14 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/accView"
         android:src="@drawable/ic_lab"
+        android:layout_toLeftOf="@id/goHome" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/goHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/accView"
+        android:src="@drawable/ic_home"
         android:layout_toLeftOf="@id/goTest" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -52,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/accView"
         android:src="@drawable/ic_cave"
-        android:layout_centerInParent="true" />
+        android:layout_alignParentEnd="true" />
 
     <include
         android:id="@+id/Clickbutton"
