@@ -13,7 +13,10 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.example.applicationtest.AcceuilActivity;
 import com.example.applicationtest.R;
+import com.example.applicationtest.employe.Employe;
 import com.example.applicationtest.employe.EmployeAdapter;
+
+import java.util.ArrayList;
 
 public class TavernFragment extends Fragment {
 
@@ -25,7 +28,7 @@ public class TavernFragment extends Fragment {
         tavernViewModel =
                 ViewModelProviders.of(this).get(TavernViewModel.class);
         View root = inflater.inflate(R.layout.fragment_taverne, container, false);
-        EmployeAdapter adapter = new EmployeAdapter(this.getContext(), ((AcceuilActivity) getActivity()).getGameState().employes);
+        EmployeAdapter adapter = new EmployeAdapter(this.getContext(), new ArrayList<Employe>(((AcceuilActivity) getActivity()).getGameState().employes.values()));
 
         // Attach the adapter to a ListView
 

@@ -1,5 +1,6 @@
 package com.example.applicationtest;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.View;
 
@@ -11,6 +12,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 
 public abstract class utils {
 
@@ -51,6 +53,31 @@ public abstract class utils {
 
         }
         return null;
+    }
+
+
+    public static String ReadFromDataFile(String name, Context context) {
+        String json = null;
+        try {
+            InputStream is = context.getAssets().open(name + ".json");
+
+            int size = is.available();
+
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+
     }
 
 

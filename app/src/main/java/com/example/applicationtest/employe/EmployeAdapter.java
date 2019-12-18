@@ -54,7 +54,7 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
 
 //Il faut remettre la valeur ,je sais pas pourquoi
         //TODO trouver la raison, dupliquation d'instance possible
-        for (Employe e : ((AcceuilActivity) getContext()).getGameState().employes) {
+        for (Employe e : ((AcceuilActivity) getContext()).getGameState().employes.values()) {
             if (e.getNom().equals(empName.getText())) {
                 employe.setNb(e.getNb());
             }
@@ -64,18 +64,20 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
         Log.i("Loading", "nb: " + employe.getNb());
 
         empBut.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                for (Employe e : ((AcceuilActivity) getContext()).getGameState().employes) {
-                    if (e.getNom().equals(empName.getText())) {
 
-                        e.addOne(((AcceuilActivity) getContext()).getGameState());
-                        empCost.setText(((int) e.cout) + " LOC");
-                        empNB.setText(e.nb + "");
-                        empRate.setText(e.rate + " LOC/s");
-                        ((AcceuilActivity) getContext()).updateText();
-                    }
-                }
+                Employe e = ((AcceuilActivity) getContext()).getGameState().employes.get(employe.id);
+                Log.i("Employe adapter", "employe nom " + employe.getNom());
+                Log.i("Employe adapter", "e nom " + e.getNom());
+
+
+                e.addOne(((AcceuilActivity) getContext()).getGameState());
+                empCost.setText(((int) e.cout) + " LOC");
+                empNB.setText(e.nb + "");
+                empRate.setText(e.rate + " LOC/s");
+                ((AcceuilActivity) getContext()).updateText();
 
             }
         });

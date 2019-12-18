@@ -40,9 +40,9 @@ public class AcceuilActivity extends AppCompatActivity {
 
         if (savedInstanceState != null) {
 
-            gameState = new GameState(savedInstanceState.getString("gameState"));
+            gameState = new GameState(this, savedInstanceState.getString("gameState"));
         } else {
-            gameState = new GameState();
+            gameState = new GameState(this);
         }
 
         goTavern();
@@ -249,7 +249,7 @@ public class AcceuilActivity extends AppCompatActivity {
     public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
 
-        gameState = new GameState(savedInstanceState.getString("gameState"));
+        gameState = new GameState(this, savedInstanceState.getString("gameState"));
 
 
     }
@@ -267,7 +267,7 @@ public class AcceuilActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        gameState = new GameState(utils.ReadFromfile("save.json", this));
+        gameState = new GameState(this, utils.ReadFromfile("save.json", this));
         final String PREFS_NAME = "MyPrefsFile";
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, 0);
@@ -298,6 +298,6 @@ public class AcceuilActivity extends AppCompatActivity {
     }
 
     public void resetGameState() {
-        gameState = new GameState();
+        gameState = new GameState(this);
     }
 }

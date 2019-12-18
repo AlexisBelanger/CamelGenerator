@@ -2,9 +2,14 @@ package com.example.applicationtest.employe;
 
 import android.util.Log;
 
+import androidx.arch.core.util.Function;
+
 import com.example.applicationtest.GameState;
 
-public abstract class Employe {
+import java.util.concurrent.locks.Condition;
+
+public class Employe {
+    protected String id;
 
     protected String nom;
     protected String description;
@@ -16,16 +21,21 @@ public abstract class Employe {
     protected double cout;
 
     protected double rate;
-    protected GameState gs;
 
-    public Employe(String nom, String description, double coutBase, double apport, int nb, GameState gs) {
+    protected Function<GameState, Boolean> condition;
+
+
+    public Employe(String id, String nom, String description, double coutBase, double apport, int nb, Function<GameState, Boolean> condition) {
+        this.id = id;
         this.nom = nom;
+
         this.description = description;
         this.coutBase = coutBase;
         this.cout = (int) coutBase * Math.pow(1.15, nb);
         this.rate = apport;
         this.nb = nb;
-        this.gs = gs;
+        this.condition = condition;
+
     }
 
     public void addOne(GameState gs) {
@@ -34,7 +44,7 @@ public abstract class Employe {
             gs.loc -= cout;
             this.nb++;
             cout = (int) coutBase * Math.pow(1.15, nb);
-            for (Employe e : gs.employes) {
+            for (Employe e : gs.employes.values()) {
                 if (e.nom.equals(this.nom)) {
                     e.setNb(this.nb);
                 }
@@ -71,14 +81,14 @@ public abstract class Employe {
         this.nb = nb;
     }
 
-    public void setGs(GameState gs) {
-        this.gs = gs;
-    }
 
     public void setRate(double rate) {
         this.rate = rate;
     }
 
+    public Function<GameState, Boolean> getCondition() {
+        return condition;
+    }
 
     public void setRateMult(double rate, double multiplier) {
         this.rate *= multiplier;

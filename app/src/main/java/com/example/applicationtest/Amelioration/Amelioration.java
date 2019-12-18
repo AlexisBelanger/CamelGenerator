@@ -1,5 +1,7 @@
 package com.example.applicationtest.Amelioration;
 
+import androidx.arch.core.util.Function;
+
 import com.example.applicationtest.GameState;
 
 public abstract class Amelioration {
@@ -11,11 +13,10 @@ public abstract class Amelioration {
 
     public Amelioration(String nom, String description, int cost) {
         this.nom = nom;
-        this.description = nom;
+        this.description = description;
 
         this.cost = cost;
     }
-
 
 
     public abstract void ChangeState(GameState state);

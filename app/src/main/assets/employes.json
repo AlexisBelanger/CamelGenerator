@@ -1,0 +1,68 @@
+{
+  "employes": [
+    {
+      "id": "stagiaire",
+      "nom": "Stagiaire",
+      "description": "Corvéables a merci et rémunéres principalement en chèque passion et visibilité, ils sont la base de toute entreprise",
+      "cout": 10,
+      "rate": 0.1
+    },
+    {
+      "id": "bts",
+      "nom": "BTS",
+      "description": "ils ont fait du PHP … c’est glorieux mais c’est déja ça",
+      "cout": 100,
+      "rate": 1
+    },
+    {
+      "id": "master",
+      "nom": "Master",
+      "description": "Corvéables a merci et rémunéres principalement en chèque passion et visibilité, ils sont la base de toute entreprise",
+      "cout": 1100,
+      "rate": 8
+    },
+    {
+      "id": "scrum-master",
+      "nom": "Scrum-Master",
+      "description": "Corvéables a merci et rémunéres principalement en chèque passion et visibilité, ils sont la base de toute entreprise",
+      "cout": 12000,
+      "rate": 47
+    },
+    {
+      "id": "product",
+      "nom": "Product-Owner",
+      "description": "Corvéables a merci et rémunéres principalement en chèque passion et visibilité, ils sont la base de toute entreprise",
+      "cout": 130000,
+      "rate": 260
+    },
+    {
+      "id": "chailloux",
+      "nom": "Emmanuel Chailloux",
+      "description": "Corvéables a merci et rémunéres principalement en chèque passion et visibilité, ils sont la base de toute entreprise",
+      "cout": 1400000,
+      "rate": 1400
+    },
+    {
+      "id": "tezos",
+      "nom": "Fondation Tezos",
+      "description": "Corvéables a merci et rémunéres principalement en chèque passion et visibilité, ils sont la base de toute entreprise",
+      "cout": 20000000,
+      "rate": 7800
+    },
+    {
+      "id": "tezos",
+      "nom": "Fondation Tezos",
+      "description": "Corvéables a merci et rémunéres principalement en chèque passion et visibilité, ils sont la base de toute entreprise",
+      "cout": 20000000,
+      "rate": 7800
+    },
+    {
+      "id": "tezos",
+      "nom": "Fondation Tezos",
+      "description": "Corvéables a merci et rémunéres principalement en chèque passion et visibilité, ils sont la base de toute entreprise",
+      "cout": 330000000,
+      "rate": 44000
+    }
+  ]
+}
+

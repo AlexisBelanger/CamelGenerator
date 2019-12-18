@@ -4,48 +4,79 @@ package com.example.applicationtest;
 import android.util.Log;
 
 import com.example.applicationtest.Amelioration.Amelioration;
-import com.example.applicationtest.employe.BTS;
+import com.example.applicationtest.Amelioration.LeSurvivant;
 import com.example.applicationtest.employe.Employe;
-import com.example.applicationtest.employe.Master;
-import com.example.applicationtest.employe.ProductOwner;
-import com.example.applicationtest.employe.ScrumMaster;
-import com.example.applicationtest.employe.Stagiaire;
 
 import org.json.*;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class GameState {
 
+    public AcceuilActivity ac;
 
     public double loc;
     public double locps;
 
-    public HashMap<String, Amelioration> ameliorationMap;
+    public HashMap<String, Amelioration> ameliorations;
 
 
     public double clickEfficiency;
 
     public Long idleSeconds;
 
-    public ArrayList<Employe> employes;
+    public HashMap<String, Employe> employes;
+    public HashMap<String, Employe> availebleEmployes;
 
-    public GameState() {
+
+    public GameState(AcceuilActivity ac) {
 
         loc = 0;
         locps = 0;
+        this.ac = ac;
+        employes = new HashMap<>();
+        availebleEmployes = new HashMap<>();
 
-        employes = new ArrayList<>();
 
-        employes.add(new Stagiaire(this, 0));
-        employes.add(new BTS(this, 0));
+        try {
 
-        employes.add(new Master(this, 0));
-        employes.add(new ScrumMaster(this, 0));
-        employes.add(new ProductOwner(this, 0));
+            JSONObject jsonObject = new JSONObject(utils.ReadFromDataFile("employes", ac.getBaseContext()));
+            JSONArray jsonArray = jsonObject.getJSONArray("employes");
 
-        ameliorationMap = new HashMap<>();
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonEmploye = jsonArray.getJSONObject(i);
+                employes.put(
+                        jsonEmploye.getString("id"),
+                        new Employe(
+                                jsonEmploye.getString("id"),
+                                jsonEmploye.getString("nom"),
+                                jsonEmploye.getString("description"),
+                                jsonEmploye.getDouble("cout"),
+                                jsonEmploye.getDouble("rate"),
+                                0,
+                                (gs -> {
+                                    return true;
+                                })
+                        )
+                );
+
+
+            }
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+
+        ameliorations = new HashMap<>();
+
+        ameliorations.put("1", new LeSurvivant());
+        ameliorations.put("2", new LeSurvivant());
+        ameliorations.put("3", new LeSurvivant());
+        ameliorations.put("4", new LeSurvivant());
+        ameliorations.put("5", new LeSurvivant());
 
 
         clickEfficiency = 1;
@@ -53,8 +84,8 @@ public class GameState {
         idleSeconds = 0L;
     }
 
-    public GameState(String state) {
-        this();
+    public GameState(AcceuilActivity ac, String state) {
+        this(ac);
 
         try {
 
@@ -62,11 +93,15 @@ public class GameState {
             loc = jsonObject.getDouble("loc");
             locps = jsonObject.getDouble("locps");
             clickEfficiency = jsonObject.getDouble("clickEff");
-            employes.set(0, new Stagiaire(this, jsonObject.getInt("stagiaire")));
-            employes.set(1, new BTS(this, jsonObject.getInt("bts")));
-            employes.set(2, new Master(this, jsonObject.getInt("master")));
-            employes.set(3, new ScrumMaster(this, jsonObject.getInt("scrum")));
-            employes.set(4, new ProductOwner(this, jsonObject.getInt("productOwner")));
+
+
+            for (Map.Entry<String, Employe> e : employes.entrySet()
+            ) {
+
+                e.getValue().setNb(jsonObject.getInt(e.getKey()));
+
+            }
+
 
             long saveTime = jsonObject.getLong("saveTime");
             Log.i("create saveTime", saveTime + "");
@@ -85,17 +120,8 @@ public class GameState {
     }
 
     public void updateValues() {
-        Log.i("GameState", "updateValues: ");
-        Log.i("GameState", "loc: " + loc);
-        Log.i("GameState", "locps start : " + locps);
 
-        locps = 0;
-        for (Employe e : employes) {
-
-            Log.i("GameState", "locps: " + locps);
-            Log.i("GameState", "e.nb: " + e.getNb());
-            Log.i("GameState", "e.rate: " + e.getRate());
-
+        for (Employe e : employes.values()) {
             locps += e.getNb() * e.getRate();
         }
 
@@ -115,16 +141,7 @@ public class GameState {
 
     public void addAmelioration(Amelioration amm) {
 
-        if (ameliorationMap.containsKey(amm.getNom())) {
-            amm = ameliorationMap.get(amm.getNom());
-            amm.ChangeState(this);
-            loc -= amm.getCost();
-            ameliorationMap.put(amm.getNom(), amm);
-        } else {
-            amm.ChangeState(this);
-            loc -= amm.getCost();
-            ameliorationMap.put(amm.getNom(), amm);
-        }
+
     }
 
 
@@ -136,13 +153,13 @@ public class GameState {
             jsonObject.put("locps", locps);
             jsonObject.put("clickEff", clickEfficiency);
             jsonObject.put("saveTime", tsLong);
-            jsonObject.put("stagiaire", employes.get(0).getNb());
-            jsonObject.put("bts", employes.get(1).getNb());
-            jsonObject.put("master", employes.get(2).getNb());
-            jsonObject.put("scrum", employes.get(3).getNb());
-            jsonObject.put("productOwner", employes.get(4).getNb());
+
+            for (Map.Entry<String, Employe> e : employes.entrySet()
+            ) {
+                jsonObject.put(e.getKey(), e.getValue().getNb());
 
 
+            }
 
             return jsonObject.toString();
 
