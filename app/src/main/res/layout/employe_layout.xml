@@ -81,7 +81,22 @@
 
         <View
             android:id="@+id/empBotView2"
-            android:layout_width="80dp"
+            android:layout_width="30dp"
+            android:layout_height="0dp"
+            android:layout_toLeftOf="@id/empInfo" />
+
+        <ImageButton
+            android:id="@+id/empInfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@id/empBotView3"
+            android:background="@color/colorAccent"
+            android:src="@drawable/ic_info"
+            android:layout_centerVertical="true" />
+
+        <View
+            android:id="@+id/empBotView3"
+            android:layout_width="30dp"
             android:layout_height="0dp"
             android:layout_toLeftOf="@id/empBut" />
 

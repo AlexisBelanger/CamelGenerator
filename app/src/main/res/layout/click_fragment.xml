@@ -10,7 +10,7 @@
         android:src="@drawable/ic_touch"
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:scaleY="4"
         android:scaleX="4" />
 

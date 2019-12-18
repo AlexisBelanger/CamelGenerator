@@ -1,5 +1,6 @@
 package com.example.applicationtest.employe;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.example.applicationtest.AcceuilActivity;
@@ -80,8 +82,28 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
                 ((AcceuilActivity) getContext()).updateText();
 
             }
+
+
         });
 
+        ImageButton empInfo = (ImageButton) convertView.findViewById(R.id.empInfo);
+
+        empInfo.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+                builder.setMessage(employe.description).setTitle(employe.nom);
+
+                AlertDialog dialog = builder.create();
+
+                dialog.show();
+            }
+
+
+        });
         empName.setText(employe.nom);
         empCost.setText(((int) employe.cout) + " LOC");
         empNB.setText(employe.nb + "");
