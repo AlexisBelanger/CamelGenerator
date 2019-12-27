@@ -10,6 +10,7 @@ import java.util.concurrent.locks.Condition;
 
 public class Employe {
     protected String id;
+    protected int rank;
 
     protected String nom;
     protected String description;
@@ -25,13 +26,14 @@ public class Employe {
     protected Function<GameState, Boolean> condition;
 
 
-    public Employe(String id, String nom, String description, double coutBase, double apport, int nb, Function<GameState, Boolean> condition) {
+    public Employe(String id, int rank, String nom, String description, double coutBase, double apport, int nb, Function<GameState, Boolean> condition) {
         this.id = id;
+        this.rank = rank;
         this.nom = nom;
 
         this.description = description;
         this.coutBase = coutBase;
-        this.cout = (int) coutBase * Math.pow(1.15, nb);
+        this.cout = (int) (coutBase * Math.pow(1.15, nb));
         this.rate = apport;
         this.nb = nb;
         this.condition = condition;
@@ -40,10 +42,10 @@ public class Employe {
 
     public void addOne(GameState gs) {
 
-        if (gs.loc > cout) {
+        if (gs.loc >= cout) {
             gs.loc -= cout;
             this.nb++;
-            cout = (int) coutBase * Math.pow(1.15, nb);
+            cout = (int) (coutBase * Math.pow(1.15, nb));
             for (Employe e : gs.employes.values()) {
                 if (e.nom.equals(this.nom)) {
                     e.setNb(this.nb);
@@ -75,6 +77,10 @@ public class Employe {
 
     public int getNb() {
         return nb;
+    }
+
+    public int getRank() {
+        return rank;
     }
 
     public void setNb(int nb) {

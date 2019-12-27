@@ -16,6 +16,10 @@ public class GameState {
 
     public AcceuilActivity ac;
 
+    protected int maxIdle = 3600;
+
+    public double totalloc;
+
     public double loc;
     public double locps;
 
@@ -50,6 +54,7 @@ public class GameState {
                         jsonEmploye.getString("id"),
                         new Employe(
                                 jsonEmploye.getString("id"),
+                                jsonEmploye.getInt("rank"),
                                 jsonEmploye.getString("nom"),
                                 jsonEmploye.getString("description"),
                                 jsonEmploye.getDouble("cout"),
@@ -120,7 +125,7 @@ public class GameState {
     }
 
     public void updateValues() {
-
+        locps = 0;
         for (Employe e : employes.values()) {
             locps += e.getNb() * e.getRate();
         }

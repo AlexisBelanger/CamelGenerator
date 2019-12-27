@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.applicationtest.AcceuilActivity;
 import com.example.applicationtest.R;
+import com.example.applicationtest.utils;
 
 import java.util.ArrayList;
 
@@ -76,9 +77,9 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
 
 
                 e.addOne(((AcceuilActivity) getContext()).getGameState());
-                empCost.setText(((int) e.cout) + " LOC");
-                empNB.setText(e.nb + "");
-                empRate.setText(e.rate + " LOC/s");
+                empCost.setText(utils.prettyfier((int) e.cout) + " LOC");
+                empNB.setText(utils.prettyfier(e.nb));
+                empRate.setText(utils.prettyfier(e.rate) + " LOC/s");
                 ((AcceuilActivity) getContext()).updateText();
 
             }
@@ -105,9 +106,9 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
 
         });
         empName.setText(employe.nom);
-        empCost.setText(((int) employe.cout) + " LOC");
-        empNB.setText(employe.nb + "");
-        empRate.setText(employe.rate + " LOC/s");
+        empCost.setText(utils.prettyfier((int) employe.cout) + " LOC");
+        empNB.setText(utils.prettyfier(employe.nb));
+        empRate.setText(utils.prettyfier(employe.rate) + " LOC/s");
 
 
         return convertView;

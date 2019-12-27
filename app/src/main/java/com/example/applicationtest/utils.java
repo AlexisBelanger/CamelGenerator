@@ -80,5 +80,136 @@ public abstract class utils {
 
     }
 
+    public static String prettyfier(int value) {
+        StringBuilder s = new StringBuilder();
+        if (value < 1000) {
+            s.append(value);
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " K");
+            return s.toString();
+
+        }
+
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " m");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " M");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " B");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " T");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " Qa");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " Q");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " Sx");
+            return s.toString();
+        }
+
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " St");
+            return s.toString();
+        }
+
+        return s.toString();
+    }
+
+
+    public static String prettyfier(double value) {
+        StringBuilder s = new StringBuilder();
+        if (value < 1000) {
+            s.append(String.format("%.2f", value));
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(String.format("%.2f", value) + " K");
+            return s.toString();
+
+        }
+
+        value /= 1000;
+        if (value < 1000) {
+            s.append(String.format("%.2f", value) + " m");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(String.format("%.2f", value) + " M");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(String.format("%.2f", value) + " B");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(String.format("%.2f", value) + " T");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(String.format("%.2f", value) + " Qa");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(String.format("%.2f", value) + " Q");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(String.format("%.2f", value) + " Sx");
+            return s.toString();
+        }
+
+        value /= 1000;
+        if (value < 1000) {
+            s.append(String.format("%.2f", value) + " St");
+            return s.toString();
+        }
+
+        return s.toString();
+    }
+
 
 }

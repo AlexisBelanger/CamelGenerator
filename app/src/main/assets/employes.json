@@ -2,6 +2,7 @@
   "employes": [
     {
       "id": "stagiaire",
+      "rank": 1,
       "nom": "Stagiaire",
       "description": "Corvéables a merci et rémunéres principalement en chèque passion et visibilité, ils sont la base de toute entreprise",
       "cout": 10,
@@ -9,6 +10,7 @@
     },
     {
       "id": "bts",
+      "rank": 2,
       "nom": "BTS",
       "description": "ils ont fait du PHP … c’est glorieux mais c’est déja ça",
       "cout": 100,
@@ -16,6 +18,7 @@
     },
     {
       "id": "master",
+      "rank": 3,
       "nom": "Master",
       "description": "Corvéables a merci et rémunéres principalement en chèque passion et visibilité, ils sont la base de toute entreprise",
       "cout": 1100,
@@ -23,6 +26,7 @@
     },
     {
       "id": "scrum-master",
+      "rank": 4,
       "nom": "Scrum-Master",
       "description": "Corvéables a merci et rémunéres principalement en chèque passion et visibilité, ils sont la base de toute entreprise",
       "cout": 12000,
@@ -30,6 +34,7 @@
     },
     {
       "id": "product",
+      "rank": 5,
       "nom": "Product-Owner",
       "description": "Corvéables a merci et rémunéres principalement en chèque passion et visibilité, ils sont la base de toute entreprise",
       "cout": 130000,
@@ -37,6 +42,7 @@
     },
     {
       "id": "chailloux",
+      "rank": 6,
       "nom": "Emmanuel Chailloux",
       "description": "Corvéables a merci et rémunéres principalement en chèque passion et visibilité, ils sont la base de toute entreprise",
       "cout": 1400000,
@@ -44,21 +50,16 @@
     },
     {
       "id": "tezos",
+      "rank": 7,
       "nom": "Fondation Tezos",
       "description": "Corvéables a merci et rémunéres principalement en chèque passion et visibilité, ils sont la base de toute entreprise",
       "cout": 20000000,
       "rate": 7800
     },
     {
-      "id": "tezos",
-      "nom": "Fondation Tezos",
-      "description": "Corvéables a merci et rémunéres principalement en chèque passion et visibilité, ils sont la base de toute entreprise",
-      "cout": 20000000,
-      "rate": 7800
-    },
-    {
-      "id": "tezos",
-      "nom": "Fondation Tezos",
+      "id": "inria",
+      "rank": 8,
+      "nom": "INRIA",
       "description": "Corvéables a merci et rémunéres principalement en chèque passion et visibilité, ils sont la base de toute entreprise",
       "cout": 330000000,
       "rate": 44000

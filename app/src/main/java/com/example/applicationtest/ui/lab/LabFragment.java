@@ -17,9 +17,11 @@ import com.example.applicationtest.Amelioration.AmeliorationAdapter;
 import com.example.applicationtest.R;
 import com.example.applicationtest.employe.Employe;
 import com.example.applicationtest.employe.EmployeAdapter;
+import com.example.applicationtest.employe.EmployeComparator;
 import com.example.applicationtest.ui.tavern.TavernViewModel;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class LabFragment extends Fragment {
 
@@ -27,8 +29,6 @@ public class LabFragment extends Fragment {
     private LabViewModel labViewModel;
 
     private View root;
-
-
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -39,7 +39,10 @@ public class LabFragment extends Fragment {
                 ViewModelProviders.of(this).get(LabViewModel.class);
         View root = inflater.inflate(R.layout.fragment_lab, container, false);
 
-        AmeliorationAdapter adapter = new AmeliorationAdapter(this.getContext(), new ArrayList<Amelioration>(((AcceuilActivity) getActivity()).getGameState().ameliorations.values()));
+        ArrayList<Amelioration> al = new ArrayList<Amelioration>(((AcceuilActivity) getActivity()).getGameState().ameliorations.values());
+
+
+        AmeliorationAdapter adapter = new AmeliorationAdapter(this.getContext(), al);
 
         // Attach the adapter to a ListView
 
@@ -50,16 +53,10 @@ public class LabFragment extends Fragment {
         Log.i("Tavern", "onCreateView: ");
 
 
-
         return root;
 
 
     }
-
-
-
-
-
 
 
 }

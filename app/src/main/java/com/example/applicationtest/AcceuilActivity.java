@@ -113,8 +113,8 @@ public class AcceuilActivity extends AppCompatActivity {
                 TextView loc = findViewById(R.id.accLOC);
                 TextView locps = findViewById(R.id.accLOCps);
 
-                loc.setText((int) gameState.loc + "");
-                locps.setText(gameState.locps + "");
+                loc.setText(utils.prettyfier(gameState.loc));
+                locps.setText(utils.prettyfier(gameState.locps));
 
             }
         });
@@ -285,7 +285,7 @@ public class AcceuilActivity extends AppCompatActivity {
             Long idls = gameState.idleSeconds;
             Log.i("idsl activity", idls + "");
             builder.setMessage("Pendant votre Absence la corporation a géneré :\n" +
-                    idls * gameState.locps + " LOC\n").setTitle("Bon Retour Parmis Nous");
+                    utils.prettyfier(idls * gameState.locps) + " LOC\n").setTitle("Bon Retour Parmis Nous");
 
             AlertDialog dialog = builder.create();
 
