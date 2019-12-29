@@ -6,6 +6,9 @@ import android.util.Log;
 import com.example.applicationtest.Amelioration.Amelioration;
 import com.example.applicationtest.Amelioration.LeSurvivant;
 import com.example.applicationtest.employe.Employe;
+import com.jjoe64.graphview.series.DataPoint;
+import com.jjoe64.graphview.series.LineGraphSeries;
+
 
 import org.json.*;
 
@@ -13,6 +16,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class GameState {
+
+
+    //Used to plot the data in the stat fragment
+
+    //counter 0 -> 3600 (1 value per sec)
+    public final int max_Xdisplay = 10;
+    public static int it_counter=-1;
+    private int pointsSize;
+    public LineGraphSeries<DataPoint> points;
+
 
     public AcceuilActivity ac;
 
@@ -41,7 +54,8 @@ public class GameState {
         this.ac = ac;
         employes = new HashMap<>();
         availebleEmployes = new HashMap<>();
-
+        points = new LineGraphSeries<DataPoint>();
+        pointsSize=0;
 
         try {
 
@@ -136,6 +150,7 @@ public class GameState {
     }
 
     public void secondTick() {
+        updateGraphData();
         loc += locps;
     }
 
@@ -147,6 +162,23 @@ public class GameState {
     public void addAmelioration(Amelioration amm) {
 
 
+    }
+
+
+    public void updateGraphData(){
+
+        pointsSize++;
+        points.appendData(new DataPoint(it_counter, loc), false, 3600);
+        it_counter++;
+
+    }
+
+    public LineGraphSeries<DataPoint> getPoints(){
+        return points;
+    }
+
+    public int getMax_Xdisplay(){
+        return max_Xdisplay;
     }
 
 

@@ -8,13 +8,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <!--
-        <VideoView
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="360dp" />
+    <VideoView
+        android:id="@+id/background"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
-    -->
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
