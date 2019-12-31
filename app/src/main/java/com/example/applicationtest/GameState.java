@@ -4,6 +4,7 @@ package com.example.applicationtest;
 import android.util.Log;
 
 import com.example.applicationtest.Amelioration.Amelioration;
+import com.example.applicationtest.Amelioration.AmeliorationEffectTable;
 import com.example.applicationtest.employe.Employe;
 
 import org.json.*;
@@ -35,6 +36,7 @@ public class GameState {
 
     public HashMap<String, Employe> employes;
     public HashMap<String, Employe> availebleEmployes;
+    public AmeliorationEffectTable effect = new AmeliorationEffectTable();
 
 
     public GameState(AcceuilActivity ac) {
@@ -81,13 +83,9 @@ public class GameState {
 
 
         ameliorations = new HashMap<>();
-        ameliorations.put("test", new Amelioration("TEST", "TEST", 10, gs -> {
-            gs.addIncome(1000);
-            return null;
-        }));
+        ameliorations.put("test", new Amelioration("TEST", "TEST", 10, effect.table.get("test")));
 
-//        ameliorations.put("ahah", new Amelioration("TEST", "TEST", 10, "gs -> {gs.addIncome(1000);return null;}" ));
-
+        ameliorations.put("ahah", new Amelioration("AHAH", "TEST", 10, effect.table.get("test")));
 
 
         clickEfficiency = 1;
