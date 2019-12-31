@@ -1,0 +1,12 @@
+{
+  "ameliorations": [
+    {
+      "id": "TEST",
+      "rank": 1,
+      "nom": "TEST",
+      "description": "TEST WESH",
+      "cout": 10,
+      "effet": "gs -> gs.loc += 1000"
+    }
+  ]
+}

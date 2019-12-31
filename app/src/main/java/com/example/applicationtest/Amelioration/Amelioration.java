@@ -4,22 +4,51 @@ import androidx.arch.core.util.Function;
 
 import com.example.applicationtest.GameState;
 
-public abstract class Amelioration {
+import org.liquidplayer.javascript.JSContext;
+import org.liquidplayer.javascript.JSValue;
+
+import java.text.DecimalFormat;
+
+
+public class Amelioration {
 
     protected String nom;
     protected String description;
     protected int cost;
+    protected Function<GameState, Void> effect;
 
 
-    public Amelioration(String nom, String description, int cost) {
+    public Amelioration(String nom, String description, int cost, String effect_lambda) {
         this.nom = nom;
         this.description = description;
 
         this.cost = cost;
+
+        JSContext context = new JSContext();
+        context.property("a", 5);
+        JSValue aValue = context.property("a");
+        double a = aValue.toNumber();
+        DecimalFormat df = new DecimalFormat(".#");
+        System.out.println(df.format(a)); // 5.0
+        context.evaluateScript("a = 10");
+        JSValue newAValue = context.property("a");
+        System.out.println(df.format(newAValue.toNumber()));
+
+    }
+
+    public Amelioration(String nom, String description, int cost, Function<GameState, Void> effect) {
+        this.nom = nom;
+        this.description = description;
+
+        this.cost = cost;
+        this.effect = effect;
+
     }
 
 
-    public abstract void ChangeState(GameState state);
+    public void ChangeState(GameState state) {
+        effect.apply(state);
+    }
 
 
     public int getCost() {

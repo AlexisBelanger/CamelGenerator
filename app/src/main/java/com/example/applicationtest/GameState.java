@@ -4,7 +4,6 @@ package com.example.applicationtest;
 import android.util.Log;
 
 import com.example.applicationtest.Amelioration.Amelioration;
-import com.example.applicationtest.Amelioration.LeSurvivant;
 import com.example.applicationtest.employe.Employe;
 
 import org.json.*;
@@ -12,14 +11,18 @@ import org.json.*;
 import java.util.HashMap;
 import java.util.Map;
 
+
 public class GameState {
+
 
     public AcceuilActivity ac;
 
-    protected int maxIdle = 3600;
+    public int maxIdle;
+
 
     public double totalloc;
 
+    public double revenue_multiplier;
     public double loc;
     public double locps;
 
@@ -38,6 +41,8 @@ public class GameState {
 
         loc = 0;
         locps = 0;
+        maxIdle = 3600;
+        revenue_multiplier = 1.0;
         this.ac = ac;
         employes = new HashMap<>();
         availebleEmployes = new HashMap<>();
@@ -76,12 +81,13 @@ public class GameState {
 
 
         ameliorations = new HashMap<>();
+        ameliorations.put("test", new Amelioration("TEST", "TEST", 10, gs -> {
+            gs.addIncome(1000);
+            return null;
+        }));
 
-        ameliorations.put("1", new LeSurvivant());
-        ameliorations.put("2", new LeSurvivant());
-        ameliorations.put("3", new LeSurvivant());
-        ameliorations.put("4", new LeSurvivant());
-        ameliorations.put("5", new LeSurvivant());
+//        ameliorations.put("ahah", new Amelioration("TEST", "TEST", 10, "gs -> {gs.addIncome(1000);return null;}" ));
+
 
 
         clickEfficiency = 1;
@@ -99,22 +105,20 @@ public class GameState {
             locps = jsonObject.getDouble("locps");
             clickEfficiency = jsonObject.getDouble("clickEff");
 
-
             for (Map.Entry<String, Employe> e : employes.entrySet()
             ) {
-
                 e.getValue().setNb(jsonObject.getInt(e.getKey()));
-
             }
-
 
             long saveTime = jsonObject.getLong("saveTime");
             Log.i("create saveTime", saveTime + "");
 
-            idleSeconds = System.currentTimeMillis() / 1000 - saveTime;
+            idleSeconds = Math.min(System.currentTimeMillis() / 1000 - saveTime, maxIdle);
+
             Log.i("idesecs", idleSeconds + "");
 
-            loc += locps * idleSeconds;
+            addIncome(locps * idleSeconds.intValue());
+
 
         } catch (JSONException e) {
             // TODO Auto-generated catch block
@@ -124,24 +128,30 @@ public class GameState {
 
     }
 
+    public void addIncome(double income) {
+        double multincome = income * revenue_multiplier;
+
+        loc += multincome;
+        totalloc += multincome;
+    }
+
     public void updateValues() {
         locps = 0;
         for (Employe e : employes.values()) {
             locps += e.getNb() * e.getRate();
         }
 
-
         Log.i("GameState", "locps end : " + locps);
 
     }
 
     public void secondTick() {
-        loc += locps;
+
+        addIncome(locps);
     }
 
     public void click() {
-        loc += clickEfficiency;
-        updateValues();
+        addIncome(clickEfficiency);
     }
 
     public void addAmelioration(Amelioration amm) {

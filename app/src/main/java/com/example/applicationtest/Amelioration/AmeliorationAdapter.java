@@ -52,8 +52,7 @@ public class AmeliorationAdapter extends ArrayAdapter<Amelioration> {
             @Override
             public void onClick(View view) {
 
-
-                ((AcceuilActivity) getContext()).getGameState().addAmelioration(amelioration);
+                amelioration.ChangeState(((AcceuilActivity) getContext()).getGameState());
 
 
             }
