@@ -17,6 +17,16 @@ public class AmeliorationEffectTable {
                     gs.addIncome(1000);
                     return null;
                 });
+        table.put("double_idle_time",
+                gs -> {
+                    gs.maxIdle *= 2;
+                    return null;
+                });
+        table.put("double_multiplier",
+                gs -> {
+                    gs.revenue_multiplier *= 2;
+                    return null;
+                });
     }
 
 

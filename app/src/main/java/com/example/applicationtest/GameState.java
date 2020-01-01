@@ -10,6 +10,7 @@ import com.example.applicationtest.employe.Employe;
 import org.json.*;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 
 
@@ -27,7 +28,9 @@ public class GameState {
     public double loc;
     public double locps;
 
+
     public HashMap<String, Amelioration> ameliorations;
+    public HashSet<String> taken_ameliorations;
 
 
     public double clickEfficiency;
@@ -35,7 +38,6 @@ public class GameState {
     public Long idleSeconds;
 
     public HashMap<String, Employe> employes;
-    public HashMap<String, Employe> availebleEmployes;
     public AmeliorationEffectTable effect = new AmeliorationEffectTable();
 
 
@@ -47,8 +49,8 @@ public class GameState {
         revenue_multiplier = 1.0;
         this.ac = ac;
         employes = new HashMap<>();
-        availebleEmployes = new HashMap<>();
 
+        taken_ameliorations = new HashSet<>();
 
         try {
 
@@ -83,9 +85,33 @@ public class GameState {
 
 
         ameliorations = new HashMap<>();
-        ameliorations.put("test", new Amelioration("TEST", "TEST", 10, effect.table.get("test")));
 
-        ameliorations.put("ahah", new Amelioration("AHAH", "TEST", 10, effect.table.get("test")));
+        try {
+
+            JSONObject jsonObject = new JSONObject(utils.ReadFromDataFile("ameliorations", ac.getBaseContext()));
+            JSONArray jsonArray = jsonObject.getJSONArray("ameliorations");
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonAmelioration = jsonArray.getJSONObject(i);
+                ameliorations.put(
+                        jsonAmelioration.getString("id"),
+                        new Amelioration(
+                                jsonAmelioration.getString("id"),
+                                jsonAmelioration.getString("nom"),
+                                jsonAmelioration.getString("description"),
+                                jsonAmelioration.getInt("cout"),
+                                effect.table.get(jsonAmelioration.getString("effect_tag"))
+
+                        )
+                );
+
+
+            }
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
 
         clickEfficiency = 1;
@@ -107,6 +133,14 @@ public class GameState {
             ) {
                 e.getValue().setNb(jsonObject.getInt(e.getKey()));
             }
+
+            JSONArray jsonArray = jsonObject.getJSONArray("ameliorations");
+            for (int i = 0; i < jsonArray.length(); i++) {
+                String amelioration = jsonArray.getString(i);
+                taken_ameliorations.add(amelioration);
+                ameliorations.remove(amelioration);
+            }
+
 
             long saveTime = jsonObject.getLong("saveTime");
             Log.i("create saveTime", saveTime + "");
@@ -131,6 +165,8 @@ public class GameState {
 
         loc += multincome;
         totalloc += multincome;
+        ac.updateText();
+
     }
 
     public void updateValues() {
@@ -138,14 +174,14 @@ public class GameState {
         for (Employe e : employes.values()) {
             locps += e.getNb() * e.getRate();
         }
-
-        Log.i("GameState", "locps end : " + locps);
+        ac.updateText();
 
     }
 
     public void secondTick() {
 
         addIncome(locps);
+
     }
 
     public void click() {
@@ -167,12 +203,17 @@ public class GameState {
             jsonObject.put("clickEff", clickEfficiency);
             jsonObject.put("saveTime", tsLong);
 
-            for (Map.Entry<String, Employe> e : employes.entrySet()
-            ) {
+            for (Map.Entry<String, Employe> e : employes.entrySet()) {
                 jsonObject.put(e.getKey(), e.getValue().getNb());
-
-
             }
+
+            JSONArray am = new JSONArray();
+
+            for (String a : taken_ameliorations) {
+                am.put(a);
+            }
+
+            jsonObject.put("ameliorations", am.toString());
 
             return jsonObject.toString();
 

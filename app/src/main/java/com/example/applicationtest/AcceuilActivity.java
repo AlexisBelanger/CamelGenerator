@@ -114,7 +114,7 @@ public class AcceuilActivity extends AppCompatActivity {
                 TextView locps = findViewById(R.id.accLOCps);
 
                 loc.setText(utils.prettyfier(gameState.loc));
-                locps.setText(utils.prettyfier(gameState.locps));
+                locps.setText(utils.prettyfier(gameState.locps * gameState.revenue_multiplier));
 
             }
         });

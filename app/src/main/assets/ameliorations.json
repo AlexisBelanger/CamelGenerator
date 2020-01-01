@@ -2,11 +2,24 @@
   "ameliorations": [
     {
       "id": "TEST",
-      "rank": 1,
       "nom": "TEST",
       "description": "TEST WESH",
       "cout": 10,
-      "effet": "gs -> gs.loc += 1000"
+      "effect_tag": "test"
+    },
+    {
+      "id": "cafe",
+      "nom": "Cafe",
+      "description": "Le café permet aux codeurs de coder pendant plus longtemps:\nLe idle time dure plus longtemps",
+      "cout": 10,
+      "effect_tag": "double_idle_time"
+    },
+    {
+      "id": "lambda",
+      "nom": "Labmba Expressions",
+      "description": "Les lambdas:\ndouble la production",
+      "cout": 10,
+      "effect_tag": "double_multiplier"
     }
   ]
 }
