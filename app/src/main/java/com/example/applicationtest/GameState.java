@@ -135,19 +135,19 @@ public class GameState {
             }
 
             JSONArray jsonArray = jsonObject.getJSONArray("ameliorations");
+
+
             for (int i = 0; i < jsonArray.length(); i++) {
                 String amelioration = jsonArray.getString(i);
+
                 taken_ameliorations.add(amelioration);
                 ameliorations.remove(amelioration);
             }
 
 
             long saveTime = jsonObject.getLong("saveTime");
-            Log.i("create saveTime", saveTime + "");
-
             idleSeconds = Math.min(System.currentTimeMillis() / 1000 - saveTime, maxIdle);
 
-            Log.i("idesecs", idleSeconds + "");
 
             addIncome(locps * idleSeconds.intValue());
 
@@ -195,6 +195,7 @@ public class GameState {
 
 
     public String toJSON() {
+
         JSONObject jsonObject = new JSONObject();
         Long tsLong = System.currentTimeMillis() / 1000;
         try {
@@ -213,7 +214,8 @@ public class GameState {
                 am.put(a);
             }
 
-            jsonObject.put("ameliorations", am.toString());
+
+            jsonObject.put("ameliorations", am);
 
             return jsonObject.toString();
 

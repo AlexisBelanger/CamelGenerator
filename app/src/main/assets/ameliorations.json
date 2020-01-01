@@ -5,7 +5,7 @@
       "nom": "TEST",
       "description": "TEST WESH",
       "cout": 10,
-      "effect_tag": "test"
+      "effect_tag": "test_add_10k_loc"
     },
     {
       "id": "cafe",

@@ -12,7 +12,7 @@ public class AmeliorationEffectTable {
 
     public AmeliorationEffectTable() {
         table = new HashMap<>();
-        table.put("test",
+        table.put("test_add_10k_loc",
                 gs -> {
                     gs.addIncome(1000);
                     return null;
