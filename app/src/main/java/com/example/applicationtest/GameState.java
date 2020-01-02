@@ -128,6 +128,8 @@ public class GameState {
             loc = jsonObject.getDouble("loc");
             locps = jsonObject.getDouble("locps");
             clickEfficiency = jsonObject.getDouble("clickEff");
+            revenue_multiplier = jsonObject.getDouble("revenue_multiplier");
+            totalloc = jsonObject.getDouble("totalloc");
 
             for (Map.Entry<String, Employe> e : employes.entrySet()
             ) {
@@ -202,6 +204,10 @@ public class GameState {
             jsonObject.put("loc", loc);
             jsonObject.put("locps", locps);
             jsonObject.put("clickEff", clickEfficiency);
+            jsonObject.put("revenue_multiplier", revenue_multiplier);
+            jsonObject.put("totalloc", totalloc);
+
+
             jsonObject.put("saveTime", tsLong);
 
             for (Map.Entry<String, Employe> e : employes.entrySet()) {

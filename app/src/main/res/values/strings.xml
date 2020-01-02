@@ -8,7 +8,7 @@
     <string name="nav_header_title">OCaml corp</string>
     <string name="nav_header_subtitle">The functional game</string>
     <string name="nav_header_desc">Menu</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_reset">Reset Save</string>
 
     <string name="menu_home">Home</string>
     <string name="menu_tavern">La Taverne</string>

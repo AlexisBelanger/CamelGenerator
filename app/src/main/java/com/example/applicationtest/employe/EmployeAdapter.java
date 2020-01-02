@@ -32,9 +32,8 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
 
         // Get the data item for this position
 
-        Employe employe = getItem(position);
+        final Employe employe = getItem(position);
 
-        Log.i("Loading", "nb: " + employe.getNb());
 
         // Check if an existing view is being reused, otherwise inflate the view
 
@@ -53,18 +52,19 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
         final TextView empRate = (TextView) convertView.findViewById(R.id.empRate);
         final Button empBut = (Button) convertView.findViewById(R.id.empBut);
 
+        final ImageButton empInfo = (ImageButton) convertView.findViewById(R.id.empInfo);
+
         // Populate the data into the template view using the data object
 
-//Il faut remettre la valeur ,je sais pas pourquoi
-        //TODO trouver la raison, dupliquation d'instance possible
-        for (Employe e : ((AcceuilActivity) getContext()).getGameState().employes.values()) {
-            if (e.getNom().equals(empName.getText())) {
-                employe.setNb(e.getNb());
-            }
-        }
+        Employe e = ((AcceuilActivity) getContext()).getGameState().employes.get(employe.id);
+
+        empName.setText(e.nom);
+        empCost.setText(utils.prettyfier((int) e.cout) + " LOC");
+        empNB.setText(utils.prettyfier(e.nb));
+        empRate.setText(utils.prettyfier(e.rate) + " LOC/s");
 
 
-        Log.i("Loading", "nb: " + employe.getNb());
+        //boutton achat
 
         empBut.setOnClickListener(new View.OnClickListener() {
 
@@ -87,7 +87,6 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
 
         });
 
-        ImageButton empInfo = (ImageButton) convertView.findViewById(R.id.empInfo);
 
         empInfo.setOnClickListener(new View.OnClickListener() {
 
@@ -105,11 +104,6 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
 
 
         });
-        empName.setText(employe.nom);
-        empCost.setText(utils.prettyfier((int) employe.cout) + " LOC");
-        empNB.setText(utils.prettyfier(employe.nb));
-        empRate.setText(utils.prettyfier(employe.rate) + " LOC/s");
-
 
         return convertView;
 

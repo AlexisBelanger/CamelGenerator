@@ -46,16 +46,11 @@ public class Employe {
             gs.loc -= cout;
             this.nb++;
             cout = (int) (coutBase * Math.pow(1.15, nb));
-            for (Employe e : gs.employes.values()) {
-                if (e.nom.equals(this.nom)) {
-                    e.setNb(this.nb);
-                }
-            }
+
+//            gs.employes.get(this.id).setNb(this.nb);
+
             gs.updateValues();
 
-            Log.i("Employe", "addOne: ");
-            Log.i("Employe", "nb : " + nb);
-            Log.i("Employe", "cout : " + cout);
         }
     }
 
@@ -85,6 +80,7 @@ public class Employe {
 
     public void setNb(int nb) {
         this.nb = nb;
+        cout = (int) (coutBase * Math.pow(1.15, nb));
     }
 
 

@@ -1,6 +1,8 @@
 package com.example.applicationtest;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -19,8 +21,11 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -89,6 +94,8 @@ public class AcceuilActivity extends AppCompatActivity {
                 goLab();
             }
         });
+
+
         updateText();
 
 
@@ -101,6 +108,33 @@ public class AcceuilActivity extends AppCompatActivity {
             }
         }, 0, 1000);
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.reset_save:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                builder.setTitle("Do you want to Reset save");
+                String[] choice = {"Yes", "No"};
+                builder.setItems(choice, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (choice[which].equals("Yes")) {
+                            resetGameState();
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Incredible !!\nNothing happened !", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+                builder.show();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+
+        }
     }
 
 
@@ -226,7 +260,6 @@ public class AcceuilActivity extends AppCompatActivity {
 
 
     }
-
 
 
     @Override
