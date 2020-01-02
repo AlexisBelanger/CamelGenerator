@@ -1,5 +1,6 @@
 package com.example.applicationtest;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.View;
 
@@ -11,6 +12,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 
 public abstract class utils {
 
@@ -51,6 +53,162 @@ public abstract class utils {
 
         }
         return null;
+    }
+
+
+    public static String ReadFromDataFile(String name, Context context) {
+        String json = null;
+        try {
+            InputStream is = context.getAssets().open(name + ".json");
+
+            int size = is.available();
+
+            byte[] buffer = new byte[size];
+
+            is.read(buffer);
+
+            is.close();
+
+            json = new String(buffer, "UTF-8");
+
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
+        }
+        return json;
+
+    }
+
+    public static String prettyfier(int value) {
+        StringBuilder s = new StringBuilder();
+        if (value < 1000) {
+            s.append(value);
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " K");
+            return s.toString();
+
+        }
+
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " m");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " M");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " B");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " T");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " Qa");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " Q");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " Sx");
+            return s.toString();
+        }
+
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " St");
+            return s.toString();
+        }
+
+        return s.toString();
+    }
+
+
+    public static String prettyfier(double value) {
+        StringBuilder s = new StringBuilder();
+        if (value < 1000) {
+            s.append(String.format("%.2f", value));
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(String.format("%.2f", value) + " K");
+            return s.toString();
+
+        }
+
+        value /= 1000;
+        if (value < 1000) {
+            s.append(String.format("%.2f", value) + " m");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(String.format("%.2f", value) + " M");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(String.format("%.2f", value) + " B");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(String.format("%.2f", value) + " T");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(String.format("%.2f", value) + " Qa");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(String.format("%.2f", value) + " Q");
+            return s.toString();
+
+        }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(String.format("%.2f", value) + " Sx");
+            return s.toString();
+        }
+
+        value /= 1000;
+        if (value < 1000) {
+            s.append(String.format("%.2f", value) + " St");
+            return s.toString();
+        }
+
+        return s.toString();
     }
 
 

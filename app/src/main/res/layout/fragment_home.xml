@@ -1,85 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/fragment_home"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".AcceuilActivity">
+    tools:context=".AcceuilActivity"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
 
-        <TextView
-            android:id="@+id/CompteursLOC"
+    <!--
+        <VideoView
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="0\nLignes de code"
-            android:textSize="25dp"
-            android:textAlignment="center"
-            android:layout_alignParentTop="true"
-            />
+            android:layout_height="360dp" />
 
-        <TextView
-            android:id="@+id/CompteursC"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="0\ncodeurs"
-            android:textSize="25dp"
-            android:textAlignment="center"
-            android:layout_below="@id/CompteursLOC"
-            />
-
-        <TextView
-            android:id="@+id/CompteursLOCps"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="0\nLOC / s"
-            android:textSize="25dp"
-            android:textAlignment="center"
-            android:layout_below="@id/CompteursC"
-            />
-
-        <TextView
-            android:id="@+id/CompteursCps"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="0\ncodeurs / s"
-            android:textSize="25dp"
-            android:textAlignment="center"
-            android:layout_below="@id/CompteursLOCps"
-            />
-
-        <Button
-            android:id="@+id/Clickbutton"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_centerHorizontal="true"
-            android:text="Clique pour créer des Codeurs"
-            android:layout_above="@id/Resetbutton"
-            >
-
-        </Button>
-
-
-
-        <Button
-            android:id="@+id/Resetbutton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-
-            android:text="Repartir de zéro"
-            >
-
-        </Button>
-
-
-
-    </RelativeLayout>
-
+    -->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

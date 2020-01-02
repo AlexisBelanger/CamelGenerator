@@ -11,6 +11,9 @@
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
         <action
+            android:id="@+id/action_nav_home_to_nav_tavern"
+            app:destination="@id/nav_tavern" />
+        <action
             android:id="@+id/action_nav_home_to_nav_lab"
             app:destination="@id/nav_lab" />
         <action
@@ -29,7 +32,7 @@
 
     <fragment
         android:id="@+id/nav_lab"
-        android:name="com.example.applicationtest.ui.gallery.GalleryFragment"
+        android:name="com.example.applicationtest.ui.lab.LabFragment"
         android:label="@string/menu_lab"
         tools:layout="@layout/fragment_lab">
         <action
@@ -37,6 +40,19 @@
             app:destination="@+id/nav_home"
             app:launchSingleTop="true"
             app:popUpTo="@+id/fragment_lab"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_tavern"
+        android:name="com.example.applicationtest.ui.tavern.TavernFragment"
+        android:label="@string/menu_tavern"
+        tools:layout="@layout/fragment_taverne">
+        <action
+            android:id="@+id/action_home_to_tavern"
+            app:destination="@+id/nav_home"
+            app:launchSingleTop="true"
+            app:popUpTo="@+id/fragment_tavern"
             app:popUpToInclusive="true" />
     </fragment>
 
@@ -58,7 +74,7 @@
 
     <fragment
         android:id="@+id/nav_test"
-        android:name="com.example.applicationtest.ui.tools.ToolsFragment"
+        android:name="com.example.applicationtest.ui.test.TestFragment"
         android:label="@string/menu_test"
         tools:layout="@layout/fragment_test">
         <action
@@ -81,7 +97,7 @@
 
     <fragment
         android:id="@+id/nav_send"
-        android:name="com.example.applicationtest.ui.send.SendFragment"
+        android:name="com.example.applicationtest.ui.send.CaveFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send">
         <action
