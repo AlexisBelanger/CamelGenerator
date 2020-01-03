@@ -11,13 +11,13 @@
         layout="@layout/app_bar_acceuil"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/goLab" />
+        android:layout_above="@id/accView1" />
 
     <View
-        android:id="@+id/accView"
+        android:id="@+id/accView1"
         android:layout_width="0dp"
-        android:layout_height="15dp"
-        android:layout_above="@+id/Clickbutton" />
+        android:layout_height="10dp"
+        android:layout_above="@+id/goLab" />
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -29,6 +29,13 @@
         android:layout_toLeftOf="@id/goLab"
 
         />
+
+    <View
+        android:id="@+id/accView"
+        android:layout_width="0dp"
+        android:layout_height="10dp"
+        android:layout_above="@+id/Clickbutton" />
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/goLab"

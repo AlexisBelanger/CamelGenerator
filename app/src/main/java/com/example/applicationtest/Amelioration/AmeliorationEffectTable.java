@@ -27,6 +27,11 @@ public class AmeliorationEffectTable {
                     gs.revenue_multiplier *= 2;
                     return null;
                 });
+        table.put("double_bts_prod",
+                gs -> {
+                    gs.employes.get("bts").setRate(gs.employes.get("bts").getRate() * 2);
+                    return null;
+                });
     }
 
 

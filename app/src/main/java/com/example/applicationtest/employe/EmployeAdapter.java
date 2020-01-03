@@ -61,7 +61,7 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
         empName.setText(e.nom);
         empCost.setText(utils.prettyfier((int) e.cout) + " LOC");
         empNB.setText(utils.prettyfier(e.nb));
-        empRate.setText(utils.prettyfier(e.rate) + " LOC/s");
+        empRate.setText(utils.prettyfier(e.total_rate) + " LOC/s");
 
 
         //boutton achat
@@ -79,7 +79,7 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
                 e.addOne(((AcceuilActivity) getContext()).getGameState());
                 empCost.setText(utils.prettyfier((int) e.cout) + " LOC");
                 empNB.setText(utils.prettyfier(e.nb));
-                empRate.setText(utils.prettyfier(e.rate) + " LOC/s");
+                empRate.setText(utils.prettyfier(e.total_rate) + " LOC/s");
                 ((AcceuilActivity) getContext()).updateText();
 
             }

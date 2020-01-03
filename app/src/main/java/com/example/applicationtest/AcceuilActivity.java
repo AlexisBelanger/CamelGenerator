@@ -24,6 +24,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -123,6 +124,17 @@ public class AcceuilActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         if (choice[which].equals("Yes")) {
                             resetGameState();
+                            ListView employesList = findViewById(R.id.listTavern);
+                            ListView ameliorationList = findViewById(R.id.listLab);
+
+                            if (employesList != null) {
+                                employesList.deferNotifyDataSetChanged();
+                            }
+
+                            if (ameliorationList != null) {
+                                ameliorationList.deferNotifyDataSetChanged();
+                            }
+
                         } else {
                             Toast.makeText(getApplicationContext(), "Incredible !!\nNothing happened !", Toast.LENGTH_LONG).show();
                         }

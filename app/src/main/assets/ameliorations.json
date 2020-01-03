@@ -1,13 +1,6 @@
 {
   "ameliorations": [
     {
-      "id": "TEST",
-      "nom": "TEST",
-      "description": "TEST WESH",
-      "cout": 10,
-      "effect_tag": "test_add_10k_loc"
-    },
-    {
       "id": "cafe",
       "nom": "Cafe",
       "description": "Le café permet aux codeurs de coder pendant plus longtemps:\nLe idle time dure plus longtemps",
@@ -20,6 +13,34 @@
       "description": "Les lambdas:\ndouble la production",
       "cout": 10,
       "effect_tag": "double_multiplier"
+    },
+    {
+      "id": "survivant1",
+      "nom": "Le survivant",
+      "description": "Une rumeur court parmis les bts, on raconte que l'un d'entre eux est revenu vivant du tréfonds d'un framework PHP",
+      "cout": 1000,
+      "effect_tag": "double_bts_prod"
+    },
+    {
+      "id": "survivant2",
+      "nom": "Le mythe du survivant",
+      "description": "Le survivant est une figure d'espoir, on dit qu'il existe un futur ou le PHP régnera sur le monde",
+      "cout": 15000,
+      "effect_tag": "double_bts_prod"
+    },
+    {
+      "id": "survivant3",
+      "nom": "Le culte du survivant",
+      "description": "Les bts commencent à vénérer la figure du survivant qui apportera à tous futurs et cdd",
+      "cout": 200000,
+      "effect_tag": "double_bts_prod"
+    },
+    {
+      "id": "survivant3",
+      "nom": "L'église du survivant",
+      "description": "Les bts S'organisent en congregation secretes, loin du regard des scrum masters, pour vénerer le survivant et son héritage",
+      "cout": 3000000,
+      "effect_tag": "double_bts_prod"
     }
   ]
 }

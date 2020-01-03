@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.example.applicationtest.AcceuilActivity;
 import com.example.applicationtest.Amelioration.Amelioration;
 import com.example.applicationtest.Amelioration.AmeliorationAdapter;
+import com.example.applicationtest.Amelioration.AmeliorationComparator;
 import com.example.applicationtest.R;
 import com.example.applicationtest.employe.Employe;
 import com.example.applicationtest.employe.EmployeAdapter;
@@ -39,8 +40,10 @@ public class LabFragment extends Fragment {
                 ViewModelProviders.of(this).get(LabViewModel.class);
         View root = inflater.inflate(R.layout.fragment_lab, container, false);
 
+
         ArrayList<Amelioration> al = new ArrayList<Amelioration>(((AcceuilActivity) getActivity()).getGameState().ameliorations.values());
 
+        Collections.sort(al, new AmeliorationComparator());
 
         AmeliorationAdapter adapter = new AmeliorationAdapter(this.getContext(), al);
 

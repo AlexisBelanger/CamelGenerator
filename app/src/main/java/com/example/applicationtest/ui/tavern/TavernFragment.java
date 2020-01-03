@@ -38,7 +38,7 @@ public class TavernFragment extends Fragment {
         Collections.sort(al, new EmployeComparator());
 
 
-        EmployeAdapter adapter = new EmployeAdapter(this.getContext(), new ArrayList<Employe>(((AcceuilActivity) getActivity()).getGameState().employes.values()));
+        EmployeAdapter adapter = new EmployeAdapter(this.getContext(), al);
 
 
         // Attach the adapter to a ListView

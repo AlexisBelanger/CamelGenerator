@@ -22,6 +22,8 @@ public class Employe {
     protected double cout;
 
     protected double rate;
+    protected double total_rate;
+
 
     protected Function<GameState, Boolean> condition;
 
@@ -35,6 +37,7 @@ public class Employe {
         this.coutBase = coutBase;
         this.cout = (int) (coutBase * Math.pow(1.15, nb));
         this.rate = apport;
+        this.total_rate = rate * nb;
         this.nb = nb;
         this.condition = condition;
 
@@ -46,8 +49,8 @@ public class Employe {
             gs.loc -= cout;
             this.nb++;
             cout = (int) (coutBase * Math.pow(1.15, nb));
+            this.total_rate = rate * nb;
 
-//            gs.employes.get(this.id).setNb(this.nb);
 
             gs.updateValues();
 
@@ -81,6 +84,8 @@ public class Employe {
     public void setNb(int nb) {
         this.nb = nb;
         cout = (int) (coutBase * Math.pow(1.15, nb));
+        this.total_rate = rate * nb;
+
     }
 
 
