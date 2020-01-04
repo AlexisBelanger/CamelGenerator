@@ -1,14 +1,17 @@
 package com.example.applicationtest;
 
 
+import android.graphics.Color;
 import android.util.Log;
 
 import com.example.applicationtest.Amelioration.Amelioration;
 import com.example.applicationtest.Amelioration.AmeliorationEffectTable;
 import com.example.applicationtest.employe.Employe;
+import com.example.applicationtest.ui.home.HomeFragment;
 
 import org.json.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -40,6 +43,8 @@ public class GameState {
     public HashMap<String, Employe> employes;
     public AmeliorationEffectTable effect = new AmeliorationEffectTable();
 
+    public int[] colors;
+
 
     public GameState(AcceuilActivity ac) {
 
@@ -49,6 +54,17 @@ public class GameState {
         revenue_multiplier = 1.0;
         this.ac = ac;
         employes = new HashMap<>();
+
+        colors = new int[8];
+        colors[0] = Color.RED;
+        colors[1] = Color.BLUE;
+        colors[2] = Color.GREEN;
+        colors[3] = Color.YELLOW;
+        colors[4] = Color.rgb(236,11,250);
+        colors[5] = Color.CYAN;
+        colors[6] = Color.rgb(250,150,0);
+        colors[7] = Color.rgb(143,0,226);
+
 
         taken_ameliorations = new HashSet<>();
 
@@ -69,14 +85,14 @@ public class GameState {
                                 jsonEmploye.getDouble("cout"),
                                 jsonEmploye.getDouble("rate"),
                                 0,
+                                0,
                                 (gs -> {
                                     return true;
                                 })
                         )
                 );
-
-
             }
+
 
         } catch (JSONException e) {
             // TODO Auto-generated catch block
@@ -169,6 +185,8 @@ public class GameState {
         totalloc += multincome;
         ac.updateText();
 
+        updateEmployeesProduction();
+
     }
 
     public void updateValues() {
@@ -184,6 +202,13 @@ public class GameState {
 
         addIncome(locps);
 
+    }
+
+    public void updateEmployeesProduction(){
+        for(Employe emp : employes.values()){
+            emp.updateTotalProduction();
+
+        }
     }
 
     public void click() {

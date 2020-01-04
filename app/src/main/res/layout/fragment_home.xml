@@ -1,20 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/fragment_home"
+<RelativeLayout android:id="@+id/fragment_home"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".AcceuilActivity"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
 
-    <!--
-        <VideoView
-            app:layout_constraintTop_toTopOf="parent"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="360dp" />
+            android:layout_height="match_parent">
 
-    -->
+            <lecho.lib.hellocharts.view.PieChartView
+                android:id="@+id/nb_employe"
+                android:layout_centerHorizontal="true"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:defaultFocusHighlightEnabled="false"/>
+
+            <lecho.lib.hellocharts.view.PieChartView
+                android:id="@+id/production"
+                android:layout_centerHorizontal="true"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_below="@+id/nb_employe"/>
+
+            <lecho.lib.hellocharts.view.PieChartView
+                android:id="@+id/prod_totale"
+                android:accessibilityPaneTitle="oskur"
+                android:layout_centerHorizontal="true"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_below="@+id/production"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+
+
+
+</RelativeLayout>

@@ -24,11 +24,13 @@ public class Employe {
     protected double rate;
     protected double total_rate;
 
+    protected double total_production;
+
 
     protected Function<GameState, Boolean> condition;
 
 
-    public Employe(String id, int rank, String nom, String description, double coutBase, double apport, int nb, Function<GameState, Boolean> condition) {
+    public Employe(String id, int rank, String nom, String description, double coutBase, double apport, int nb, double total_production, Function<GameState, Boolean> condition) {
         this.id = id;
         this.rank = rank;
         this.nom = nom;
@@ -40,6 +42,7 @@ public class Employe {
         this.total_rate = rate * nb;
         this.nb = nb;
         this.condition = condition;
+        this.total_production = total_production;
 
     }
 
@@ -71,6 +74,18 @@ public class Employe {
 
     public double getRate() {
         return rate;
+    }
+
+    public double getTotalRate() {
+        return total_rate;
+    }
+
+    public double getTotalProduction(){
+        return total_production;
+    }
+
+    public void updateTotalProduction(){
+        total_production += nb*rate;
     }
 
     public int getNb() {
