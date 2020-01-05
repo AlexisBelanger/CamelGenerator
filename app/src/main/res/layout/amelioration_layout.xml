@@ -1,41 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ammLayout"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="10dp">
 
 
-    <View
-        android:id="@+id/ammRectangle"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_alignParentTop="true"
-        android:background="#FF8C00"
-        android:visibility="visible" />
-
-    <ImageView
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_height="match_parent">
 
 
-    <TextView
-        android:id="@+id/AmeliorationNom"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:layout_marginStart="60dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nom" />
+        <View
+            android:id="@+id/ammRectangle"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorAmelio"
+            android:visibility="visible" />
 
-    <TextView
-        android:id="@+id/AmeliorationDescr"
-        android:layout_below="@id/ammRectangle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="Description BLA BLAB BLA\nLOL CAML" />
+        <ImageView
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@mipmap/ic_launcher" />
+
+
+        <TextView
+            android:id="@+id/AmeliorationNom"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginStart="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nom"
+            android:textColor="#FFFFFF"/>
+
+        <TextView
+            android:id="@+id/AmeliorationDescr"
+            android:layout_below="@id/ammRectangle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Description BLA BLAB BLA\nLOL CAML"
+            android:textAlignment="center"/>
 
         <Button
             android:id="@+id/ammButton"
@@ -46,4 +57,8 @@
             android:layout_below="@id/AmeliorationDescr" />
 
 
-</RelativeLayout>
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

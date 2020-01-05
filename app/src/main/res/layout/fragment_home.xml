@@ -2,7 +2,8 @@
 <RelativeLayout android:id="@+id/fragment_home"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
 
 
     <ScrollView
@@ -19,14 +20,30 @@
                 android:layout_centerHorizontal="true"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
-                android:defaultFocusHighlightEnabled="false"/>
+                android:defaultFocusHighlightEnabled="false" />
+
+
+            <View
+                android:id="@+id/sep1"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#FFFFFF"
+                android:layout_below="@id/nb_employe"/>
+
 
             <lecho.lib.hellocharts.view.PieChartView
                 android:id="@+id/production"
                 android:layout_centerHorizontal="true"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
-                android:layout_below="@+id/nb_employe"/>
+                android:layout_below="@+id/sep1"/>
+
+            <View
+                android:id="@+id/sep2"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="#FFFFFF"
+                android:layout_below="@id/production"/>
 
             <lecho.lib.hellocharts.view.PieChartView
                 android:id="@+id/prod_totale"
@@ -34,7 +51,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
-                android:layout_below="@+id/production"/>
+                android:layout_below="@+id/sep2"/>
 
 
         </RelativeLayout>

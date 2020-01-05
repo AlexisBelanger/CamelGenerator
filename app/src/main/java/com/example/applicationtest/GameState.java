@@ -194,6 +194,7 @@ public class GameState {
         for (Employe e : employes.values()) {
             locps += e.getNb() * e.getRate();
         }
+
         ac.updateText();
 
     }

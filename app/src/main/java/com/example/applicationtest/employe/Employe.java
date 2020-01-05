@@ -85,6 +85,7 @@ public class Employe {
     }
 
     public void updateTotalProduction(){
+        System.out.println("nb = "+nb*rate);
         total_production += nb*rate;
     }
 

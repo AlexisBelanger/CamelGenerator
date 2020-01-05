@@ -4,6 +4,7 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorPrimary"
     tools:context=".AcceuilActivity">
 
 
@@ -27,7 +28,7 @@
         android:layout_above="@+id/accView"
         android:src="@drawable/ic_tavern"
         android:layout_toLeftOf="@id/goLab"
-
+        android:backgroundTint="@color/colorButtons"
         />
 
     <View
@@ -43,7 +44,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/accView"
         android:src="@drawable/ic_lab"
-        android:layout_toLeftOf="@id/goHome" />
+        android:layout_toLeftOf="@id/goHome"
+        android:backgroundTint="@color/colorButtons"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/goHome"
@@ -51,7 +53,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/accView"
         android:src="@drawable/ic_home"
-        android:layout_toLeftOf="@id/goTest" />
+        android:layout_toLeftOf="@id/goTest"
+        android:backgroundTint="@color/colorButtons"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/goTest"
@@ -59,7 +62,8 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/accView"
         android:src="@drawable/ic_test"
-        android:layout_toLeftOf="@id/goCave" />
+        android:layout_toLeftOf="@id/goCave"
+        android:backgroundTint="@color/colorButtons"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/goCave"
@@ -67,7 +71,9 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/accView"
         android:src="@drawable/ic_cave"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:backgroundTint="@color/colorButtons"
+        />
 
     <include
         android:id="@+id/Clickbutton"

@@ -5,7 +5,7 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.example.applicationtest"
-        minSdkVersion 26
+        minSdkVersion 27
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -37,4 +37,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
     implementation 'com.github.LiquidPlayer:LiquidCore:0.6.0'
     compile 'com.github.lecho:hellocharts-library:1.5.8@aar'
+
 }

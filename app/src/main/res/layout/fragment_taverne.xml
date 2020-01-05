@@ -2,15 +2,16 @@
 <RelativeLayout android:id="@+id/fragment_tavern"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#AAAAAA">
 
 
     <ListView
         android:id="@+id/listTavern"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:divider="#616161"
-        android:dividerHeight="4dp" />
+        android:divider="#AAAAAA"
+        android:dividerHeight="12dp"/>
 
 
 </RelativeLayout>
