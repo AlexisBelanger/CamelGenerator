@@ -10,6 +10,8 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import com.example.applicationtest.Amelioration.AmeliorationAdapter;
+import com.example.applicationtest.employe.EmployeAdapter;
 import com.example.applicationtest.ui.home.HomeFragment;
 import com.example.applicationtest.ui.lab.LabFragment;
 import com.example.applicationtest.ui.send.CaveFragment;
@@ -128,11 +130,11 @@ public class AcceuilActivity extends AppCompatActivity {
                             ListView ameliorationList = findViewById(R.id.listLab);
 
                             if (employesList != null) {
-                                employesList.deferNotifyDataSetChanged();
+                                ((EmployeAdapter) employesList.getAdapter()).notifyDataSetChanged();
                             }
 
                             if (ameliorationList != null) {
-                                ameliorationList.deferNotifyDataSetChanged();
+                                ((AmeliorationAdapter) ameliorationList.getAdapter()).notifyDataSetChanged();
                             }
 
                         } else {

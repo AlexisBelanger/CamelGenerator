@@ -48,7 +48,6 @@ public class Employe {
 
     public void addOne(GameState gs) {
 
-        if (gs.loc >= cout) {
             gs.loc -= cout;
             this.nb++;
             cout = (int) (coutBase * Math.pow(1.15, nb));
@@ -57,7 +56,7 @@ public class Employe {
 
             gs.updateValues();
 
-        }
+
     }
 
     public String getNom() {

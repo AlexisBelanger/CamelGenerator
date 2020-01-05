@@ -4,12 +4,6 @@ import androidx.arch.core.util.Function;
 
 import com.example.applicationtest.GameState;
 
-import org.liquidplayer.javascript.JSContext;
-import org.liquidplayer.javascript.JSValue;
-
-import java.text.DecimalFormat;
-
-
 public class Amelioration {
     protected String id;
     protected String nom;
