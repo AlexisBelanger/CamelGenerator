@@ -1,7 +1,6 @@
 package com.example.applicationtest;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,11 +9,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import com.example.applicationtest.Amelioration.Amelioration;
 import com.example.applicationtest.Amelioration.AmeliorationAdapter;
+import com.example.applicationtest.challenge.Challenge;
 import com.example.applicationtest.employe.EmployeAdapter;
 import com.example.applicationtest.ui.home.HomeFragment;
 import com.example.applicationtest.ui.lab.LabFragment;
-import com.example.applicationtest.ui.send.CaveFragment;
+import com.example.applicationtest.ui.challenge.ChallengeFragment;
 import com.example.applicationtest.ui.tavern.TavernFragment;
 import com.example.applicationtest.ui.test.TestFragment;
 
@@ -25,11 +26,15 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -38,6 +43,8 @@ public class AcceuilActivity extends AppCompatActivity {
     private AppBarConfiguration mAppBarConfiguration;
 
     private GameState gameState;
+
+    private ArrayList<Challenge> challenges = new ArrayList<Challenge>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,10 +77,10 @@ public class AcceuilActivity extends AppCompatActivity {
                 goTavern();
             }
         });
-        findViewById(R.id.goCave).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.goChallenge).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goCave();
+                goChallenge();
             }
         });
         findViewById(R.id.goTest).setOnClickListener(new View.OnClickListener() {
@@ -210,11 +217,11 @@ public class AcceuilActivity extends AppCompatActivity {
 
     }
 
-    public void goCave() {
-        if (getSupportFragmentManager().findFragmentById(R.id.fragment_cave) == null) {
+    public void goChallenge() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_challenge) == null) {
 
             // Create new fragment and transaction
-            Fragment newFragment = new CaveFragment();
+            Fragment newFragment = new ChallengeFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
 // Replace whatever is in the fragment_container view with this fragment,
@@ -342,6 +349,38 @@ public class AcceuilActivity extends AppCompatActivity {
 
     public GameState getGameState() {
         return gameState;
+    }
+
+    public ArrayList<Challenge> getChallenges() {
+        return challenges;
+    }
+
+    public void puChallenges() {
+        try {
+
+            JSONObject jsonObject = new JSONObject(utils.ReadFromDataFile("challenges", this.getBaseContext()));
+            JSONArray jsonArray = jsonObject.getJSONArray("challenges");
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonChallenge = jsonArray.getJSONObject(i);
+                challenges.add(
+                        new Challenge(
+                                jsonChallenge.getString("id"),
+                                jsonChallenge.getString("nom"),
+                                jsonChallenge.getString("description"),
+                                jsonChallenge.getInt("cout"),
+                                jsonChallenge.getString("challenge_tag")
+
+                        )
+                );
+
+
+            }
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public void resetGameState() {

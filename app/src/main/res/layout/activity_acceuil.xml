@@ -62,11 +62,11 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/accView"
         android:src="@drawable/ic_test"
-        android:layout_toLeftOf="@id/goCave"
+        android:layout_toLeftOf="@id/goChallenge"
         android:backgroundTint="@color/colorButtons"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/goCave"
+        android:id="@+id/goChallenge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/accView"

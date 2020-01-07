@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/carte_employe"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:layout_margin="10dp"
     app:cardCornerRadius="16dp"
-    app:cardElevation="10dp"
-    >
+    app:cardElevation="10dp">
 
     <RelativeLayout
+        android:id="@+id/layout1"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -24,11 +24,11 @@
 
             <ImageView
                 android:id="@+id/empImage"
-                android:layout_centerInParent="true"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
-                android:layout_toLeftOf="@id/empTopView1"
                 android:layout_alignParentLeft="true"
+                android:layout_centerInParent="true"
+                android:layout_toLeftOf="@id/empTopView1"
                 android:src="@mipmap/ic_launcher" />
 
             <View
@@ -39,11 +39,11 @@
 
             <TextView
                 android:id="@+id/empNom"
-                android:layout_centerInParent="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:text="Nom" />
+                android:layout_centerInParent="true"
+                android:text="Nom"
+                android:textColor="#FFFFFF" />
 
 
             <TextView
@@ -51,9 +51,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:textColor="#FFFFFF"
+                android:layout_toLeftOf="@id/empTopView2"
                 android:text="Cout"
-                android:layout_toLeftOf="@id/empTopView2" />
+                android:textColor="#FFFFFF" />
 
             <View
                 android:id="@+id/empTopView2"
@@ -62,20 +62,26 @@
                 android:layout_alignParentEnd="true" />
         </RelativeLayout>
 
+        <View
+            android:id="@+id/blank1"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@+id/emmRectangle" />
+
         <RelativeLayout
             android:id="@+id/empRectangleBot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:layout_below="@id/emmRectangle">
+            android:layout_below="@id/blank1"
+            android:background="#FFFFFF">
 
             <TextView
                 android:id="@+id/empNB"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="NB"
+                android:layout_centerInParent="true"
                 android:layout_toLeftOf="@id/empBotView1"
-                android:layout_centerInParent="true" />
+                android:text="NB" />
 
 
             <View
@@ -88,9 +94,9 @@
                 android:id="@+id/empRate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:layout_toLeftOf="@id/empBotView2"
-                android:text="$/s"
-                android:layout_centerInParent="true" />
+                android:text="$/s" />
 
             <View
                 android:id="@+id/empBotView2"
@@ -102,10 +108,10 @@
                 android:id="@+id/empInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
                 android:layout_toLeftOf="@id/empBotView3"
                 android:background="@color/colorEmploye"
-                android:src="@drawable/ic_info"
-                android:layout_centerVertical="true" />
+                android:src="@drawable/ic_info" />
 
             <View
                 android:id="@+id/empBotView3"
@@ -118,16 +124,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:background="@drawable/roundedbutton"
                 android:text="EMBAUCHER" />
+
+
         </RelativeLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@+id/empRectangleBot" />
 
-<!--        <View-->
-<!--            android:id="@+id/empPadBottom"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="10dp"-->
-<!--            android:layout_below="@id/empRectangleBot"-->
-<!--            android:background="#616161" />-->
+
+        <!--        <View-->
+        <!--            android:id="@+id/empPadBottom"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="10dp"-->
+        <!--            android:layout_below="@id/empRectangleBot"-->
+        <!--            android:background="#616161" />-->
 
 
     </RelativeLayout>

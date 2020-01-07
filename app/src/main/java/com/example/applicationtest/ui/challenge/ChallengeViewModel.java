@@ -1,16 +1,16 @@
-package com.example.applicationtest.ui.share;
+package com.example.applicationtest.ui.challenge;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ShareViewModel extends ViewModel {
+public class ChallengeViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
 
-    public ShareViewModel() {
+    public ChallengeViewModel() {
         mText = new MutableLiveData<>();
-        mText.setValue("This is share fragment");
+        mText.setValue("This is send fragment");
     }
 
     public LiveData<String> getText() {

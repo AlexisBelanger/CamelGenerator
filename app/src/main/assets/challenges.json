@@ -1,0 +1,11 @@
+{
+  "challenges": [
+    {
+      "id": "cafe",
+      "nom": "Cafe",
+      "description": "Le café permet aux codeurs de coder pendant plus longtemps:\n\nLe idle time dure plus longtemps",
+      "recompense": 10,
+      "challenge_tag": "double_idle_time"
+    }
+  ]
+}

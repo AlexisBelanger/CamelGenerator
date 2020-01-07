@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragment_challenge"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+
+    <ImageView
+        android:id="@+id/image_cringe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"
+        android:scaleType="fitXY" />
+
+    <ListView
+        android:id="@+id/listChallenge"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:dividerHeight="12dp"
+        android:divider="#AAAAAA"
+        android:layout_below="@id/image_cringe" />
+
+</RelativeLayout>

@@ -15,11 +15,11 @@
 
 
         <View
-            android:id="@+id/ammRectangle"
+            android:id="@+id/challRectangle"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_alignParentTop="true"
-            android:background="@color/colorAmelio"
+            android:background="@color/colorChallenge"
             android:visibility="visible" />
 
         <ImageView
@@ -31,45 +31,33 @@
 
 
         <TextView
-            android:id="@+id/AmeliorationNom"
+            android:id="@+id/ChallengeNom"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:layout_marginStart="60dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Nom"
-            android:textColor="#FFFFFF"/>
+            android:textColor="#FFFFFF" />
 
         <TextView
-            android:id="@+id/AmeliorationDescr"
-            android:layout_below="@id/ammRectangle"
+            android:id="@+id/ChallDescr"
+            android:layout_below="@id/challRectangle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:text="Description BLA BLAB BLA\nLOL CAML"
-            android:textAlignment="center"/>
+            android:textAlignment="center" />
 
-        <View
-            android:id="@+id/blank1"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_below="@id/AmeliorationDescr" />
         <Button
-            android:id="@+id/ammButton"
+            android:id="@+id/challengeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cout en $"
-            android:textColor="#FFFFFF"
+            android:text="Commence Le challenge !"
             android:layout_centerHorizontal="true"
-            android:layout_below="@id/blank1"
-            android:background="@drawable/roundedbuttonamelio" />
+            android:layout_below="@id/ChallDescr" />
 
-        <View
-            android:id="@+id/blank2"
-            android:layout_width="match_parent"
-            android:layout_height="10dp"
-            android:layout_below="@id/ammButton" />
+
     </RelativeLayout>
-
 
 
 </androidx.cardview.widget.CardView>
