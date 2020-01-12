@@ -18,8 +18,8 @@
             <lecho.lib.hellocharts.view.PieChartView
                 android:id="@+id/nb_employe"
                 android:layout_centerHorizontal="true"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
                 android:defaultFocusHighlightEnabled="false" />
 
 
@@ -34,8 +34,8 @@
             <lecho.lib.hellocharts.view.PieChartView
                 android:id="@+id/production"
                 android:layout_centerHorizontal="true"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
                 android:layout_below="@+id/sep1"/>
 
             <View
@@ -49,8 +49,8 @@
                 android:id="@+id/prod_totale"
                 android:accessibilityPaneTitle="oskur"
                 android:layout_centerHorizontal="true"
-                android:layout_width="300dp"
-                android:layout_height="300dp"
+                android:layout_width="match_parent"
+                android:layout_height="350dp"
                 android:layout_below="@+id/sep2"/>
 
 

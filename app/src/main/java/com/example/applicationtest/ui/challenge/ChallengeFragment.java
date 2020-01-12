@@ -1,6 +1,9 @@
 package com.example.applicationtest.ui.challenge;
 
+import android.content.ContentResolver;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,8 +40,9 @@ public class ChallengeFragment extends Fragment {
                 ViewModelProviders.of(this).get(ChallengeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_challenge, container, false);
 
-
         ArrayList<Challenge> chall = new ArrayList<Challenge>(((AcceuilActivity) getActivity()).getChallenges());
+
+        System.out.println(chall+" -------------------------------------------------------");
 
 
         ChallengeAdapter adapter = new ChallengeAdapter(this.getContext(), chall);

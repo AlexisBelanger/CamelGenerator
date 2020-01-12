@@ -109,6 +109,8 @@ public class HomeFragment extends Fragment {
         PieChartView production = root.findViewById(R.id.production);
         values = new ArrayList<SliceValue>();
 
+        production.setChartRotationEnabled(false);
+
         int i = 0;
 
         if(tout_a_zero){
@@ -152,6 +154,8 @@ public class HomeFragment extends Fragment {
 
         PieChartView production_totale = root.findViewById(R.id.prod_totale);
         values = new ArrayList<SliceValue>();
+
+        production_totale.setChartRotationEnabled(false);
 
         int i = 0;
 

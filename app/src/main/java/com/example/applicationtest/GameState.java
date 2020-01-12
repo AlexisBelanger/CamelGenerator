@@ -56,14 +56,14 @@ public class GameState {
         employes = new HashMap<>();
 
         colors = new int[8];
-        colors[0] = Color.RED;
-        colors[1] = Color.BLUE;
-        colors[2] = Color.GREEN;
-        colors[3] = Color.YELLOW;
+        colors[0] = Color.rgb(153,0,0);
+        colors[1] = Color.rgb(0,0,154);
+        colors[2] = Color.rgb(0,112,0);
+        colors[3] = Color.rgb(0,75,73);
         colors[4] = Color.rgb(236,11,250);
-        colors[5] = Color.CYAN;
-        colors[6] = Color.rgb(250,150,0);
-        colors[7] = Color.rgb(143,0,226);
+        colors[5] = Color.rgb(73,0,110);
+        colors[6] = Color.rgb(51,128,105);
+        colors[7] = Color.rgb(166,83,0);
 
 
         taken_ameliorations = new HashSet<>();
@@ -88,7 +88,8 @@ public class GameState {
                                 0,
                                 (gs -> {
                                     return true;
-                                })
+                                }),
+                                jsonEmploye.getString("src_image")
                         )
                 );
             }
@@ -116,7 +117,8 @@ public class GameState {
                                 jsonAmelioration.getString("nom"),
                                 jsonAmelioration.getString("description"),
                                 jsonAmelioration.getInt("cout"),
-                                effect.table.get(jsonAmelioration.getString("effect_tag"))
+                                effect.table.get(jsonAmelioration.getString("effect_tag")),
+                                jsonAmelioration.getString("src_image")
 
                         )
                 );
@@ -150,6 +152,7 @@ public class GameState {
             for (Map.Entry<String, Employe> e : employes.entrySet()
             ) {
                 e.getValue().setNb(jsonObject.getInt(e.getKey()));
+                e.getValue().updateTotalProduction();
             }
 
             JSONArray jsonArray = jsonObject.getJSONArray("ameliorations");

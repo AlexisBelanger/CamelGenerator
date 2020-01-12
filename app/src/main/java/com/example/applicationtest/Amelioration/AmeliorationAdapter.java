@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +53,11 @@ public class AmeliorationAdapter extends ArrayAdapter<Amelioration> {
         ammDesc.setText(amelioration.getDescription());
         final Button ammBut = (Button) convertView.findViewById(R.id.ammButton);
         ammBut.setText(utils.prettyfier(amelioration.getCost()));
+
+        final ImageView im = (ImageView) convertView.findViewById(R.id.AmeliorationImage);
+        int id = getContext().getResources().getIdentifier(amelioration.getSrc_image(), "drawable", getContext().getPackageName());
+
+        im.setImageResource(id);
 
         ammBut.setOnClickListener(new View.OnClickListener() {
             @Override

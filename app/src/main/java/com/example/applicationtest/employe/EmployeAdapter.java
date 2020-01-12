@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -64,6 +65,11 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
         empCost.setText(utils.prettyfier((int) e.cout) + " LOC");
         empNB.setText(utils.prettyfier(e.nb));
         empRate.setText(utils.prettyfier(e.total_rate) + " LOC/s");
+
+        final ImageView im = (ImageView) convertView.findViewById(R.id.empImage);
+        int id = getContext().getResources().getIdentifier(employe.getSrc_image(), "drawable", getContext().getPackageName());
+
+        im.setImageResource(id);
 
 
         //boutton achat

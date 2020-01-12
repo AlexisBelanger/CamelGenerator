@@ -10,15 +10,19 @@ public class Amelioration {
     protected String description;
     protected int cost;
     protected Function<GameState, Void> effect;
+    protected String src_image;
 
 
-    public Amelioration(String id, String nom, String description, int cost, Function<GameState, Void> effect) {
+
+
+    public Amelioration(String id, String nom, String description, int cost, Function<GameState, Void> effect, String src_image) {
         this.id = id;
         this.nom = nom;
         this.description = description;
 
         this.cost = cost;
         this.effect = effect;
+        this.src_image = src_image;
 
     }
 
@@ -38,6 +42,10 @@ public class Amelioration {
 
     public String getNom() {
         return nom;
+    }
+
+    public String getSrc_image() {
+        return src_image;
     }
 
 }

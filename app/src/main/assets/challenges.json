@@ -1,10 +1,10 @@
 {
   "challenges": [
     {
-      "id": "cafe",
-      "nom": "Cafe",
-      "description": "Le café permet aux codeurs de coder pendant plus longtemps:\n\nLe idle time dure plus longtemps",
-      "recompense": 10,
+      "id": "The ultimate clicker challenge !",
+      "nom": "clicker_challenge",
+      "description": "Cliquez le plus possible en 10 secondes et envoyez votre score à un ami, si vous le battez, vous recevrez une récompense !",
+      "recompense": 100000,
       "challenge_tag": "double_idle_time"
     }
   ]

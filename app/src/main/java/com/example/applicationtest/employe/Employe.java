@@ -26,11 +26,15 @@ public class Employe {
 
     protected double total_production;
 
+    protected String src_image;
+
 
     protected Function<GameState, Boolean> condition;
 
 
-    public Employe(String id, int rank, String nom, String description, double coutBase, double apport, int nb, double total_production, Function<GameState, Boolean> condition) {
+
+
+    public Employe(String id, int rank, String nom, String description, double coutBase, double apport, int nb, double total_production, Function<GameState, Boolean> condition, String src_image) {
         this.id = id;
         this.rank = rank;
         this.nom = nom;
@@ -43,6 +47,7 @@ public class Employe {
         this.nb = nb;
         this.condition = condition;
         this.total_production = total_production;
+        this.src_image = src_image;
 
     }
 
@@ -57,6 +62,10 @@ public class Employe {
             gs.updateValues();
 
 
+    }
+
+    public String getSrc_image() {
+        return src_image;
     }
 
     public String getNom() {

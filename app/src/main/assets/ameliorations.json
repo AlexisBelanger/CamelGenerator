@@ -5,105 +5,120 @@
       "nom": "Cafe",
       "description": "Le café permet aux codeurs de coder pendant plus longtemps:\n\nLe idle time dure plus longtemps",
       "cout": 10,
-      "effect_tag": "double_idle_time"
+      "effect_tag": "double_idle_time",
+      "src_image" : "@drawable/java"
     },
     {
       "id": "lambda",
       "nom": "Lambda Calcul",
       "description": "Personne ne sait vraiment à quoi ca sert, mais les lettres grecques, ca rend bien\n\nDouble la production globale",
       "cout": 10,
-      "effect_tag": "double_multiplier"
+      "effect_tag": "double_multiplier",
+      "src_image" : "@drawable/lambda"
     },
     {
       "id": "survivant1",
       "nom": "Le survivant",
       "description": "Une rumeur court parmis les bts, on raconte que l'un d'entre eux est revenu vivant du tréfonds d'un framework PHP\n\nDouble la production des BTS",
       "cout": 1000,
-      "effect_tag": "double_bts_prod"
+      "effect_tag": "double_bts_prod",
+      "src_image" : "@drawable/bts"
     },
     {
       "id": "survivant2",
       "nom": "Le mythe du survivant",
       "description": "Le survivant est une figure d'espoir, on dit qu'il existe un futur ou le PHP régnera sur le monde\n\nDouble la production des BTS",
       "cout": 15000,
-      "effect_tag": "double_bts_prod"
+      "effect_tag": "double_bts_prod",
+      "src_image" : "@drawable/bts"
     },
     {
       "id": "survivant3",
       "nom": "Le culte du survivant",
       "description": "Les bts commencent à vénérer la figure du survivant qui apportera à tous futurs et cdd\n\nDouble la production des BTS",
       "cout": 200000,
-      "effect_tag": "double_bts_prod"
+      "effect_tag": "double_bts_prod",
+      "src_image" : "@drawable/bts"
     },
     {
       "id": "survivant4",
       "nom": "L'église du survivant",
       "description": "Les bts S'organisent en congregation secretes, loin du regard des scrum masters, pour vénerer le survivant et son héritage\n\nDouble la production des BTS",
       "cout": 300000,
-      "effect_tag": "double_bts_prod"
+      "effect_tag": "double_bts_prod",
+      "src_image" : "@drawable/bts"
     },
     {
       "id": "convention",
       "nom": "Convention de stage",
       "description": "Le Saint Graal convoité par tant d'étudiant: ce bout de papier permet de savoir à quel point vous serez exploité, mais la motivation du futur stagiaire est décuplé !\n\nDouble la production des stagiaires",
       "cout": 100,
-      "effect_tag": "double_stage_prod"
+      "effect_tag": "double_stage_prod",
+      "src_image" : "@drawable/stagiaire"
     },
     {
       "id": "biere",
       "nom": "La bière du vendredi",
       "description": "L'étudiant de Master est pauvre et dépréssif, la pinte à 2€ est donc le meilleur moyen de maintenir son efficacité\n\nDouble la production des Master",
       "cout": 50000,
-      "effect_tag": "double_master_prod"
+      "effect_tag": "double_master_prod",
+      "src_image" : "@drawable/master"
     },
     {
       "id": "guide",
       "nom": "Le Scrum Guide",
       "description": "Tel un Croisé qui lit la Bible, le Scrum-master qui lit le Scrum Guide voit sa foi en les saintes écritures décuplée\n\nDouble la production des Scrum-masters ",
       "cout": 75000,
-      "effect_tag": "double_scrum_prod"
+      "effect_tag": "double_scrum_prod",
+      "src_image" : "@drawable/scrum"
     },
     {
       "id": "en_fait_justement",
       "nom": "En fait justement",
       "description": "Le Product Owner ne sait jamais ce qu'il veut, mais il a l'impression de diriger, alors il est content, les stagiaires beaucoup moins...\n\nDouble la production des Product owners, mais divise par deux la production des stagiaires",
       "cout": 250000,
-      "effect_tag": "en_fait_justement"
+      "effect_tag": "en_fait_justement",
+      "src_image" : "@drawable/but4reuse"
     },
     {
       "id": "reponse_aux_mails",
       "nom": "Réponse aux mails",
       "description": "Le Product Owner n'est pas très sérieux, il annule des rendez-vous, il ne répond pas aux mails... Un réponse de sa part aura pour effet de sortir les quelques stagiaires encore présents de la dépréssion\n\nAugmente la production des stagiaires de 5% pour chaque Product Owner possédé",
       "cout": 250000,
-      "effect_tag": "reponse"
+      "effect_tag": "reponse",
+      "src_image" : "@drawable/but4reuse"
     },
     {
       "id": "cours_pc2r",
       "nom": "Cours de PC2R",
       "description": "Emmanuel Chailloux ayant un malus en pédagogie, les étudiants de master ne comprennent rien à son cours. Cela n'empêche pas son aura mystique de faire effet, et cela se ressent dans les capacités des étudiants\n\nAugmente la production des Masters de 5% par Chailloux possédé",
       "cout": 400000,
-      "effect_tag": "cours_pc2r"
+      "effect_tag": "cours_pc2r",
+      "src_image" : "@drawable/lip6"
     },
     {
       "id": "julien_tesson",
       "nom": "Julien Tesson",
       "description": "Il a beau avoir été apostrophé par un vulgaire étudiant de master, Julien n'en reste pas moins un élément essentiel de la fondation Tezos, et un génie du langage fonctionnel\n\nDouble la production des Fondations Tezos",
       "cout": 600000,
-      "effect_tag": "double_tezos_prod"
+      "effect_tag": "double_tezos_prod",
+      "src_image" : "@drawable/tezos"
     },
     {
       "id": "jérome_chailloux",
       "nom": "Jérome Chailloux",
       "description": "Le frère du Saint Emmanuel, et responsable de Nomadic Labs, bref, un sacré numéro, il inspire les plus grands, même son frère\n\nMultiplie la production des Emmanuels Chailloux par 1.5",
       "cout": 600000,
-      "effect_tag": "up_chailloux_prod"
+      "effect_tag": "up_chailloux_prod",
+      "src_image" : "@drawable/tezos"
     },
     {
       "id": "pouvoir",
       "nom": "Accês au pouvoir",
       "description": "L'INRIA prend la place du Vatican, devient la religion majoritaire et impose Ocaml à la population mondiale\n\nDouble la production de l'INRIA",
       "cout": 600000,
-      "effect_tag": "double_inria_prod"
+      "effect_tag": "double_inria_prod",
+      "src_image" : "@drawable/inria"
     }
 
   ]

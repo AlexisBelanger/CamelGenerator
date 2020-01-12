@@ -53,6 +53,7 @@ public class AcceuilActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        this.putChallenges();
         if (savedInstanceState != null) {
 
             gameState = new GameState(this, savedInstanceState.getString("gameState"));
@@ -355,9 +356,8 @@ public class AcceuilActivity extends AppCompatActivity {
         return challenges;
     }
 
-    public void puChallenges() {
+    public void putChallenges() {
         try {
-
             JSONObject jsonObject = new JSONObject(utils.ReadFromDataFile("challenges", this.getBaseContext()));
             JSONArray jsonArray = jsonObject.getJSONArray("challenges");
 
@@ -368,7 +368,7 @@ public class AcceuilActivity extends AppCompatActivity {
                                 jsonChallenge.getString("id"),
                                 jsonChallenge.getString("nom"),
                                 jsonChallenge.getString("description"),
-                                jsonChallenge.getInt("cout"),
+                                jsonChallenge.getInt("recompense"),
                                 jsonChallenge.getString("challenge_tag")
 
                         )
