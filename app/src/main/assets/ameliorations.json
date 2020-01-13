@@ -172,15 +172,15 @@
       "id": "click_50",
       "nom": "Sous-traitance du click",
       "description": "\"pourquoi le faire faire par des masters, quand on peut sous traiter\"\n\nVos clics rapportent +50 par employé.",
-      "cout": 1000000000,
+      "cout": 500000000,
       "effect_tag": "click_50",
       "src_image": "@raw/finger"
     },
     {
       "id": "click_500",
       "nom": "Ûber Click",
-      "description": "\"Rejoignez ma plateforme d'enrichissement participative\"\n\nVos clics rapportent +500 par employé.",
-      "cout": 10000000000,
+      "description": "\"Rejoignez ma plateforme d'enrichissement participatif\"\n\nVos clics rapportent +500 par employé.",
+      "cout": 1000000000,
       "effect_tag": "click_500",
       "src_image": "@raw/finger"
     }

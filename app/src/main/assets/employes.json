@@ -4,7 +4,7 @@
       "id": "stagiaire",
       "rank": 1,
       "nom": "Stagiaire",
-      "description": "Corvéables a merci et rémunéres principalement en chèque passion et visibilité, ils sont la base de toute entreprise",
+      "description": "Corvéables a merci et rémunéres principalement en chèque passion et visibilité, ils sont la base de toute entreprise\nApport : 0.1",
       "cout": 10,
       "rate": 0.1,
       "src_image" : "@raw/stagiaire"
@@ -13,7 +13,7 @@
       "id": "bts",
       "rank": 2,
       "nom": "BTS",
-      "description": "ils ont fait du PHP … c’est pas glorieux mais c’est déja ça",
+      "description": "ils ont fait du PHP … c’est pas glorieux mais c’est déja ça\nApport : 1",
       "cout": 100,
       "rate": 1,
       "src_image" : "@raw/bts"
@@ -22,7 +22,7 @@
       "id": "master",
       "rank": 3,
       "nom": "Master",
-      "description": "Le juste milieu entre le BTS et l'école d'ingénieur, pas très doué, mais sûr de ses capacités, l'étudiant de Master n'hésitera pas à appliquer le fameux dogme \"Moins j'en fais, mieux je me porte\" ",
+      "description": "Le juste milieu entre le BTS et l'école d'ingénieur, pas très doué, mais sûr de ses capacités, l'étudiant de Master n'hésitera pas à appliquer le fameux dogme \"Moins j'en fais, mieux je me porte\"\nApport : 8 ",
       "cout": 1100,
       "rate": 8,
       "src_image" : "@raw/master"
@@ -31,7 +31,7 @@
       "id": "scrum-master",
       "rank": 4,
       "nom": "Scrum-Master",
-      "description": "Le Scrum Master ne fait peut-etre rien, mais il veille au confort de ses équipiers, adieu le mal de dos et le mauvais café",
+      "description": "Le Scrum Master ne fait peut-etre rien, mais il veille au confort de ses équipiers, adieu le mal de dos et le mauvais café\nApport : 47",
       "cout": 12000,
       "rate": 47,
       "src_image" : "@raw/scrum"
@@ -40,7 +40,7 @@
       "id": "product",
       "rank": 5,
       "nom": "Product-Owner",
-      "description": "En fait, justement, il ne sait jamais vraiment ce qu'il veut, mais il canalise les efforts de l'équipe agile, et ca, c'est un bel exploit !",
+      "description": "En fait, justement, il ne sait jamais vraiment ce qu'il veut, mais il canalise les efforts de l'équipe agile, et ca, c'est un bel exploit !\nApport : 260",
       "cout": 130000,
       "rate": 260,
       "src_image" : "@raw/but4reuse"
@@ -49,7 +49,7 @@
       "id": "chailloux",
       "rank": 6,
       "nom": "Emmanuel Chailloux",
-      "description": "Le maitre incontesté à Paris 6, le demi-dieu du langage fonctionnel, sa pédagogie est inversement proportionnel à son immense talent",
+      "description": "Le maitre incontesté à Paris 6, le demi-dieu du langage fonctionnel, sa pédagogie est inversement proportionnel à son immense talent\nApport : 1   400",
       "cout": 1400000,
       "rate": 1400,
       "src_image" : "@raw/lip6"
@@ -58,7 +58,7 @@
       "id": "tezos",
       "rank": 7,
       "nom": "Fondation Tezos",
-      "description": "Sous les ordres du terrible Julien \"L'Apostrophé\" Tesson, la fondation Tezos planifie de répandre Ocaml partout sur le globe ",
+      "description": "Sous les ordres du terrible Julien \"L'Apostrophé\" Tesson, la fondation Tezos planifie de répandre Ocaml partout sur le globe \nApport : 7 800",
       "cout": 20000000,
       "rate": 7800,
       "src_image" : "@raw/tezos"
@@ -67,7 +67,7 @@
       "id": "inria",
       "rank": 8,
       "nom": "INRIA",
-      "description": "Le temple du langage fonctionnel, berceau d'Ocaml, terreur de bon nombre d'étudiants, l'INRIA a un pouvoir de génération de code inégalé",
+      "description": "Le temple du langage fonctionnel, berceau d'Ocaml, terreur de bon nombre d'étudiants, l'INRIA a un pouvoir de génération de code inégalé\nApport : 44 000",
       "cout": 330000000,
       "rate": 44000,
       "src_image" : "@raw/inria"

@@ -80,141 +80,66 @@ public abstract class utils {
 
     }
 
-    public static String prettyfier(int v) {
-        double value = v;
+    public static String prettyfier(int value) {
         StringBuilder s = new StringBuilder();
-
         if (value < 1000) {
-            s.append((int)value);
+            s.append(value);
             return s.toString();
 
         }
-        value /= 1000.0;
-        if((int)value == value){
-            if (value < 1000) {
-                s.append((int)value + " K");
-                return s.toString();
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " K");
+            return s.toString();
 
-            }
-        }else{
-            if (value < 1000) {
-                s.append(value + " K");
-                return s.toString();
-
-            }
         }
 
-        value /= 1000.0;
-        if((int)value == value){
-            if (value < 1000) {
-                s.append((int)value + " m");
-                return s.toString();
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " m");
+            return s.toString();
 
-            }
-        }else{
-            if (value < 1000) {
-                s.append(value + " m");
-                return s.toString();
-
-            }
         }
-        value /= 1000.0;
-        if((int)value == value){
-            if (value < 1000) {
-                s.append((int)value + " M");
-                return s.toString();
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " M");
+            return s.toString();
 
-            }
-        }else{
-            if (value < 1000) {
-                s.append(value + " M");
-                return s.toString();
-
-            }
         }
-        value /= 1000.0;
-        if((int)value == value){
-            if (value < 1000) {
-                s.append((int)value + " B");
-                return s.toString();
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " B");
+            return s.toString();
 
-            }
-        }else{
-            if (value < 1000) {
-                s.append(value + " B");
-                return s.toString();
-
-            }
         }
-        value /= 1000.0;
-        if((int)value == value){
-            if (value < 1000) {
-                s.append((int)value + " T");
-                return s.toString();
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " T");
+            return s.toString();
 
-            }
-        }else{
-            if (value < 1000) {
-                s.append(value + " T");
-                return s.toString();
-
-            }
         }
-        value /= 1000.0;
-        if((int)value == value){
-            if (value < 1000) {
-                s.append((int)value + " Qa");
-                return s.toString();
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " Qa");
+            return s.toString();
 
-            }
-        }else{
-            if (value < 1000) {
-                s.append(value + " Qa");
-                return s.toString();
-
-            }
         }
-        value /= 1000.0;
-        if((int)value == value){
-            if (value < 1000) {
-                s.append((int)value + " Q");
-                return s.toString();
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " Q");
+            return s.toString();
 
-            }
-        }else{
-            if (value < 1000) {
-                s.append(value + " Q");
-                return s.toString();
-
-            }
         }
-        value /= 1000.0;
-        if((int)value == value){
-            if (value < 1000) {
-                s.append((int)value + " Sx");
-                return s.toString();
-
-            }
-        }else{
-            if (value < 1000) {
-                s.append(value + " Sx");
-                return s.toString();
-
-            }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " Sx");
+            return s.toString();
         }
-        value /= 1000.0;
-        if((int)value == value){
-            if (value < 1000) {
-                s.append((int)value + " St");
-                return s.toString();
 
-            }
-        }else{
-            if (value < 1000) {
-                s.append(value + " St");
-                return s.toString();
-
-            }
+        value /= 1000;
+        if (value < 1000) {
+            s.append(value + " St");
+            return s.toString();
         }
 
         return s.toString();

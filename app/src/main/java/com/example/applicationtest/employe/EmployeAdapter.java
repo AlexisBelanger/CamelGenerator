@@ -62,7 +62,7 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
         Employe e = ((AcceuilActivity) getContext()).getGameState().employes.get(employe.id);
 
         empName.setText(e.nom);
-        empCost.setText(utils.prettyfier((int) e.cout) + " LOC");
+        empCost.setText(utils.prettyfier(e.cout) + " LOC");
         empNB.setText(utils.prettyfier(e.nb));
         empRate.setText(utils.prettyfier(e.total_rate) + " LOC/s");
 

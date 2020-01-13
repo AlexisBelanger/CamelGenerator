@@ -92,31 +92,31 @@ public class AmeliorationEffectTable {
                     return null;
                 });
 
-        table.put("clickç_0.5",
+        table.put("click_0.5",
                 gs -> {
                     gs.clickbyEmp += 0.5;
                     return null;
                 });
 
-        table.put("clickç_1",
+        table.put("click_1",
                 gs -> {
                     gs.clickbyEmp += 1;
                     return null;
                 });
 
-        table.put("clickç_5",
+        table.put("click_5",
                 gs -> {
                     gs.clickbyEmp += 5;
                     return null;
                 });
 
-        table.put("clickç_50",
+        table.put("click_50",
                 gs -> {
                     gs.clickbyEmp += 50;
                     return null;
                 });
 
-        table.put("clickç_500",
+        table.put("click_500",
                 gs -> {
                     gs.clickbyEmp += 500;
                     return null;

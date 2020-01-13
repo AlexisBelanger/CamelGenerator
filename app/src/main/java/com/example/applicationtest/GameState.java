@@ -229,7 +229,7 @@ public class GameState {
             click_total += clickbyEmp * employes.getNb();
         }
 
-        clickEfficiency = click_total;
+        clickEfficiency = click_total + 1;
 
         addIncome(clickEfficiency * clickMult);
     }
