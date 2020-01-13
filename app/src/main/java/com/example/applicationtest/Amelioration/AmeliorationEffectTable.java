@@ -59,13 +59,13 @@ public class AmeliorationEffectTable {
 
         table.put("reponse",
                 gs -> {
-                    gs.employes.get("stagiaire").setRate(gs.employes.get("stagiaire").getRate() * (1+gs.employes.get("product").getNb()*0.05));
+                    gs.employes.get("stagiaire").setRate(gs.employes.get("stagiaire").getRate() * (1 + gs.employes.get("product").getNb() * 0.05));
                     return null;
                 });
 
         table.put("cours_pc2r",
                 gs -> {
-                    gs.employes.get("master").setRate(gs.employes.get("master").getRate() * (1+gs.employes.get("chailloux").getNb()*0.05));
+                    gs.employes.get("master").setRate(gs.employes.get("master").getRate() * (1 + gs.employes.get("chailloux").getNb() * 0.05));
                     return null;
                 });
 
@@ -81,9 +81,44 @@ public class AmeliorationEffectTable {
                     return null;
                 });
 
-        table.put("up_inria_prod",
+        table.put("double_inria_prod",
                 gs -> {
                     gs.employes.get("inria").setRate(gs.employes.get("inria").getRate() * 2);
+                    return null;
+                });
+        table.put("double_click",
+                gs -> {
+                    gs.clickMult *= 2;
+                    return null;
+                });
+
+        table.put("clickç_0.5",
+                gs -> {
+                    gs.clickbyEmp += 0.5;
+                    return null;
+                });
+
+        table.put("clickç_1",
+                gs -> {
+                    gs.clickbyEmp += 1;
+                    return null;
+                });
+
+        table.put("clickç_5",
+                gs -> {
+                    gs.clickbyEmp += 5;
+                    return null;
+                });
+
+        table.put("clickç_50",
+                gs -> {
+                    gs.clickbyEmp += 50;
+                    return null;
+                });
+
+        table.put("clickç_500",
+                gs -> {
+                    gs.clickbyEmp += 500;
                     return null;
                 });
     }

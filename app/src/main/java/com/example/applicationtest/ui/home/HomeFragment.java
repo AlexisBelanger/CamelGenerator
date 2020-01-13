@@ -54,6 +54,16 @@ public class HomeFragment extends Fragment {
         show_rentabilite();
         show_Production_totale();
 
+
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                show_Production_totale();
+
+            }
+        }, 0, 1000);
+
         return root;
     }
 
@@ -166,6 +176,7 @@ public class HomeFragment extends Fragment {
                 }
             }
         }
+
         for(Employe emp : employes){
             float val = 1;
             if(!tout_a_zero){

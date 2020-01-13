@@ -88,12 +88,15 @@ public class Employe {
         return total_rate;
     }
 
+    public void setTotal_production(double prod) {
+        this.total_production = prod;
+    }
+
     public double getTotalProduction(){
         return total_production;
     }
 
     public void updateTotalProduction(){
-        System.out.println("nb = "+nb*rate);
         total_production += nb*rate;
     }
 
