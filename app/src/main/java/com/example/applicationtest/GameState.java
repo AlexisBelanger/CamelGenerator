@@ -211,7 +211,7 @@ public class GameState {
 
     public void secondTick() {
 
-        addIncome(locps);
+        addIncome(locps / 2);
 
     }
 

@@ -1,14 +1,17 @@
 package com.example.applicationtest;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -124,7 +127,7 @@ public class AcceuilActivity extends AppCompatActivity {
                 gameState.secondTick();
                 updateText();
             }
-        }, 0, 1000);
+        }, 0, 500);
 
     }
 
@@ -463,20 +466,51 @@ public class AcceuilActivity extends AppCompatActivity {
             contact = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Nickname.DISPLAY_NAME));
             num = c.getString(phoneIndex);
         }
-        ChallengeFragment chall_frag = (ChallengeFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_test);
+//        ChallengeFragment chall_frag = (ChallengeFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_test);
+
         if (num.matches("^(0|\\+33)[ ]?[1-9]([-. ]?[0-9]{2}){4}$")) {
-            if (!chall_frag.getPhoneNumbers().contains(contact + ";" + num)) {
-                chall_frag.addToPhoneNumbers(contact + ";" + num);
+//            if (!chall_frag.getPhoneNumbers().contains(contact + ";" + num)) {
+//                chall_frag.addToPhoneNumbers(contact + ";" + num);
+//            }
+            if (!getPhoneNumbers().contains(contact + ";" + num)) {
+                addToPhoneNumbers(contact + ";" + num);
             }
 
 
-            chall_frag.getAdapter().notifyDataSetChanged();
+            //getAdapter().notifyDataSetChanged();
             Toast.makeText(AcceuilActivity.this, "Numéro ajouté : " + contact, Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(AcceuilActivity.this, "Numéro inconnu : " + num, Toast.LENGTH_SHORT).show();
         }
 
 
+    }
+
+
+    public void pop_up_envoi() {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setTitle("Voulez vous envoyer votre score à un ami");
+        String[] choice1 = {"Yes", "No"};
+        builder1.setItems(choice1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (choice1[which].equals("Yes")) {
+                    ((AcceuilActivity) builder1.getContext()).addUser();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Incredible !!\nNothing happened !", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        builder1.show();
+
+    }
+
+    public void addToPhoneNumbers(String num) {
+        this.phoneNumbers.add(num);
+    }
+
+    public ArrayList<String> getPhoneNumbers() {
+        return this.phoneNumbers;
     }
 
 }
