@@ -2,9 +2,13 @@ package com.example.applicationtest;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -22,6 +26,7 @@ import com.example.applicationtest.ui.test.TestFragment;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,6 +50,8 @@ public class AcceuilActivity extends AppCompatActivity {
     private GameState gameState;
 
     private ArrayList<Challenge> challenges = new ArrayList<Challenge>();
+
+    private ArrayList<String> phoneNumbers = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -152,6 +159,55 @@ public class AcceuilActivity extends AppCompatActivity {
                 });
                 builder.show();
                 return true;
+
+            case R.id.NG:
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                builder1.setTitle("Do you Want to reset with prestige");
+                String[] choice1 = {"Yes", "No"};
+                builder1.setItems(choice1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (choice1[which].equals("Yes")) {
+                            resetGameState();
+                            ListView employesList = findViewById(R.id.listTavern);
+                            ListView ameliorationList = findViewById(R.id.listLab);
+
+                            if (employesList != null) {
+                                ((EmployeAdapter) employesList.getAdapter()).notifyDataSetChanged();
+                            }
+
+                            if (ameliorationList != null) {
+                                ((AmeliorationAdapter) ameliorationList.getAdapter()).notifyDataSetChanged();
+                            }
+
+                            gameState.revenue_multiplier += 5;
+
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Incredible !!\nNothing happened !", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+                builder1.show();
+                return true;
+
+            case R.id.Cheat:
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+                builder2.setTitle("Do you want to Cheat\nRemember:\n Gamers don't do cheats");
+                String[] choice2 = {"Yes", "No"};
+                builder2.setItems(choice2, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (choice2[which].equals("Yes")) {
+                            gameState.addIncome(1000000000);
+
+                        } else {
+                            Toast.makeText(getApplicationContext(), "You made the right choice", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+                builder2.show();
+                return true;
+
 
             default:
                 return super.onOptionsItemSelected(item);
@@ -386,4 +442,41 @@ public class AcceuilActivity extends AppCompatActivity {
     public void resetGameState() {
         gameState = new GameState(this);
     }
+
+
+    public void addUser() {
+        Intent pickContact = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+        pickContact.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
+        startActivityForResult(pickContact, 1);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Uri contactData = data.getData();
+        String num = "";
+        String contact = "";
+        Cursor c = getContentResolver().query(contactData, null, null, null, null);
+        if (c.moveToFirst()) {
+            int phoneIndex = c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+            contact = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Nickname.DISPLAY_NAME));
+            num = c.getString(phoneIndex);
+        }
+        ChallengeFragment chall_frag = (ChallengeFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_test);
+        if (num.matches("^(0|\\+33)[ ]?[1-9]([-. ]?[0-9]{2}){4}$")) {
+            if (!chall_frag.getPhoneNumbers().contains(contact + ";" + num)) {
+                chall_frag.addToPhoneNumbers(contact + ";" + num);
+            }
+
+
+            chall_frag.getAdapter().notifyDataSetChanged();
+            Toast.makeText(AcceuilActivity.this, "Numéro ajouté : " + contact, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(AcceuilActivity.this, "Numéro inconnu : " + num, Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
 }

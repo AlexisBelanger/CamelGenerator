@@ -234,10 +234,6 @@ public class GameState {
         addIncome(clickEfficiency * clickMult);
     }
 
-    public void addAmelioration(Amelioration amm) {
-
-
-    }
 
 
     public String toJSON() {

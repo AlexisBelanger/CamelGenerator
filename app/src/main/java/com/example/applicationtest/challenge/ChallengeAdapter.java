@@ -1,6 +1,8 @@
 package com.example.applicationtest.challenge;
 
 import android.content.Context;
+import android.content.Intent;
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,15 +13,22 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.example.applicationtest.AcceuilActivity;
 import com.example.applicationtest.GameState;
 import com.example.applicationtest.R;
 import com.example.applicationtest.employe.Employe;
+import com.example.applicationtest.ui.challenge.Ten_seconds_fragment;
+import com.example.applicationtest.ui.home.HomeFragment;
 import com.example.applicationtest.utils;
 
 import java.util.ArrayList;
 
 public class ChallengeAdapter extends ArrayAdapter<Challenge> {
+
 
     public ChallengeAdapter(Context context, ArrayList<Challenge> ameliorations) {
 
@@ -56,7 +65,10 @@ public class ChallengeAdapter extends ArrayAdapter<Challenge> {
         challBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                GameState gs = ((AcceuilActivity) getContext()).getGameState();
+
+
+                Ten_seconds_fragment newFragment = new Ten_seconds_fragment();
+                newFragment.show(((AcceuilActivity) getContext()).getSupportFragmentManager(), null);
 
 
             }
@@ -65,4 +77,6 @@ public class ChallengeAdapter extends ArrayAdapter<Challenge> {
         return convertView;
 
     }
+
+
 }

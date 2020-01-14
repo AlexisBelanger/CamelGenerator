@@ -83,7 +83,7 @@
     {
       "id": "reponse_aux_mails",
       "nom": "Réponse aux mails",
-      "description": "\"Le Product Owner n'est pas très sérieux, il annule des rendez-vous, il ne répond pas aux mails... Un réponse de sa part aura pour effet de sortir les quelques stagiaires encore présents de la dépréssion\"\n\nAugmente la production des stagiaires de 5% pour chaque Product Owner possédé",
+      "description": "\"Le Product Owner n'est pas très sérieux, il annule des rendez-vous, il ne répond pas aux mails... Une réponse de sa part aura pour effet de sortir les quelques stagiaires encore présents de la dépréssion\"\n\nAugmente la production des stagiaires de 5% pour chaque Product Owner possédé",
       "cout": 250000,
       "effect_tag": "reponse",
       "src_image" : "@raw/but4reuse"

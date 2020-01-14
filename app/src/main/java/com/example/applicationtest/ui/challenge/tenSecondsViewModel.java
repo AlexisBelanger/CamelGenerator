@@ -4,11 +4,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ChallengeViewModel extends ViewModel {
+public class tenSecondsViewModel extends ViewModel {
+
 
     private MutableLiveData<String> mText;
 
-    public ChallengeViewModel() {
+    public tenSecondsViewModel() {
         mText = new MutableLiveData<>();
     }
 

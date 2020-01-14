@@ -31,7 +31,12 @@ import java.util.Collections;
 
 public class ChallengeFragment extends Fragment {
 
+    private ArrayList<String> phoneNumbers = new ArrayList<>();
+
     private ChallengeViewModel challengeViewModel;
+
+
+    private ChallengeAdapter adapter;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -45,7 +50,7 @@ public class ChallengeFragment extends Fragment {
         System.out.println(chall+" -------------------------------------------------------");
 
 
-        ChallengeAdapter adapter = new ChallengeAdapter(this.getContext(), chall);
+        adapter = new ChallengeAdapter(this.getContext(), chall);
 
 
         // Attach the adapter to a ListView
@@ -56,5 +61,19 @@ public class ChallengeFragment extends Fragment {
 
 
         return root;
+    }
+
+
+    public ChallengeAdapter getAdapter() {
+        return adapter;
+    }
+
+
+    public void addToPhoneNumbers(String num) {
+        this.phoneNumbers.add(num);
+    }
+
+    public ArrayList<String> getPhoneNumbers() {
+        return this.phoneNumbers;
     }
 }
