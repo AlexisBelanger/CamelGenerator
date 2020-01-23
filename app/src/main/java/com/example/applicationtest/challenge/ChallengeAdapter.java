@@ -60,7 +60,7 @@ public class ChallengeAdapter extends ArrayAdapter<Challenge> {
         final TextView challDesc = (TextView) convertView.findViewById(R.id.ChallDescr);
         challDesc.setText(challenge.getDescription());
         final Button challBut = (Button) convertView.findViewById(R.id.challengeButton);
-        challBut.setText(utils.prettyfier(challenge.getRecompense()));
+        challBut.setText("Jouer");
 
         challBut.setOnClickListener(new View.OnClickListener() {
             @Override
