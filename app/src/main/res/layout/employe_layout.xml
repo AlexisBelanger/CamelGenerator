@@ -1,121 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/carte_employe"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-
-
-    <RelativeLayout
-        android:id="@+id/emmRectangle"
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        android:layout_alignParentTop="true"
-        android:background="#DA860B"
-        android:visibility="visible">
-
-
-        <ImageView
-            android:id="@+id/empImage"
-            android:layout_centerInParent="true"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_toLeftOf="@id/empTopView1"
-            android:layout_alignParentLeft="true"
-            android:src="@mipmap/ic_launcher" />
-
-        <View
-            android:id="@+id/empTopView1"
-            android:layout_width="30dp"
-            android:layout_height="0dp"
-            android:layout_toLeftOf="@id/empNom" />
-
-        <TextView
-            android:id="@+id/empNom"
-            android:layout_centerInParent="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nom" />
-
-
-        <TextView
-            android:id="@+id/empCost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:text="Cout"
-            android:layout_toLeftOf="@id/empTopView2" />
-
-        <View
-            android:id="@+id/empTopView2"
-            android:layout_width="50dp"
-            android:layout_height="0dp"
-            android:layout_alignParentEnd="true" />
-    </RelativeLayout>
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="10dp">
 
     <RelativeLayout
-        android:id="@+id/empRectangleBot"
+        android:id="@+id/layout1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/emmRectangle">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/empNB"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="NB"
-            android:layout_toLeftOf="@id/empBotView1"
-            android:layout_centerInParent="true" />
+        <RelativeLayout
+            android:id="@+id/emmRectangle"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:layout_alignParentTop="true"
+            android:background="@color/colorEmploye"
+            android:visibility="visible">
 
+            <View
+                android:id="@+id/empTopView0"
+                android:layout_width="20dp"
+                android:layout_height="0dp"
+                android:layout_alignParentLeft="true"
+                />
+
+            <ImageView
+                android:id="@+id/empImage"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@id/empTopView0"
+                android:src="@mipmap/ic_launcher" />
+
+            <View
+                android:id="@+id/empTopView1"
+                android:layout_width="30dp"
+                android:layout_height="0dp"
+                android:layout_toLeftOf="@id/empNom" />
+
+            <TextView
+                android:id="@+id/empNom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="Nom"
+                android:textColor="#FFFFFF" />
+
+
+            <TextView
+                android:id="@+id/empCost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toLeftOf="@id/empTopView2"
+                android:text="Cout"
+                android:textColor="#FFFFFF" />
+
+            <View
+                android:id="@+id/empTopView2"
+                android:layout_width="50dp"
+                android:layout_height="0dp"
+                android:layout_alignParentEnd="true" />
+        </RelativeLayout>
 
         <View
-            android:id="@+id/empBotView1"
-            android:layout_width="80dp"
-            android:layout_height="0dp"
-            android:layout_toLeftOf="@id/empRate" />
+            android:id="@+id/blank1"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@+id/emmRectangle" />
 
-        <TextView
-            android:id="@+id/empRate"
-            android:layout_width="wrap_content"
+        <RelativeLayout
+            android:id="@+id/empRectangleBot"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/empBotView2"
-            android:text="$/s"
-            android:layout_centerInParent="true" />
+            android:layout_below="@id/blank1"
+            android:background="#FFFFFF">
+
+            <TextView
+                android:id="@+id/empNB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toLeftOf="@id/empBotView1"
+                android:text="NB" />
+
+
+            <View
+                android:id="@+id/empBotView1"
+                android:layout_width="80dp"
+                android:layout_height="0dp"
+                android:layout_toLeftOf="@id/empRate" />
+
+            <TextView
+                android:id="@+id/empRate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_toLeftOf="@id/empBotView2"
+                android:text="$/s" />
+
+            <View
+                android:id="@+id/empBotView2"
+                android:layout_width="30dp"
+                android:layout_height="0dp"
+                android:layout_toLeftOf="@id/empInfo" />
+
+            <ImageButton
+                android:id="@+id/empInfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/empBotView3"
+                android:background="@color/colorEmploye"
+                android:src="@drawable/ic_info" />
+
+            <View
+                android:id="@+id/empBotView3"
+                android:layout_width="30dp"
+                android:layout_height="0dp"
+                android:layout_toLeftOf="@id/empBut" />
+
+            <Button
+                android:id="@+id/empBut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="false"
+                android:layout_toLeftOf="@id/empBotView4"
+                android:textColor="@color/colorButtons"
+                android:background="@drawable/roundedbutton"
+                android:text="EMBAUCHER" />
+
+            <View
+                android:id="@+id/empBotView4"
+                android:layout_width="10dp"
+                android:layout_height="0dp"
+                android:layout_alignParentRight="true"/>
+
+
+        </RelativeLayout>
 
         <View
-            android:id="@+id/empBotView2"
-            android:layout_width="30dp"
-            android:layout_height="0dp"
-            android:layout_toLeftOf="@id/empInfo" />
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@+id/empRectangleBot" />
 
-        <ImageButton
-            android:id="@+id/empInfo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toLeftOf="@id/empBotView3"
-            android:background="@color/colorAccent"
-            android:src="@drawable/ic_info"
-            android:layout_centerVertical="true" />
 
-        <View
-            android:id="@+id/empBotView3"
-            android:layout_width="30dp"
-            android:layout_height="0dp"
-            android:layout_toLeftOf="@id/empBut" />
+        <!--        <View-->
+        <!--            android:id="@+id/empPadBottom"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="10dp"-->
+        <!--            android:layout_below="@id/empRectangleBot"-->
+        <!--            android:background="#616161" />-->
 
-        <Button
-            android:id="@+id/empBut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:text="EMBAUCHER" />
+
     </RelativeLayout>
 
 
-    <View
-        android:id="@+id/empPadBottom"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_below="@id/empRectangleBot"
-        android:background="#616161" />
-
-
-</RelativeLayout>
+</androidx.cardview.widget.CardView>

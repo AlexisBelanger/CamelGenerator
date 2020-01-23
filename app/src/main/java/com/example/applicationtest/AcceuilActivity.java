@@ -1,33 +1,48 @@
 package com.example.applicationtest;
 
+import android.Manifest;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 
+import com.example.applicationtest.Amelioration.Amelioration;
+import com.example.applicationtest.Amelioration.AmeliorationAdapter;
+import com.example.applicationtest.challenge.Challenge;
+import com.example.applicationtest.employe.EmployeAdapter;
 import com.example.applicationtest.ui.home.HomeFragment;
 import com.example.applicationtest.ui.lab.LabFragment;
-import com.example.applicationtest.ui.send.CaveFragment;
+import com.example.applicationtest.ui.challenge.ChallengeFragment;
 import com.example.applicationtest.ui.tavern.TavernFragment;
 import com.example.applicationtest.ui.test.TestFragment;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -37,6 +52,10 @@ public class AcceuilActivity extends AppCompatActivity {
 
     private GameState gameState;
 
+    private ArrayList<Challenge> challenges = new ArrayList<Challenge>();
+
+    private ArrayList<String> phoneNumbers = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +63,7 @@ public class AcceuilActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        this.putChallenges();
         if (savedInstanceState != null) {
 
             gameState = new GameState(this, savedInstanceState.getString("gameState"));
@@ -68,10 +88,10 @@ public class AcceuilActivity extends AppCompatActivity {
                 goTavern();
             }
         });
-        findViewById(R.id.goCave).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.goChallenge).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                goCave();
+                goChallenge();
             }
         });
         findViewById(R.id.goTest).setOnClickListener(new View.OnClickListener() {
@@ -107,7 +127,7 @@ public class AcceuilActivity extends AppCompatActivity {
                 gameState.secondTick();
                 updateText();
             }
-        }, 0, 1000);
+        }, 0, 500);
 
     }
 
@@ -128,11 +148,11 @@ public class AcceuilActivity extends AppCompatActivity {
                             ListView ameliorationList = findViewById(R.id.listLab);
 
                             if (employesList != null) {
-                                employesList.deferNotifyDataSetChanged();
+                                ((EmployeAdapter) employesList.getAdapter()).notifyDataSetChanged();
                             }
 
                             if (ameliorationList != null) {
-                                ameliorationList.deferNotifyDataSetChanged();
+                                ((AmeliorationAdapter) ameliorationList.getAdapter()).notifyDataSetChanged();
                             }
 
                         } else {
@@ -142,6 +162,55 @@ public class AcceuilActivity extends AppCompatActivity {
                 });
                 builder.show();
                 return true;
+
+            case R.id.NG:
+                AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+                builder1.setTitle("Do you Want to reset with prestige");
+                String[] choice1 = {"Yes", "No"};
+                builder1.setItems(choice1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (choice1[which].equals("Yes")) {
+                            resetGameState();
+                            ListView employesList = findViewById(R.id.listTavern);
+                            ListView ameliorationList = findViewById(R.id.listLab);
+
+                            if (employesList != null) {
+                                ((EmployeAdapter) employesList.getAdapter()).notifyDataSetChanged();
+                            }
+
+                            if (ameliorationList != null) {
+                                ((AmeliorationAdapter) ameliorationList.getAdapter()).notifyDataSetChanged();
+                            }
+
+                            gameState.revenue_multiplier += 5;
+
+                        } else {
+                            Toast.makeText(getApplicationContext(), "Incredible !!\nNothing happened !", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+                builder1.show();
+                return true;
+
+            case R.id.Cheat:
+                AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
+                builder2.setTitle("Do you want to Cheat\nRemember:\n Gamers don't do cheats");
+                String[] choice2 = {"Yes", "No"};
+                builder2.setItems(choice2, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        if (choice2[which].equals("Yes")) {
+                            gameState.addIncome(1000000000);
+
+                        } else {
+                            Toast.makeText(getApplicationContext(), "You made the right choice", Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+                builder2.show();
+                return true;
+
 
             default:
                 return super.onOptionsItemSelected(item);
@@ -208,11 +277,11 @@ public class AcceuilActivity extends AppCompatActivity {
 
     }
 
-    public void goCave() {
-        if (getSupportFragmentManager().findFragmentById(R.id.fragment_cave) == null) {
+    public void goChallenge() {
+        if (getSupportFragmentManager().findFragmentById(R.id.fragment_challenge) == null) {
 
             // Create new fragment and transaction
-            Fragment newFragment = new CaveFragment();
+            Fragment newFragment = new ChallengeFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
 // Replace whatever is in the fragment_container view with this fragment,
@@ -342,7 +411,106 @@ public class AcceuilActivity extends AppCompatActivity {
         return gameState;
     }
 
+    public ArrayList<Challenge> getChallenges() {
+        return challenges;
+    }
+
+    public void putChallenges() {
+        try {
+            JSONObject jsonObject = new JSONObject(utils.ReadFromDataFile("challenges", this.getBaseContext()));
+            JSONArray jsonArray = jsonObject.getJSONArray("challenges");
+
+            for (int i = 0; i < jsonArray.length(); i++) {
+                JSONObject jsonChallenge = jsonArray.getJSONObject(i);
+                challenges.add(
+                        new Challenge(
+                                jsonChallenge.getString("id"),
+                                jsonChallenge.getString("nom"),
+                                jsonChallenge.getString("description"),
+                                jsonChallenge.getInt("recompense"),
+                                jsonChallenge.getString("challenge_tag")
+
+                        )
+                );
+
+
+            }
+
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
     public void resetGameState() {
         gameState = new GameState(this);
     }
+
+
+    public void addUser() {
+        Intent pickContact = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
+        pickContact.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
+        startActivityForResult(pickContact, 1);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Uri contactData = data.getData();
+        String num = "";
+        String contact = "";
+        Cursor c = getContentResolver().query(contactData, null, null, null, null);
+        if (c.moveToFirst()) {
+            int phoneIndex = c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+            contact = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Nickname.DISPLAY_NAME));
+            num = c.getString(phoneIndex);
+        }
+//        ChallengeFragment chall_frag = (ChallengeFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_test);
+
+        if (num.matches("^(0|\\+33)[ ]?[1-9]([-. ]?[0-9]{2}){4}$")) {
+//            if (!chall_frag.getPhoneNumbers().contains(contact + ";" + num)) {
+//                chall_frag.addToPhoneNumbers(contact + ";" + num);
+//            }
+            if (!getPhoneNumbers().contains(contact + ";" + num)) {
+                addToPhoneNumbers(contact + ";" + num);
+            }
+
+
+            //getAdapter().notifyDataSetChanged();
+            Toast.makeText(AcceuilActivity.this, "Numéro ajouté : " + contact, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(AcceuilActivity.this, "Numéro inconnu : " + num, Toast.LENGTH_SHORT).show();
+        }
+
+
+    }
+
+
+    public void pop_up_envoi() {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setTitle("Voulez vous envoyer votre score à un ami");
+        String[] choice1 = {"Yes", "No"};
+        builder1.setItems(choice1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (choice1[which].equals("Yes")) {
+                    ((AcceuilActivity) builder1.getContext()).addUser();
+                } else {
+                    Toast.makeText(getApplicationContext(), "Incredible !!\nNothing happened !", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        builder1.show();
+
+    }
+
+    public void addToPhoneNumbers(String num) {
+        this.phoneNumbers.add(num);
+    }
+
+    public ArrayList<String> getPhoneNumbers() {
+        return this.phoneNumbers;
+    }
+
 }

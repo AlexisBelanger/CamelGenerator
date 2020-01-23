@@ -7,8 +7,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.applicationtest.AcceuilActivity;
 import com.example.applicationtest.GameState;
@@ -52,6 +54,11 @@ public class AmeliorationAdapter extends ArrayAdapter<Amelioration> {
         final Button ammBut = (Button) convertView.findViewById(R.id.ammButton);
         ammBut.setText(utils.prettyfier(amelioration.getCost()));
 
+        final ImageView im = (ImageView) convertView.findViewById(R.id.AmeliorationImage);
+        int id = getContext().getResources().getIdentifier(amelioration.getSrc_image(), "drawable", getContext().getPackageName());
+
+        im.setImageResource(id);
+
         ammBut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -60,14 +67,15 @@ public class AmeliorationAdapter extends ArrayAdapter<Amelioration> {
 
                     amelioration.ChangeState(gs);
                     gs.loc -= amelioration.getCost();
+                    gs.updateValues();
+                    gs.taken_ameliorations.add(amelioration.id);
+                    gs.ameliorations.remove(amelioration.id);
+                    AmeliorationAdapter.super.remove(amelioration);
+                    AmeliorationAdapter.super.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(getContext(), "You don't have enough LOC for that!\nCome back later.", Toast.LENGTH_LONG).show();
+
                 }
-
-                gs.updateValues();
-                gs.taken_ameliorations.add(amelioration.id);
-                gs.ameliorations.remove(amelioration.id);
-                AmeliorationAdapter.super.remove(amelioration);
-                AmeliorationAdapter.super.notifyDataSetChanged();
-
 
 
             }

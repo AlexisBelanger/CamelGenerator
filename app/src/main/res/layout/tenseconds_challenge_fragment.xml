@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ten_seconds_challenge"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/intro_challenge"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Le défi du clic, cliques le plus possible en 10 secondes et défies un ami !\n\n Temps restant:"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/timer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/intro_challenge"
+        android:textSize="40dp"
+        android:text="10.00"
+        android:textAlignment="center" />
+
+
+    <TextView
+        android:id="@+id/intro_clic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/timer"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:text="Nombre de clics"
+        android:textAlignment="center"
+
+        />
+
+    <TextView
+        android:id="@+id/nb_clic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:textSize="40dp"
+        android:layout_below="@id/intro_clic"
+        android:textAlignment="center" />
+
+    <View
+        android:id="@+id/blank"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@id/nb_clic" />
+
+    <Button
+        android:id="@+id/clic_challenge_button"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="Commencer !"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/blank" />
+
+
+</RelativeLayout>

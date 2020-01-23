@@ -1,7 +1,7 @@
 package com.example.applicationtest;
 
 
-import android.util.Log;
+import android.graphics.Color;
 
 import com.example.applicationtest.Amelioration.Amelioration;
 import com.example.applicationtest.Amelioration.AmeliorationEffectTable;
@@ -34,11 +34,16 @@ public class GameState {
 
 
     public double clickEfficiency;
+    public double clickMult;
+    public double clickbyEmp;
+
 
     public Long idleSeconds;
 
     public HashMap<String, Employe> employes;
     public AmeliorationEffectTable effect = new AmeliorationEffectTable();
+
+    public int[] colors;
 
 
     public GameState(AcceuilActivity ac) {
@@ -49,6 +54,17 @@ public class GameState {
         revenue_multiplier = 1.0;
         this.ac = ac;
         employes = new HashMap<>();
+
+        colors = new int[8];
+        colors[0] = Color.rgb(153, 0, 0);
+        colors[1] = Color.rgb(0, 0, 154);
+        colors[2] = Color.rgb(0, 112, 0);
+        colors[3] = Color.rgb(0, 75, 73);
+        colors[4] = Color.rgb(236, 11, 250);
+        colors[5] = Color.rgb(73, 0, 110);
+        colors[6] = Color.rgb(51, 128, 105);
+        colors[7] = Color.rgb(166, 83, 0);
+
 
         taken_ameliorations = new HashSet<>();
 
@@ -69,14 +85,15 @@ public class GameState {
                                 jsonEmploye.getDouble("cout"),
                                 jsonEmploye.getDouble("rate"),
                                 0,
+                                0,
                                 (gs -> {
                                     return true;
-                                })
+                                }),
+                                jsonEmploye.getString("src_image")
                         )
                 );
-
-
             }
+
 
         } catch (JSONException e) {
             // TODO Auto-generated catch block
@@ -100,7 +117,8 @@ public class GameState {
                                 jsonAmelioration.getString("nom"),
                                 jsonAmelioration.getString("description"),
                                 jsonAmelioration.getInt("cout"),
-                                effect.table.get(jsonAmelioration.getString("effect_tag"))
+                                effect.table.get(jsonAmelioration.getString("effect_tag")),
+                                jsonAmelioration.getString("src_image")
 
                         )
                 );
@@ -115,6 +133,8 @@ public class GameState {
 
 
         clickEfficiency = 1;
+        clickMult = 1;
+        clickbyEmp = 0;
 
         idleSeconds = 0L;
     }
@@ -128,12 +148,18 @@ public class GameState {
             loc = jsonObject.getDouble("loc");
             locps = jsonObject.getDouble("locps");
             clickEfficiency = jsonObject.getDouble("clickEff");
+            clickMult = jsonObject.getDouble("clickMult");
+            clickbyEmp = jsonObject.getDouble("clickbyEmp");
+
             revenue_multiplier = jsonObject.getDouble("revenue_multiplier");
             totalloc = jsonObject.getDouble("totalloc");
+
 
             for (Map.Entry<String, Employe> e : employes.entrySet()
             ) {
                 e.getValue().setNb(jsonObject.getInt(e.getKey()));
+
+                e.getValue().setTotal_production(jsonObject.getDouble(e.getKey() + "prod"));
             }
 
             JSONArray jsonArray = jsonObject.getJSONArray("ameliorations");
@@ -169,6 +195,8 @@ public class GameState {
         totalloc += multincome;
         ac.updateText();
 
+        updateEmployeesProduction();
+
     }
 
     public void updateValues() {
@@ -176,24 +204,36 @@ public class GameState {
         for (Employe e : employes.values()) {
             locps += e.getNb() * e.getRate();
         }
+
         ac.updateText();
 
     }
 
     public void secondTick() {
 
-        addIncome(locps);
+        addIncome(locps / 2);
 
+    }
+
+    public void updateEmployeesProduction() {
+        for (Employe emp : employes.values()) {
+            emp.updateTotalProduction();
+
+        }
     }
 
     public void click() {
-        addIncome(clickEfficiency);
+        double click_total = 0;
+
+        for (Employe employes : employes.values()) {
+            click_total += clickbyEmp * employes.getNb();
+        }
+
+        clickEfficiency = click_total + 1;
+
+        addIncome(clickEfficiency * clickMult);
     }
 
-    public void addAmelioration(Amelioration amm) {
-
-
-    }
 
 
     public String toJSON() {
@@ -204,6 +244,9 @@ public class GameState {
             jsonObject.put("loc", loc);
             jsonObject.put("locps", locps);
             jsonObject.put("clickEff", clickEfficiency);
+            jsonObject.put("clickMult", clickMult);
+            jsonObject.put("clickbyEmp", clickbyEmp);
+
             jsonObject.put("revenue_multiplier", revenue_multiplier);
             jsonObject.put("totalloc", totalloc);
 
@@ -211,7 +254,10 @@ public class GameState {
             jsonObject.put("saveTime", tsLong);
 
             for (Map.Entry<String, Employe> e : employes.entrySet()) {
+
                 jsonObject.put(e.getKey(), e.getValue().getNb());
+                jsonObject.put(e.getKey() + "prod", e.getValue().getTotalProduction());
+
             }
 
             JSONArray am = new JSONArray();

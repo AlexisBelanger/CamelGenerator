@@ -6,4 +6,16 @@
         android:orderInCategory="100"
         android:title="@string/action_reset"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/NG"
+        android:orderInCategory="100"
+        android:title="@string/NG"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/Cheat"
+        android:orderInCategory="100"
+        android:title="@string/Cheat"
+        app:showAsAction="never" />
+
+
 </menu>

@@ -9,9 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.applicationtest.AcceuilActivity;
+import com.example.applicationtest.GameState;
 import com.example.applicationtest.R;
 import com.example.applicationtest.utils;
 
@@ -59,9 +62,14 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
         Employe e = ((AcceuilActivity) getContext()).getGameState().employes.get(employe.id);
 
         empName.setText(e.nom);
-        empCost.setText(utils.prettyfier((int) e.cout) + " LOC");
+        empCost.setText(utils.prettyfier(e.cout) + " LOC");
         empNB.setText(utils.prettyfier(e.nb));
         empRate.setText(utils.prettyfier(e.total_rate) + " LOC/s");
+
+        final ImageView im = (ImageView) convertView.findViewById(R.id.empImage);
+        int id = getContext().getResources().getIdentifier(employe.getSrc_image(), "drawable", getContext().getPackageName());
+
+        im.setImageResource(id);
 
 
         //boutton achat
@@ -70,18 +78,19 @@ public class EmployeAdapter extends ArrayAdapter<Employe> {
 
             @Override
             public void onClick(View view) {
+                GameState gs = ((AcceuilActivity) getContext()).getGameState();
+                Employe e = gs.employes.get(employe.id);
+                if (gs.loc >= e.getCout()) {
 
-                Employe e = ((AcceuilActivity) getContext()).getGameState().employes.get(employe.id);
-                Log.i("Employe adapter", "employe nom " + employe.getNom());
-                Log.i("Employe adapter", "e nom " + e.getNom());
 
-
-                e.addOne(((AcceuilActivity) getContext()).getGameState());
-                empCost.setText(utils.prettyfier((int) e.cout) + " LOC");
-                empNB.setText(utils.prettyfier(e.nb));
-                empRate.setText(utils.prettyfier(e.total_rate) + " LOC/s");
-                ((AcceuilActivity) getContext()).updateText();
-
+                    e.addOne(((AcceuilActivity) getContext()).getGameState());
+                    empCost.setText(utils.prettyfier(e.cout) + " LOC");
+                    empNB.setText(utils.prettyfier(e.nb));
+                    empRate.setText(utils.prettyfier(e.total_rate) + " LOC/s");
+                    ((AcceuilActivity) getContext()).updateText();
+                } else {
+                    Toast.makeText(getContext(), "You don't have enough LOC for that!\nCome back later.", Toast.LENGTH_LONG).show();
+                }
             }
 
 

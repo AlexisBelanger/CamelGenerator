@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FF5722</color>
-    <color name="colorPrimaryDark">#B13D18</color>
+    <color name="colorPrimary">#E48714</color>
+    <color name="colorPrimaryDark">#D30C0F</color>
     <color name="colorAccent">#FF5722</color>
+    <color name="colorEmploye">#E48714</color>
+    <color name="colorBackground">#AAAAAA</color>
+    <color name="colorButtons">#FFFFFF</color>
+    <color name="colorAmelio">#1472E4</color>
+    <color name="colorAmelioBoutton">#32A3FF</color>
+    <color name="colorChallenge">#72E414</color>
+
 </resources>

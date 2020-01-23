@@ -24,11 +24,17 @@ public class Employe {
     protected double rate;
     protected double total_rate;
 
+    protected double total_production;
+
+    protected String src_image;
+
 
     protected Function<GameState, Boolean> condition;
 
 
-    public Employe(String id, int rank, String nom, String description, double coutBase, double apport, int nb, Function<GameState, Boolean> condition) {
+
+
+    public Employe(String id, int rank, String nom, String description, double coutBase, double apport, int nb, double total_production, Function<GameState, Boolean> condition, String src_image) {
         this.id = id;
         this.rank = rank;
         this.nom = nom;
@@ -40,12 +46,13 @@ public class Employe {
         this.total_rate = rate * nb;
         this.nb = nb;
         this.condition = condition;
+        this.total_production = total_production;
+        this.src_image = src_image;
 
     }
 
     public void addOne(GameState gs) {
 
-        if (gs.loc >= cout) {
             gs.loc -= cout;
             this.nb++;
             cout = (int) (coutBase * Math.pow(1.15, nb));
@@ -54,7 +61,11 @@ public class Employe {
 
             gs.updateValues();
 
-        }
+
+    }
+
+    public String getSrc_image() {
+        return src_image;
     }
 
     public String getNom() {
@@ -71,6 +82,22 @@ public class Employe {
 
     public double getRate() {
         return rate;
+    }
+
+    public double getTotalRate() {
+        return total_rate;
+    }
+
+    public void setTotal_production(double prod) {
+        this.total_production = prod;
+    }
+
+    public double getTotalProduction(){
+        return total_production;
+    }
+
+    public void updateTotalProduction(){
+        total_production += nb*rate;
     }
 
     public int getNb() {
