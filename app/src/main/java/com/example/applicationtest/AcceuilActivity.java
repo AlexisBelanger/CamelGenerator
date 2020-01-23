@@ -1,6 +1,7 @@
 package com.example.applicationtest;
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -16,7 +17,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.ui.AppBarConfiguration;
 
-import com.example.applicationtest.Amelioration.Amelioration;
 import com.example.applicationtest.Amelioration.AmeliorationAdapter;
 import com.example.applicationtest.challenge.Challenge;
 import com.example.applicationtest.employe.EmployeAdapter;
@@ -30,6 +30,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.provider.ContactsContract;
+import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -46,7 +47,11 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static android.Manifest.permission.SEND_SMS;
+
 public class AcceuilActivity extends AppCompatActivity {
+
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 1;
 
     private AppBarConfiguration mAppBarConfiguration;
 
@@ -451,7 +456,6 @@ public class AcceuilActivity extends AppCompatActivity {
         Intent pickContact = new Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI);
         pickContact.setType(ContactsContract.CommonDataKinds.Phone.CONTENT_TYPE);
         startActivityForResult(pickContact, 1);
-
     }
 
     @Override
@@ -478,26 +482,50 @@ public class AcceuilActivity extends AppCompatActivity {
 
 
             //getAdapter().notifyDataSetChanged();
-            Toast.makeText(AcceuilActivity.this, "Numéro ajouté : " + contact, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(AcceuilActivity.this, "Numéro ajouté : " + contact, Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(AcceuilActivity.this, "Numéro inconnu : " + num, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(AcceuilActivity.this, "Numéro inconnu : " + num, Toast.LENGTH_SHORT).show();
         }
 
 
     }
 
 
-    public void pop_up_envoi() {
+    public void sendSMS(int score) {
+        Log.i("sms", "debut de la fonction");
+
+        requestPermission();
+
+        String message = "Tu as été défié au par un agent de la Camel Corp, pourras tu le battre ? (Score de l'adversaire = " + score + " clicks en 10 s)";
+        SmsManager smsManager = SmsManager.getDefault();
+        Log.i("sms", "LE SMS EST PARTI    " + phoneNumbers);
+
+        for (String phoneNumber : phoneNumbers) {
+            String[] contact_num = phoneNumber.split(";");
+            for (String s :
+                    contact_num) {
+                Log.i("sms", s);
+
+            }
+            smsManager.sendTextMessage(contact_num[1], null, message, null, null);
+        }
+//        Toast.makeText(this,"Message Sent!",Toast.LENGTH_SHORT).show();
+        phoneNumbers.clear();
+
+    }
+
+
+    public void pop_up_envoi(int score) {
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
-        builder1.setTitle("Voulez vous envoyer votre score à un ami");
-        String[] choice1 = {"Yes", "No"};
+        builder1.setTitle("Envoyer ?");
+        String[] choice1 = {"Yes"};
+        final AcceuilActivity a = this;
         builder1.setItems(choice1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (choice1[which].equals("Yes")) {
-                    ((AcceuilActivity) builder1.getContext()).addUser();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Incredible !!\nNothing happened !", Toast.LENGTH_LONG).show();
+                    a.sendSMS(score);
+
                 }
             }
         });
@@ -512,5 +540,12 @@ public class AcceuilActivity extends AppCompatActivity {
     public ArrayList<String> getPhoneNumbers() {
         return this.phoneNumbers;
     }
+
+    private void requestPermission() {
+        if (!(ActivityCompat.checkSelfPermission(this, SEND_SMS) == PackageManager.PERMISSION_GRANTED)) {
+            ActivityCompat.requestPermissions(this, new String[]{SEND_SMS}, 100);
+        }
+    }
+
 
 }
