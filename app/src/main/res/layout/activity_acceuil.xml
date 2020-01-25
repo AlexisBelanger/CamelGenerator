@@ -38,7 +38,7 @@
 
     <View
         android:id="@+id/blank1"
-        android:layout_width="20dp"
+        android:layout_width="35dp"
         android:layout_height="wrap_content"
         android:layout_toLeftOf="@id/goLab"/>
 
@@ -53,9 +53,9 @@
 
     <View
         android:id="@+id/blank2"
-        android:layout_width="20dp"
+        android:layout_width="35dp"
         android:layout_height="wrap_content"
-        android:layout_toLeftOf="@id/goHome"/>
+        android:layout_centerInParent="true"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/goHome"
@@ -63,30 +63,19 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/accView"
         android:src="@drawable/ic_home"
-        android:layout_centerInParent="true"
+        android:layout_toRightOf="@id/blank2"
         android:backgroundTint="@color/colorButtons"/>
 
 
     <View
         android:id="@+id/blank3"
-        android:layout_width="20dp"
+        android:layout_width="35dp"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@id/goHome"/>
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/goTest"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/accView"
-        android:src="@drawable/ic_test"
-        android:layout_toRightOf="@id/blank3"
-        android:backgroundTint="@color/colorButtons"/>
 
-    <View
-        android:id="@+id/blank4"
-        android:layout_width="20dp"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@id/goTest"/>
+
+
 
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -95,7 +84,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/accView"
         android:src="@drawable/ic_cave"
-        android:layout_toRightOf="@id/blank4"
+        android:layout_toRightOf="@id/blank3"
         android:backgroundTint="@color/colorButtons"
         />
 

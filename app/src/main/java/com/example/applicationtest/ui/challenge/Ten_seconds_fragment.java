@@ -25,7 +25,7 @@ import java.util.TimerTask;
 
 public class Ten_seconds_fragment extends DialogFragment {
     private tenSecondsViewModel ten_secondsViewModel;
-
+    private int n = 0;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -46,13 +46,12 @@ public class Ten_seconds_fragment extends DialogFragment {
         Button clic = (Button) root.findViewById(R.id.clic_challenge_button);
         TextView nb_clic = (TextView) root.findViewById(R.id.nb_clic);
         TextView remaining_time = (TextView) root.findViewById(R.id.timer);
-        final int n = 0;
+
         final DialogFragment df = this;
 
 
         clic.setOnClickListener(new View.OnClickListener() {
             boolean is_already_launched = false;
-            int n = 0;
 
             @Override
             public void onClick(View view) {
@@ -76,7 +75,6 @@ public class Ten_seconds_fragment extends DialogFragment {
                                 public void run() {
 
                                     remaining_time.setText(i / 10 + "." + i % 10);
-                                    Log.i("sms", "Je suis en vie");
                                     i--;
                                     if (i == -1) {
                                         timer.cancel();
@@ -85,7 +83,11 @@ public class Ten_seconds_fragment extends DialogFragment {
                                             @Override
                                             public void onClick(View view) {
                                                 ((AcceuilActivity) getActivity()).addUser();
+
                                                 (df).dismiss();
+                                                Log.i("sms", "AU SECOURS");
+                                                ((AcceuilActivity) getActivity()).pop_up_envoi(getClicks());
+                                                resetClicks();
                                             }
                                         });
                                     }
@@ -96,8 +98,8 @@ public class Ten_seconds_fragment extends DialogFragment {
                         }
                     }, 0, 100);
                 }
-                n++;
-                nb_clic.setText(n + "");
+                ((Ten_seconds_fragment) df).upClicks();
+                nb_clic.setText(((Ten_seconds_fragment) df).getClicks() + "");
 
 
             }
@@ -105,9 +107,23 @@ public class Ten_seconds_fragment extends DialogFragment {
 
         });
 
-        ((AcceuilActivity) getActivity()).pop_up_envoi(n);
 
         return root;
+    }
+
+
+
+    public void upClicks(){
+        Log.i("sms", ""+n);
+        n++;
+    }
+
+    public int getClicks(){
+        return n;
+    }
+
+    public void resetClicks(){
+        n = 0;
     }
 
 }

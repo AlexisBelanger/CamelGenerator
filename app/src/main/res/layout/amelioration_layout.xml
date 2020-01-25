@@ -62,6 +62,7 @@
             android:textColor="#FFFFFF"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/blank1"
+            android:textAllCaps="false"
             android:background="@drawable/roundedbuttonamelio" />
 
         <View

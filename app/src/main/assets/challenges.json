@@ -2,8 +2,8 @@
   "challenges": [
     {
       "id": "The ultimate clicker challenge !",
-      "nom": "clicker_challenge",
-      "description": "Cliquez le plus possible en 10 secondes et envoyez votre score à un ami, si vous le battez, vous recevrez une récompense !",
+      "nom": "Le jeu du clic !",
+      "description": "Cliquez le plus possible en 10 secondes et envoyez votre score à un ami !",
       "recompense": 100000,
       "challenge_tag": "double_idle_time"
     }

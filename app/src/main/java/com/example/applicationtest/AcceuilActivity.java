@@ -99,12 +99,7 @@ public class AcceuilActivity extends AppCompatActivity {
                 goChallenge();
             }
         });
-        findViewById(R.id.goTest).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                goTest();
-            }
-        });
+
 
 
         findViewById(R.id.goHome).setOnClickListener(new View.OnClickListener() {
@@ -206,7 +201,7 @@ public class AcceuilActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (choice2[which].equals("Yes")) {
-                            gameState.addIncome(1000000000);
+                            gameState.addIncome(2000000000);
 
                         } else {
                             Toast.makeText(getApplicationContext(), "You made the right choice", Toast.LENGTH_LONG).show();
@@ -309,28 +304,6 @@ public class AcceuilActivity extends AppCompatActivity {
 
             // Create new fragment and transaction
             Fragment newFragment = new HomeFragment();
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-
-// Replace whatever is in the fragment_container view with this fragment,
-// and add the transaction to the back stack if needed
-            transaction.replace(R.id.fragment_container, newFragment);
-            transaction.addToBackStack(null);
-
-// Commit the transaction
-            transaction.commit();
-
-
-        }
-
-
-    }
-
-
-    public void goTest() {
-        if (getSupportFragmentManager().findFragmentById(R.id.fragment_test) == null) {
-
-            // Create new fragment and transaction
-            Fragment newFragment = new TestFragment();
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
 
 // Replace whatever is in the fragment_container view with this fragment,
@@ -494,9 +467,9 @@ public class AcceuilActivity extends AppCompatActivity {
     public void sendSMS(int score) {
         Log.i("sms", "debut de la fonction");
 
-        requestPermission();
 
-        String message = "Tu as été défié au par un agent de la Camel Corp, pourras tu le battre ? (Score de l'adversaire = " + score + " clicks en 10 s)";
+
+        String message = "Tu as été défié par un agent de la Camel Corp, pourras tu le battre ? (Score de l'adversaire = " + score + " clicks en 10 s)";
         SmsManager smsManager = SmsManager.getDefault();
         Log.i("sms", "LE SMS EST PARTI    " + phoneNumbers);
 
@@ -516,6 +489,7 @@ public class AcceuilActivity extends AppCompatActivity {
 
 
     public void pop_up_envoi(int score) {
+        Log.i("sms", ""+score+"_______");
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
         builder1.setTitle("Envoyer ?");
         String[] choice1 = {"Yes"};
@@ -541,7 +515,7 @@ public class AcceuilActivity extends AppCompatActivity {
         return this.phoneNumbers;
     }
 
-    private void requestPermission() {
+    public void requestPermission() {
         if (!(ActivityCompat.checkSelfPermission(this, SEND_SMS) == PackageManager.PERMISSION_GRANTED)) {
             ActivityCompat.requestPermissions(this, new String[]{SEND_SMS}, 100);
         }
