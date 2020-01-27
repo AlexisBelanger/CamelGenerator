@@ -17,6 +17,7 @@ import java.util.Map;
 public class GameState {
 
 
+    public int new_game;
     public AcceuilActivity ac;
 
     public int maxIdle;
@@ -48,6 +49,7 @@ public class GameState {
 
     public GameState(AcceuilActivity ac) {
 
+        new_game = 0;
         loc = 0;
         locps = 0;
         maxIdle = 3600;
@@ -189,7 +191,7 @@ public class GameState {
     }
 
     public void addIncome(double income) {
-        double multincome = income * revenue_multiplier;
+        double multincome = income * revenue_multiplier * (new_game * 2.5);
 
         loc += multincome;
         totalloc += multincome;
@@ -233,7 +235,6 @@ public class GameState {
 
         addIncome(clickEfficiency * clickMult);
     }
-
 
 
     public String toJSON() {

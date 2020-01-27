@@ -32,8 +32,6 @@ public class Employe {
     protected Function<GameState, Boolean> condition;
 
 
-
-
     public Employe(String id, int rank, String nom, String description, double coutBase, double apport, int nb, double total_production, Function<GameState, Boolean> condition, String src_image) {
         this.id = id;
         this.rank = rank;
@@ -53,13 +51,13 @@ public class Employe {
 
     public void addOne(GameState gs) {
 
-            gs.loc -= cout;
-            this.nb++;
-            cout = (int) (coutBase * Math.pow(1.15, nb));
-            this.total_rate = rate * nb;
+        gs.loc -= cout;
+        this.nb++;
+        cout = (int) (coutBase * Math.pow(1.15, nb));
+        this.total_rate = rate * nb * gs.revenue_multiplier * (gs.new_game * 2.5);
 
 
-            gs.updateValues();
+        gs.updateValues();
 
 
     }
@@ -92,12 +90,12 @@ public class Employe {
         this.total_production = prod;
     }
 
-    public double getTotalProduction(){
+    public double getTotalProduction() {
         return total_production;
     }
 
-    public void updateTotalProduction(){
-        total_production += nb*rate;
+    public void updateTotalProduction() {
+        total_production += nb * rate;
     }
 
     public int getNb() {
