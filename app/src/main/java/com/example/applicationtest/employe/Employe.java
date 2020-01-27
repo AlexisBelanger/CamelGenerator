@@ -54,7 +54,13 @@ public class Employe {
         gs.loc -= cout;
         this.nb++;
         cout = (int) (coutBase * Math.pow(1.15, nb));
-        this.total_rate = rate * nb * gs.revenue_multiplier * (gs.new_game * 2.5);
+        if (gs.new_game > 0) {
+            this.total_rate = rate * nb * gs.revenue_multiplier * (gs.new_game * 2.5);
+
+        } else {
+            this.total_rate = rate * nb * gs.revenue_multiplier;
+
+        }
 
 
         gs.updateValues();

@@ -148,6 +148,8 @@ public class GameState {
 
             JSONObject jsonObject = new JSONObject(state);
             loc = jsonObject.getDouble("loc");
+            new_game = jsonObject.getInt("ng");
+
             locps = jsonObject.getDouble("locps");
             clickEfficiency = jsonObject.getDouble("clickEff");
             clickMult = jsonObject.getDouble("clickMult");
@@ -191,7 +193,16 @@ public class GameState {
     }
 
     public void addIncome(double income) {
-        double multincome = income * revenue_multiplier * (new_game * 2.5);
+        double multincome;
+        if (new_game > 0) {
+            multincome = income * revenue_multiplier * (new_game * 2.5);
+
+
+        } else {
+            multincome = income * revenue_multiplier;
+
+
+        }
 
         loc += multincome;
         totalloc += multincome;
@@ -242,6 +253,8 @@ public class GameState {
         JSONObject jsonObject = new JSONObject();
         Long tsLong = System.currentTimeMillis() / 1000;
         try {
+            jsonObject.put("ng", new_game);
+
             jsonObject.put("loc", loc);
             jsonObject.put("locps", locps);
             jsonObject.put("clickEff", clickEfficiency);

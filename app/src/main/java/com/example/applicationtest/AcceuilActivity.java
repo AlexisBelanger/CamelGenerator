@@ -171,6 +171,7 @@ public class AcceuilActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (choice1[which].equals("Yes") && gameState.employes.get("inria").getNb() >= 10) {
+                            int ng = gameState.new_game;
                             resetGameState();
                             ListView employesList = findViewById(R.id.listTavern);
                             ListView ameliorationList = findViewById(R.id.listLab);
@@ -183,10 +184,10 @@ public class AcceuilActivity extends AppCompatActivity {
                                 ((AmeliorationAdapter) ameliorationList.getAdapter()).notifyDataSetChanged();
                             }
 
-                            gameState.revenue_multiplier += 5;
+                            gameState.new_game = ng + 1;
 
                         } else if (gameState.employes.get("inria").getNb() < 10) {
-                            Toast.makeText(getApplicationContext(), "Vous n'avez pas assez d'INRIA pour ca", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getApplicationContext(), "Vous n'avez pas assez d'INRIA pour cela", Toast.LENGTH_LONG).show();
                         } else {
                             Toast.makeText(getApplicationContext(), "Incredible !!\nNothing happened !", Toast.LENGTH_LONG).show();
                         }
