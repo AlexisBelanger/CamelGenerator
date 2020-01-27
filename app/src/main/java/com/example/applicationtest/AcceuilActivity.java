@@ -502,7 +502,7 @@ public class AcceuilActivity extends AppCompatActivity {
         builder1.setItems(choice1, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if (choice1[which].equals("Yes")) {
+                if (choice1[which].equals("Yes") && !phoneNumbers.isEmpty()) {
                     a.sendSMS(score);
 
                 }
