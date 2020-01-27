@@ -41,6 +41,9 @@ public class ChallengeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
+        ((AcceuilActivity) getActivity()).requestPermission();
+
+
         challengeViewModel =
                 ViewModelProviders.of(this).get(ChallengeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_challenge, container, false);

@@ -54,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_loc"
                 android:layout_centerInParent="true"
+                android:backgroundTint="@color/colorButtons"
                 android:layout_toLeftOf="@id/barView2" />
 
             <View
