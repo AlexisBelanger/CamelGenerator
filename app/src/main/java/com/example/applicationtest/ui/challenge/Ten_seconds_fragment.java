@@ -85,8 +85,9 @@ public class Ten_seconds_fragment extends DialogFragment {
                                                 ((AcceuilActivity) getActivity()).addUser();
 
                                                 (df).dismiss();
-                                                Log.i("sms", "AU SECOURS");
-                                                ((AcceuilActivity) getActivity()).pop_up_envoi(getClicks());
+                                                if (((AcceuilActivity) getActivity()).getPhoneNumbers() != null || !((AcceuilActivity) getActivity()).getPhoneNumbers().isEmpty()) {
+                                                    ((AcceuilActivity) getActivity()).pop_up_envoi(getClicks());
+                                                }
                                                 resetClicks();
                                             }
                                         });
@@ -112,17 +113,16 @@ public class Ten_seconds_fragment extends DialogFragment {
     }
 
 
-
-    public void upClicks(){
-        Log.i("sms", ""+n);
+    public void upClicks() {
+        Log.i("sms", "" + n);
         n++;
     }
 
-    public int getClicks(){
+    public int getClicks() {
         return n;
     }
 
-    public void resetClicks(){
+    public void resetClicks() {
         n = 0;
     }
 

@@ -439,30 +439,34 @@ public class AcceuilActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Uri contactData = data.getData();
-        String num = "";
-        String contact = "";
-        Cursor c = getContentResolver().query(contactData, null, null, null, null);
-        if (c.moveToFirst()) {
-            int phoneIndex = c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
-            contact = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Nickname.DISPLAY_NAME));
-            num = c.getString(phoneIndex);
-        }
-//        ChallengeFragment chall_frag = (ChallengeFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_test);
 
-        if (num.matches("^(0|\\+33)[ ]?[1-9]([-. ]?[0-9]{2}){4}$")) {
-//            if (!chall_frag.getPhoneNumbers().contains(contact + ";" + num)) {
-//                chall_frag.addToPhoneNumbers(contact + ";" + num);
-//            }
-            if (!getPhoneNumbers().contains(contact + ";" + num)) {
-                addToPhoneNumbers(contact + ";" + num);
+        if (data != null) {
+            Uri contactData = data.getData();
+            String num = "";
+            String contact = "";
+            Cursor c = getContentResolver().query(contactData, null, null, null, null);
+            if (c.moveToFirst()) {
+                int phoneIndex = c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                contact = c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Nickname.DISPLAY_NAME));
+                num = c.getString(phoneIndex);
+            }
+            //        ChallengeFragment chall_frag = (ChallengeFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_test);
+
+            if (num.matches("^(0|\\+33)[ ]?[1-9]([-. ]?[0-9]{2}){4}$")) {
+                //            if (!chall_frag.getPhoneNumbers().contains(contact + ";" + num)) {
+                //                chall_frag.addToPhoneNumbers(contact + ";" + num);
+                //            }
+                if (!getPhoneNumbers().contains(contact + ";" + num)) {
+                    addToPhoneNumbers(contact + ";" + num);
+                }
+
+
+                //getAdapter().notifyDataSetChanged();
+                //            Toast.makeText(AcceuilActivity.this, "Numéro ajouté : " + contact, Toast.LENGTH_SHORT).show();
+            } else {
+                //            Toast.makeText(AcceuilActivity.this, "Numéro inconnu : " + num, Toast.LENGTH_SHORT).show();
             }
 
-
-            //getAdapter().notifyDataSetChanged();
-//            Toast.makeText(AcceuilActivity.this, "Numéro ajouté : " + contact, Toast.LENGTH_SHORT).show();
-        } else {
-//            Toast.makeText(AcceuilActivity.this, "Numéro inconnu : " + num, Toast.LENGTH_SHORT).show();
         }
 
 
