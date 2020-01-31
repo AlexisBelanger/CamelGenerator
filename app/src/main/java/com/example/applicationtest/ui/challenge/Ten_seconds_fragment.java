@@ -2,7 +2,6 @@ package com.example.applicationtest.ui.challenge;
 
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;

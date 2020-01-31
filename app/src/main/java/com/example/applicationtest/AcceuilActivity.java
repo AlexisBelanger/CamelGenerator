@@ -101,7 +101,6 @@ public class AcceuilActivity extends AppCompatActivity {
         });
 
 
-
         findViewById(R.id.goHome).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -197,23 +196,6 @@ public class AcceuilActivity extends AppCompatActivity {
                 builder1.show();
                 return true;
 
-            case R.id.Cheat:
-                AlertDialog.Builder builder2 = new AlertDialog.Builder(this);
-                builder2.setTitle("Do you want to Cheat\nRemember:\n Gamers don't do cheats");
-                String[] choice2 = {"Yes", "No"};
-                builder2.setItems(choice2, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        if (choice2[which].equals("Yes")) {
-                            gameState.addIncome(2000000000);
-
-                        } else {
-                            Toast.makeText(getApplicationContext(), "You made the right choice", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
-                builder2.show();
-                return true;
 
 
             default:
@@ -453,18 +435,12 @@ public class AcceuilActivity extends AppCompatActivity {
             //        ChallengeFragment chall_frag = (ChallengeFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_test);
 
             if (num.matches("^(0|\\+33)[ ]?[1-9]([-. ]?[0-9]{2}){4}$")) {
-                //            if (!chall_frag.getPhoneNumbers().contains(contact + ";" + num)) {
-                //                chall_frag.addToPhoneNumbers(contact + ";" + num);
-                //            }
+
                 if (!getPhoneNumbers().contains(contact + ";" + num)) {
                     addToPhoneNumbers(contact + ";" + num);
                 }
 
-
-                //getAdapter().notifyDataSetChanged();
-                //            Toast.makeText(AcceuilActivity.this, "Numéro ajouté : " + contact, Toast.LENGTH_SHORT).show();
             } else {
-                //            Toast.makeText(AcceuilActivity.this, "Numéro inconnu : " + num, Toast.LENGTH_SHORT).show();
             }
 
         }
@@ -475,7 +451,6 @@ public class AcceuilActivity extends AppCompatActivity {
 
     public void sendSMS(int score) {
         Log.i("sms", "debut de la fonction");
-
 
 
         String message = "Tu as été défié par un agent de la Camel Corp, pourras tu le battre ? (Score de l'adversaire = " + score + " clicks en 10 s)";
@@ -498,7 +473,7 @@ public class AcceuilActivity extends AppCompatActivity {
 
 
     public void pop_up_envoi(int score) {
-        Log.i("sms", ""+score+"_______");
+        Log.i("sms", "" + score + "_______");
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
         builder1.setTitle("Envoyer ?");
         String[] choice1 = {"Yes"};
